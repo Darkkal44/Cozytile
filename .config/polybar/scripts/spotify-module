@@ -1,0 +1,47 @@
+#!/bin/bash
+
+display_song() {
+  script_path="$HOME/.config/polybar/scripts/spotify_status.py"
+  
+  status="python $script_path -p 'Playing,Paused' -f '{play_pause}'"
+  song="python $script_path -t 150 -f '{artist}: {song}'"
+  
+  
+  zscroll --length 30 \
+          --delay 0.2 \
+          --scroll-padding "    " \
+          --match-command "$status" \
+          --match-text "Playing" "--scroll 1" \
+          --match-text "Paused"  "--scroll 0" \
+          --update-check 1 \
+          "$song" &
+  wait
+}
+change_volume() {
+  spotify_id=$( pulsemixer --list-sinks | awk -F "[-,]" '/spotify/ { print $3 }' )
+
+  case "$1" in
+    up)
+      pulsemixer --id "$spotify_id" --change-volume +5
+      ;;
+    down)
+      pulsemixer --id "$spotify_id" --change-volume -5
+      ;;
+  esac
+}
+
+
+while [[ "$1" ]]; do
+  case $1 in
+    display-song)
+      display_song
+      exit
+      ;;
+    change-volume)
+      change_volume $2
+      exit
+      ;;
+  esac
+done
+
+
