@@ -28,9 +28,13 @@ Hello there! This is a rice that I've been working on for a while. I'm doing a r
 -  **Launcher** - [Rofi](https://github.com/davatorium/rofi) 🚀 Very responsive!
 -  **File Manager** - [Thunar](https://docs.xfce.org/xfce/thunar/start) 🏙️ Very nice file manager :D
 -  **Terminal** - [Kitty](https://github.com/kovidgoyal/kitty) 🐈‍⬛ Super fast and beautiful term!
--  **Shell** - Bash 📘 It is fast for me. I care performance & minimality alot! 
+-  **Shell** - Bash 📘 It is fast for me. I care performance & minimality alot!
+- **Text Editor** - Nvchad (neovim) 
 -  **Music Player** - [Spotify](https://www.spotify.com/in-en/) 🎵 24/7 songs 
 
 
 ## SCREENSHOTS
+
+![cozytile](https://cdn.discordapp.com/attachments/1006604310894891071/1020134305646784542/1.png)
+![cozytile](https://cdn.discordapp.com/attachments/1006604310894891071/1020139210235199488/2.png)
 
