@@ -1,0 +1,356 @@
+:root .Root__nav-bar {
+  overflow: hidden;
+
+  ul.main-navBar-entryPoints {
+    &#spicetify-sticky-list {
+      white-space: nowrap;
+      border-radius: var(--border-radius);
+
+      > div {
+        display: inline-block;
+        margin-right: 18px;
+      }
+    }
+
+    column-gap: 16px;
+    padding: 0 12px;
+    box-sizing: content-box;
+    transition: 350ms background-color;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin: 24px 12px 0 12px;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    & > li {
+      padding: 0;
+      margin: 0 -12px;
+
+      a {
+        padding: 0 12px;
+        border-radius: 0;
+        background-color: transparent;
+
+        &.main-navBar-navBarLinkActive {
+          background-color: rgba(
+            var(--spice-rgb-pagelink-active),
+            0.1647058824
+          );
+        }
+      }
+
+      &:first-child a {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+      }
+    }
+
+    & > div {
+      padding: 0;
+      margin: 2px 0;
+
+      & > *.active {
+        background: none;
+      }
+
+      button,
+      a {
+        padding: 0;
+
+        div {
+          margin-right: 0;
+          border-radius: var(--border-radius);
+          &.main-rootlist-statusIcons {
+            display: none;
+          }
+          &.main-likedSongsButton-likedSongsIcon {
+            background: linear-gradient(
+              135deg,
+              var(--spice-liked-left),
+              var(--spice-liked-right)
+            );
+            border-style: solid;
+            border-width: 2px;
+          }
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+    a[href="/"] {
+      .home-icon {
+        background: url("https://i.imgur.com/jqDH9TQ.png") center/cover
+          no-repeat;
+      }
+      .home-active-icon {
+        background: url("https://i.imgur.com/60h58oZ.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    a[href="/search"] {
+      .search-icon {
+        background: url("https://i.imgur.com/UV5JQpE.png") center/cover
+          no-repeat;
+      }
+      .search-active-icon {
+        background: url("https://i.imgur.com/CTVdQ3d.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    a[href="/collection"] {
+      .collection-icon {
+        background: url("https://i.imgur.com/alXGfxW.png") center/cover
+          no-repeat;
+      }
+      .collection-active-icon {
+        background: url("https://i.imgur.com/SzvrAfr.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    a[href="/lyrics-plus"] {
+      .collection-icon {
+        background: url("https://i.imgur.com/91fuU3P.png") center/cover
+          no-repeat;
+      }
+      .collection-active-icon {
+        background: url("https://i.imgur.com/EgRCYe8.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    a[href="/reddit"] {
+      .collection-icon {
+        background: url("https://i.imgur.com/6N6ev2V.png") center/cover
+          no-repeat;
+      }
+      .collection-active-icon {
+        background: url("https://i.imgur.com/UENFDdo.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    a[href="/new-releases"] {
+      .collection-icon {
+        background: url("https://i.imgur.com/BgkCeDG.png") center/cover
+          no-repeat;
+      }
+      .collection-active-icon {
+        background: url("https://i.imgur.com/CTRVDwF.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    a[href$="marketplace"] {
+      .collection-icon {
+        background: url("https://i.imgur.com/2pWNa48.png") center/cover
+          no-repeat;
+      }
+      .collection-active-icon {
+        background: url("https://i.imgur.com/rKmXQ6V.png") center/cover
+          no-repeat;
+      }
+      svg > * {
+        display: none;
+      }
+    }
+
+    &:not(#spicetify-sticky-list) + .main-rootlist-rootlist {
+      & > div {
+        display: grid;
+        grid-template-areas:
+          "add tracks episodes"
+          "playlists playlists playlists";
+        grid-template-columns: 25px 25px 1fr;
+        grid-template-rows: 25px 1fr;
+        column-gap: 16px;
+        margin: 12px 12px 0 12px;
+
+        & > div:first-child {
+          grid-area: add;
+          margin: -6px 0 0 12px;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: calc(100% - 24px);
+            height: 40px;
+            margin: -6px 0 0 -12px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+          }
+
+          button {
+            padding: 0;
+
+            .main-createPlaylistButton-createPlaylistIcon {
+              border-radius: var(--border-radius);
+            }
+          }
+        }
+
+        & > div:nth-child(2) {
+          grid-area: tracks;
+          margin: -6px 0 0 12px;
+
+          a {
+            padding: 0;
+
+            .main-likedSongsButton-likedSongsIcon {
+              border-radius: var(--border-radius);
+            }
+          }
+        }
+
+        & > div:nth-child(3) {
+          grid-area: episodes;
+          margin: -6px 0 0 12px;
+
+          a {
+            padding: 0;
+
+            .main-yourEpisodesButton-yourEpisodesIcon {
+              border-radius: var(--border-radius);
+            }
+
+            .main-collectionLinkButton-collectionLinkText {
+              display: none;
+            }
+          }
+        }
+
+        & > div:last-child {
+          grid-area: playlists;
+        }
+      }
+    }
+  }
+
+  .main-rootlist-rootlistDividerContainer {
+    display: none;
+  }
+
+  .main-rootlist-rootlist {
+    margin-top: 0;
+
+    .os-content {
+      padding-top: 16px !important;
+
+      &::before {
+        content: "Playlists";
+        visibility: visible;
+        width: unset;
+        height: unset;
+        line-height: unset;
+        display: block;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      & > ul[tabindex="0"] {
+        margin: 12px;
+
+        &:not(#spicetify-playlist-list) {
+          margin: 12px 0 0 0;
+        }
+
+        & > div {
+          contain: unset;
+
+          & > div:nth-child(2) {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+
+            .main-rootlist-rootlistItem {
+              padding: 0;
+
+              .main-rootlist-rootlistItemLink {
+                padding-top: 4px;
+                padding-bottom: 4px;
+                padding-left: calc(
+                  12px + var(--indentation) *
+                    var(--left-sidebar-item-indentation-width)
+                );
+                padding-right: var(--left-sidebar-padding-right);
+                box-sizing: content-box;
+                transition: color 350ms ease, background-color 150ms;
+
+                & + button {
+                  border-radius: 0 !important;
+                }
+                & + div > button {
+                  margin-left: 0;
+                }
+
+                &:hover,
+                &:hover + * {
+                  transition: 350ms color;
+                  cursor: pointer;
+                }
+
+                &Active,
+                &:focus,
+                &Active + *,
+                &:focus + * {
+                  background-color: rgba(
+                    var(--spice-rgb-pagelink-active),
+                    0.1647058824
+                  );
+                  cursor: default !important;
+                }
+              }
+
+              .main-rootlist-statusIcons:not(:empty) {
+                margin-inline-start: 0;
+                padding: 4px 12px;
+                transition: 150ms background-color;
+              }
+
+              .main-rootlist-expandArrow {
+                height: unset;
+                margin-left: 0;
+                padding: 4px 12px;
+                transition: 150ms background-color;
+              }
+            }
+
+            .main-rootlist-rootlistItemOverlay {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Cover art expanded
+  .main-coverSlotExpanded-container .cover-art .cover-art-image {
+    border-radius: 0;
+  }
+
+  // Scrollbar
+  .os-scrollbar {
+    display: none;
+  }
+}
