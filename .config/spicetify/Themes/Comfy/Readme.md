@@ -1,4 +1,4 @@
-For this rice, I've made slight changes a theme called "[comfty](https://github.com/Comfy-Themes/Spicetify)" So, all credit goes to the creator of this theme.
+For this rice, I've made slight changes a theme called "[comfy](https://github.com/Comfy-Themes/Spicetify)" So, all credit goes to the creator of this theme.
 
 
 
