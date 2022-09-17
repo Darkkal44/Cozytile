@@ -1,0 +1,29 @@
+/* Needs more but proof of concept here: */
+
+/*/ Cover Art Mod /*/
+#main > div > div.Root__top-container > div.Root__now-playing-bar > footer > div > div.main-nowPlayingBar-left > div > div.main-coverSlotCollapsed-container.IcyWfMS5VkeOhaI7OWIx > div > div > a > div > div {
+    width: 115px !important;
+    height: 84px !important;
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.cover-art.shadow {
+    box-shadow: 0 0 10px rgba(var(--spice-rgb-shadow),.4);
+}
+
+.main-coverSlotCollapsed-expandButton:focus, .main-coverSlotCollapsed-expandButton {
+	color: rgb(0,0,0);
+}
+
+.main-coverSlotCollapsed-expandButton:focus, .main-coverSlotCollapsed-expandButton:hover {
+	color: rgb(0,0,0);
+}
+
+.main-editImageButton-icon.icon {
+	color: #000000;
+}
+
+svg.main-coverSlotExpandedCollapseButton-chevron {
+    color: rgb(0,0,0);
+}
