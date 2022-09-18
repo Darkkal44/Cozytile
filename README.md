@@ -24,7 +24,7 @@ Hello there! This is a rice that I've been working on for a while. I'm doing a r
 -  **File Manager** - [Thunar](https://docs.xfce.org/xfce/thunar/start) 🏙️ Very nice file manager :D
 -  **Terminal** - [Kitty](https://github.com/kovidgoyal/kitty) 🐈‍⬛ Super fast and beautiful term!
 -  **Shell** - Bash 📘 It is fast for me. I care performance & minimality alot!
-- **Text Editor** - Nvchad (neovim) 
+- **Text Editor** - (Nvchad (neovim))[https://github.com/NvChad/NvChad]
 -  **Music Player** - [Spotify](https://www.spotify.com/in-en/) 🎵 24/7 songs 
 
 
