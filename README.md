@@ -30,6 +30,4 @@ Hello there! This is a rice that I've been working on for a while. I'm doing a r
 
 ## SCREENSHOTS
 
-![cozytile](https://cdn.discordapp.com/attachments/635625917623828520/1020677995352039504/3.png)
-![cozytile](https://cdn.discordapp.com/attachments/1006604310894891071/1020680522986422322/4.png)
-![cozytile](https://cdn.discordapp.com/attachments/1006604310894891071/1021020104571486208/5.png)
+![cozytile](https://raw.githubusercontent.com/Darkkal44/CozyTile/main/preview.png)
