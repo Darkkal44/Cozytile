@@ -16,7 +16,7 @@
 
 <div align="center">
 
-## Installation
+## INSTALLATION
 </div>
 
 ###### Note: This configuration is designed with the assumption that the main files, such as ".config", will be located in the home folder (~/). If this is not the case for you, then you may need to manually adjust the dotfiles
@@ -67,3 +67,11 @@ chmod +x install
 ##### Congratulations! You have successfully replicated my setup! Feel free to experiment with the configurations and enjoy!!!
 
 </details>
+
+---
+
+<div align="center">
+
+#### Thats all!! Have a nice day!
+
+</div>
