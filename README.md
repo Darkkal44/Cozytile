@@ -1,4 +1,4 @@
-<a href='#'><img align="center" src="./Assets/Preview.png" alt="Cozytile"></a>
+<a href='#'><img align="center" src="./Assets/PreviewI.png" alt="Cozytile"></a>
 
 
 <div align="center">
