@@ -61,8 +61,26 @@ chmod +x install
 ```
 ###### This script not only provides you with a selection of colorschemes but also creates a backup of the configuration part that will be replaced. In case you want to revert back, the backup is easily available for you. Further details will be provided in the script itself.
 
-- Restart your system
-###### Now that the script has performed its magic, simply restart your system, and voila!
+
+</details>
+
+<details>
+<summary><h3>Final step</h3></summary>
+
+###### Now that you're done with copying the dotfiles, it's time to hop into Qtile. This requires installing a display manager like sddm. Here are the steps to install sddm:
+
+- Install it using paru
+```sh
+paru -Sy sddm
+```
+
+- Enable and start sddm
+
+```sh
+sudo systemctl enable sddm && sudo systemctl start sddm
+```
+
+- Enjoy!
 
 ##### Congratulations! You have successfully replicated my setup! Feel free to experiment with the configurations and enjoy!!!
 
