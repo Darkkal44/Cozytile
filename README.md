@@ -3,11 +3,11 @@
 
 <div align="left">
 
-### Hi there 👋 
+#### Hi there 👋 
 </div>
 <div align="left">
 
-#### 🖤 Thank you for taking the time to check out my dots! I hope you enjoy it and find it inspiring! 🖤
+##### Thank you for taking the time to check out my dots! I hope you enjoy it and find it inspiring! 🖤
              
 ---       
 </div>
