@@ -52,15 +52,16 @@ git clone https://github.com/Darkkal44/CozyTile
 cd Cozytile
 ```
 
-###### Now that you're in the cloned folder, choose the colorscheme that you'd like to install using the script
+###### Now that you're in the cloned folder, choose the colorscheme that you'd like to install using the script.
 
 - Execute the script
 ```sh
 chmod +x install
 ./install
 ```
-###### This script not only provides you with a selection of colorschemes but also creates a backup of the configuration part that will be replaced. In case you want to revert back, the backup is easily available for you. Further details will be provided in the script itself.
+###### This script not only provides you with a selection of colorschemes but also creates a backup of the configuration part that will be replaced. In case you want to revert back, the backup is easily available for you. The script will also setup your terminal, it'll install and configure zsh, oh-my-zsh, starship and some plugins.
 
+###### Rerun the script incase you wanna change the colorscheme in the future! More color scheme's coming sooonn!!
 
 </details>
 
@@ -79,6 +80,7 @@ paru -Sy sddm
 ```sh
 sudo systemctl enable sddm && sudo systemctl start sddm
 ```
+###### Now that you're in the login screen of sddm, just hope into the Qtile wm and viola ✨ 
 
 - Enjoy!
 
