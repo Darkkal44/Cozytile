@@ -80,7 +80,7 @@ paru -Sy sddm
 ```sh
 sudo systemctl enable sddm && sudo systemctl start sddm
 ```
-###### Now that you're in the login screen of sddm, just hope into the Qtile wm and viola ✨ 
+###### Now that you're in the login screen of sddm, just select Qtile from wm selector, then login with your root password! viola ✨ 
 
 - Enjoy!
 
