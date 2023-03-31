@@ -1,11 +1,11 @@
 <a href='#'><img align="center" src="./Assets/PreviewI.png" alt="Cozytile"></a>
 
 
-<div align="center">
+<div align="left">
 
 ### Hi there 👋 
 </div>
-<div align="center">
+<div align="left">
 
 #### 🖤 Thank you for taking the time to check out my dots! I hope you enjoy it and find it inspiring! 🖤
              
