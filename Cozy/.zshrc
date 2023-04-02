@@ -132,14 +132,14 @@ alias lr='ls -R'
 alias lg='ls -l --group-directories-first'
 
 # git
-alias gcl='git clone --depth 1'
+alias gcl='git clone --depth 1
 alias gi='git init'
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push origin master'
 
 #custom stuff
-cat /home/unreal/.cache/wal/sequences
+cat ~s/.cache/wal/sequences
 
 eval "$(starship init zsh)"
 

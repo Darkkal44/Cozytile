@@ -139,7 +139,7 @@ alias gc='git commit -m'
 alias gp='git push origin master'
 
 #custom stuff
-cat /home/unreal/.cache/wal/sequences
+cat ~/.cache/wal/sequences
 
 eval "$(starship init zsh)"
 
