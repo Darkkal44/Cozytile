@@ -14,11 +14,11 @@
 ## INSTALLATION  (Arch Linux)
 </div>
 
+###### Note: This installation script is specifically designed for Arch Linux users, and I can only guarantee that it will work for a freshly installed system. If you've been using a different window manager, no worries - just be sure to take a complete backup of your current dots before running the script. And if you're already using Oh My Zsh, don't forget to remove that folder from your home directory
 
 <details>
 <summary><h3>Automated Installation </h3></summary>
 
-###### This installation script is specifically designed for Arch Linux users, and I can only guarantee that it will work for a freshly installed system. If you've been using a different window manager, no worries - just be sure to take a complete backup of your current dots before running the script. And if you're already using Oh My Zsh, don't forget to remove that folder from your home directory
 
 - Make the script executable
 ```sh
@@ -39,8 +39,7 @@ chmod +x install.sh
 ## MANUAL INSTALLATION (Universal)
 </div>
 
-###### Note: 
-###### While this guide is primarily intended for Arch Linux users, If you're running a different OS like Fedora, NixOS, or Debian. You'll still be able to follow along and get a clear idea of how to set things up. (using your OS's package manager and other tools)
+###### Note: While this guide is primarily intended for Arch Linux users, If you're running a different OS like Fedora, NixOS, or Debian. You'll still be able to follow along and get a clear idea of how to set things up. (using your OS's package manager and other tools)
 ######          Keep in mind that this configuration is tailored to assume that the main files, like ".config", will be located in the home folder (~/). However, if that's not the case for you, don't worry - you'll just need to make a few manual adjustments to the dotfiles.
 
 <details>
