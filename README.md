@@ -19,7 +19,7 @@
 <details>
 <summary><h3>Dependencies</h3></summary>
 
-###### To get started, let's make sure we have all the necessary prerequisites. In my case, I'm using Paru as my AUR helper, but keep in mind that your system may require a different approach. 
+###### To get started, let's make sure we have all the necessary prerequisites. In this case, I'm using Paru as the AUR helper, but keep in mind that your system may require a different approach. 
 
 - Installation using paru
 
@@ -38,7 +38,7 @@ paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh 
 
 
 <details>
-<summary><h3>Shellp</h3></summary>
+<summary><h3>Shell</h3></summary>
 
 ##### Next step is to install and setup the shell. 
 
