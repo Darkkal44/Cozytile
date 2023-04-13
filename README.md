@@ -24,7 +24,6 @@ Hey there!! I've been working on a Qtile rice for a while now, and I'm excited t
 git clone https://github.com/Darkkal44/Cozytile 
 cd Cozytile
 ```
-
 ###### Now that you're in the cloned folder, it's time to run the script
 
 - Make the script executable
