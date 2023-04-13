@@ -11,14 +11,9 @@
 
 <div align="center">
 
-## INSTALLATION
+## INSTALLATION  (For Arch Linux users)
 </div>
 
-<div align="center">
-
-### For Arch Linux users
-
-</div>
 
 <details>
 <summary><h3>Automated Installation </h3></summary>
@@ -39,12 +34,13 @@ chmod +x install.sh
 ###### Once the script finishes its work and launches SDDM, it's time to choose Qtile from the WM selector and dive right into the Amazing world of Qtile!
 </details>
 
+<div align="center">
 #### Manual Installation
+</div>
 
 ###### Note: 
 ###### While this guide is primarily intended for Arch Linux users, If you're running a different OS like Fedora, NixOS, or Debian. You'll still be able to follow along and get a clear idea of how to set things up. (using your OS's package manager and other tools)
-
-###### Keep in mind that this configuration is tailored to assume that the main files, like ".config", will be located in the home folder (~/). However, if that's not the case for you, don't worry - you'll just need to make a few manual adjustments to the dotfiles.
+######          Keep in mind that this configuration is tailored to assume that the main files, like ".config", will be located in the home folder (~/). However, if that's not the case for you, don't worry - you'll just need to make a few manual adjustments to the dotfiles.
 
 <details>
 <summary><h3>Dependencies</h3></summary>
