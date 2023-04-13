@@ -9,7 +9,7 @@
 
 </div>
 
-<div align="center">
+<div align="left">
 
 ## INSTALLATION  (Arch Linux)
 </div>
@@ -34,7 +34,7 @@ chmod +x install.sh
 ###### Once the script finishes its work and launches SDDM, it's time to choose Qtile from the WM selector and dive right into the Amazing world of Qtile!
 </details>
 
-<div align="center">
+<div align="left">
 
 ## MANUAL INSTALLATION (Universal)
 </div>
@@ -124,6 +124,14 @@ sudo systemctl enable sddm && sudo systemctl start sddm
 ##### Congratulations! You have successfully replicated my setup! Feel free to experiment with the configurations and enjoy!!!
 
 </details>
+
+<div align="left">
+
+## Credits
+
+A huge thanks to all my Unixporn Discord friends for their help and support throughout this! While I can't name each of you individually (the list will be huge lol.), please know that I truly appreciate everything you've done. Thank you!
+
+</div>
 
 ---
 
