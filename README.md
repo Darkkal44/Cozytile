@@ -11,7 +11,7 @@
 
 <div align="center">
 
-## INSTALLATION  (For Arch Linux users)
+## INSTALLATION  (Arch Linux)
 </div>
 
 
@@ -36,7 +36,7 @@ chmod +x install.sh
 
 <div align="center">
 
-## Manual Installation
+## MANUAL INSTALLATION (Universal)
 </div>
 
 ###### Note: 
