@@ -14,12 +14,12 @@
 ## INSTALLATION
 </div>
 
-###### Note: This configuration is designed with the assumption that the main files, such as ".config", will be located in the home folder (~/). If this is not the case for you, then you may need to manually adjust the dotfiles
+###### Note: Keep in mind that this configuration is tailored to assume that the main files, like ".config", will be located in the home folder (~/). However, if that's not the case for you, don't worry - you'll just need to make a few manual adjustments to the dotfiles.
 
 <details>
 <summary><h3>Dependencies</h3></summary>
 
-###### The first step is to install the necessary prerequisites. I am using an AUR helper called Paru, but please note that this may differ for you.
+###### To get started, let's make sure we have all the necessary prerequisites. In my case, I'm using Paru as my AUR helper, but keep in mind that your system may require a different approach. 
 
 - Installation using paru
 
@@ -36,27 +36,43 @@ paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh 
 
 </details>
 
+
+<details>
+<summary><h3>Shellp</h3></summary>
+
+##### Next step is to install and setup the shell. 
+
+- Change the default shell to Zsh
+```sh 
+chsh -s $(which zsh)
+```
+
+- Setting up Oh-my-zsh & Starship 
+```sh 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+</details>
+
 <details>
 <summary><h3>Dotfiles</h3></summary>
 
-###### Now that all the necessary prerequisites have been installed, the next step is to copy the dotfiles to replicate my setup! 
+###### With all the necessary prerequisites now installed, the next step is to replicate my setup by copying the dotfiles
 
 - Clone the repo and cd into the cloned folder.
 ```sh
-git clone https://github.com/Darkkal44/CozyTile 
+git clone https://github.com/Darkkal44/Cozytile 
 cd Cozytile
 ```
 
-###### Now that you're in the cloned folder, choose the colorscheme that you'd like to install using the script.
+###### Now that you're in the cloned folder, it's time to copy those files over to your home directory.
 
-- Execute the script
+- Copy the files using cp
 ```sh
-chmod +x install
-./install
+cp -R ./. ~/
 ```
-###### This script not only provides you with a selection of colorschemes but also creates a backup of the configuration part that will be replaced. In case you want to revert back, the backup is easily available for you. The script will also setup your terminal, it'll install and configure zsh, oh-my-zsh, starship and some plugins.
-
-###### Rerun the script incase you wanna change the colorscheme in the future! More color scheme's coming sooonn!!
 
 </details>
 
