@@ -35,7 +35,8 @@ chmod +x install.sh
 </details>
 
 <div align="center">
-#### Manual Installation
+
+## Manual Installation
 </div>
 
 ###### Note: 
