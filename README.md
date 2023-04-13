@@ -134,7 +134,7 @@ sudo systemctl enable sddm && sudo systemctl start sddm
 
 <div align= "left">
 
-## Keybinds
+## KEYBINDS
 
 </div>
 
@@ -186,7 +186,7 @@ sudo systemctl enable sddm && sudo systemctl start sddm
 
 <div align="left">
 
-## Credits
+## CREDITS
 
 A huge thanks to all my Unixporn Discord friends for their help and support throughout this! While I can't name each of you individually (the list will be huge lol.), please know that I truly appreciate everything you've done. Thank you!
  
