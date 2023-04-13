@@ -19,6 +19,13 @@ Hey there!! I've been working on a Qtile rice for a while now, and I'm excited t
 <details>
 <summary><h3>Automated Installation </h3></summary>
 
+- Clone the repo and cd into the cloned folder.
+```sh
+git clone https://github.com/Darkkal44/Cozytile 
+cd Cozytile
+```
+
+###### Now that you're in the cloned folder, it's time to run the script
 
 - Make the script executable
 ```sh
@@ -140,6 +147,6 @@ Thanks to [claudiotesta](https://unsplash.com/@claudiotesta) for the stunning wa
 
 <div align="center">
 
-#### Thats all!! Have a nice day!
+#### Have a nice day!
 
 </div>
