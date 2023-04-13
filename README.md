@@ -14,7 +14,11 @@
 ## INSTALLATION
 </div>
 
-### For Arch Linux users:
+<div align="center">
+
+### For Arch Linux users
+
+</div>
 
 <details>
 <summary><h3>Automated Installation </h3></summary>
