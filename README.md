@@ -172,7 +172,7 @@ sudo systemctl enable sddm && sudo systemctl start sddm
 | <kbd>super</kbd> + <kbd>c</kbd>                                                                                                                             | Close/Kill focused window                         |
 | <kbd>super</kbd> + <kbd>r</kbd>                                                                                                                             | App launcher/ Rofi Drun                           |
 | <kbd>super</kbd> + <kbd>p</kbd>                                                                                                                             | Rofi Powermenu                                    |
-| <kbd>super</kbd> + <kbd>t</kbd>                                                                                                                             | *Rofi Theme_switcher*                             |
+| <kbd>super</kbd> + <kbd>t</kbd>                                                                                                                             | **Rofi Theme_switcher**                             |
 | <kbd>super</kbd> + <kbd>e</kbd>                                                                                                                             | Thunar File manager                               |
 | <kbd>super</kbd> + <kbd>s</kbd>                                                                                                                             | Flameshot (Screenshot)                            |
 | <kbd>super</kbd> + <kbd>h</kbd>                                                                                                                             | Roficlip                                          |
