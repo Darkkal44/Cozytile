@@ -60,7 +60,7 @@ paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh 
 ```
 - Fonts required for the bar and other utils
 
- ➺ [Font Awesome](https://fontawesome.com/)
+ ➺ Any nerd font
 
  ➺ [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
 
