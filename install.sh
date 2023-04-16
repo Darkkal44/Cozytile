@@ -74,7 +74,7 @@ for folder in .config/*; do
     echo "Removing old config for $rel"
     rm -rf ~/.config/$rel
     echo "Copying new config for $rel"
-    cp -r .config/$rel ~/.config/$rel
+    cp -r .config/$rel ~/.config
   else
     echo "Folder ~/.config/$rel doesn't exist"
     echo "Copying new config for $rel"
