@@ -78,7 +78,7 @@ for folder in .config/*; do
   else
     echo "Folder ~/.config/$rel doesn't exist"
     echo "Copying new config for $rel"
-    cp -r .config/$rel ~/.config/$rel
+    cp -r .config/$rel ~/.config
   fi
 done
 
