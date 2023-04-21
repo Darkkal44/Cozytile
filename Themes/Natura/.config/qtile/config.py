@@ -10,6 +10,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
+import subprocess
+import os
+from libqtile import hook
 from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, hook, Screen, KeyChord
 from libqtile.lazy import lazy
@@ -24,23 +27,26 @@ terminal = "alacritty"
 # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ ▄█
 
 
-
-
 keys = [
 
-#  D E F A U L T
+    #  D E F A U L T
 
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
-    Key([mod, "control"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "control"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod], "space", lazy.layout.next(),
+        desc="Move window focus to other window"),
+    Key([mod, "control"], "h", lazy.layout.shuffle_left(),
+        desc="Move window to the left"),
+    Key([mod, "control"], "l", lazy.layout.shuffle_right(),
+        desc="Move window to the right"),
     Key([mod, "control"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "control"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key([mod, "shift"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "shift"], "h", lazy.layout.grow_left(),
+        desc="Grow window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.grow_right(),
+        desc="Grow window to the right"),
     Key([mod, "shift"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "shift"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
@@ -56,105 +62,108 @@ keys = [
     Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Spawn a command using a prompt widget"),
-    Key([mod], "p", lazy.spawn("sh -c ~/.config/rofi/scripts/power"), desc='powermenu'),
-    Key([mod], "t", lazy.spawn("sh -c ~/.config/rofi/scripts/themes"), desc='theme_switcher'),
+    Key([mod], "r", lazy.spawn("rofi -show drun"),
+        desc="Spawn a command using a prompt widget"),
+    Key([mod], "p", lazy.spawn(
+        "sh -c ~/.config/rofi/scripts/power"), desc='powermenu'),
+    Key([mod], "t", lazy.spawn("sh -c ~/.config/rofi/scripts/themes"),
+        desc='theme_switcher'),
 
-# C U S T O M
+    # C U S T O M
 
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%"), desc='Volume Up'),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 0 -5%"), desc='volume down'),
-    Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute"), desc='Volume Mute'),
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc='playerctl'),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn(
+        "pactl set-sink-volume 0 +5%"), desc='Volume Up'),
+    Key([], "XF86AudioLowerVolume", lazy.spawn(
+        "pactl set-sink-volume 0 -5%"), desc='volume down'),
+    Key([], "XF86AudioMute", lazy.spawn(
+        "pulsemixer --toggle-mute"), desc='Volume Mute'),
+    Key([], "XF86AudioPlay", lazy.spawn(
+        "playerctl play-pause"), desc='playerctl'),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc='playerctl'),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc='playerctl'),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s 10%+"), desc='brightness UP'),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 10%-"), desc='brightness Down'),
-    Key([mod],"e", lazy.spawn("thunar"), desc='file manager'),
-	Key([mod], "h", lazy.spawn("roficlip"), desc='clipboard'),
+    Key([], "XF86MonBrightnessUp", lazy.spawn(
+        "brightnessctl s 10%+"), desc='brightness UP'),
+    Key([], "XF86MonBrightnessDown", lazy.spawn(
+        "brightnessctl s 10%-"), desc='brightness Down'),
+    Key([mod], "e", lazy.spawn("thunar"), desc='file manager'),
+    Key([mod], "h", lazy.spawn("roficlip"), desc='clipboard'),
     Key([mod], "s", lazy.spawn("flameshot gui"), desc='Screenshot'),
 
 ]
-
 
 
 # █▀▀ █▀█ █▀█ █░█ █▀█ █▀
 # █▄█ █▀▄ █▄█ █▄█ █▀▀ ▄█
 
 
-
 groups = [Group(f"{i+1}", label="󰏃") for i in range(8)]
 
 for i in groups:
     keys.extend(
-            [
-                Key(
-                    [mod],
-                    i.name,
-                    lazy.group[i.name].toscreen(),
-                    desc="Switch to group {}".format(i.name),
-                    ),
-                Key(
-                    [mod, "shift"],
-                    i.name,
-                    lazy.window.togroup(i.name, switch_group=True),
-                    desc="Switch to & move focused window to group {}".format(i.name),
-                    ),
-                ]
-            )
-
-
+        [
+            Key(
+                [mod],
+                i.name,
+                lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),
+            ),
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(
+                    i.name),
+            ),
+        ]
+    )
 
 
 # L A Y O U T S
 
 
-
-
 layouts = [
-    layout.Columns( margin=10, border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-        border_width=0
-    ),
+    layout.Columns(margin=10, border_focus='#1F1D2E',
+                   border_normal='#1F1D2E',
+                   border_width=0
+                   ),
 
-    layout.Max(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=10,
-	    border_width=0,
-    ),
+    layout.Max(border_focus='#1F1D2E',
+               border_normal='#1F1D2E',
+               margin=10,
+               border_width=0,
+               ),
 
-    layout.Floating(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=10,
-	    border_width=0,
-	),
+    layout.Floating(border_focus='#1F1D2E',
+                    border_normal='#1F1D2E',
+                    margin=10,
+                    border_width=0,
+                    ),
     # Try more layouts by unleashing below layouts
-   #  layout.Stack(num_stacks=2),
-   #  layout.Bsp(),
-     layout.Matrix(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=4,
-	    border_width=0,
-	),
-     layout.MonadTall(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-        margin=4,
-	    border_width=0,
-	),
-    layout.MonadWide(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=4,
-	    border_width=0,
-	),
-   #  layout.RatioTile(),
-     layout.Tile(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-    ),
-   #  layout.TreeTab(),
-   #  layout.VerticalTile(),
-   #  layout.Zoomy(),
+    #  layout.Stack(num_stacks=2),
+    #  layout.Bsp(),
+    layout.Matrix(border_focus='#1F1D2E',
+                  border_normal='#1F1D2E',
+                  margin=4,
+                  border_width=0,
+                  ),
+    layout.MonadTall(border_focus='#1F1D2E',
+                     border_normal='#1F1D2E',
+                     margin=4,
+                     border_width=0,
+                     ),
+    layout.MonadWide(border_focus='#1F1D2E',
+                     border_normal='#1F1D2E',
+                     margin=4,
+                     border_width=0,
+                     ),
+    #  layout.RatioTile(),
+    layout.Tile(border_focus='#1F1D2E',
+                border_normal='#1F1D2E',
+                ),
+    #  layout.TreeTab(),
+    #  layout.VerticalTile(),
+    #  layout.Zoomy(),
 ]
-
 
 
 widget_defaults = dict(
@@ -162,22 +171,20 @@ widget_defaults = dict(
     fontsize=12,
     padding=3,
 )
-extension_defaults = [ widget_defaults.copy()
-        ]
-
+extension_defaults = [widget_defaults.copy()
+                      ]
 
 
 def search():
     qtile.cmd_spawn("rofi -show drun")
 
+
 def power():
     qtile.cmd_spawn("sh -c ~/.config/rofi/scripts/power")
 
 
-
 # █▄▄ ▄▀█ █▀█
 # █▄█ █▀█ █▀▄
-
 
 
 screens = [
@@ -185,16 +192,16 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-				widget.Spacer(length=15,
-                    background='#0F1212',
-                ),
+                widget.Spacer(length=15,
+                              background='#0F1212',
+                              ),
 
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/launch_Icon.png',
                     margin=2,
                     background='#0F1212',
-                    mouse_callbacks={"Button1":power},
+                    mouse_callbacks={"Button1": power},
                 ),
 
 
@@ -220,12 +227,12 @@ screens = [
                     urgent_border='#202222',
                     rounded=True,
                     disable_drag=True,
-                 ),
+                ),
 
 
                 widget.Spacer(
-                length=8,
-                background='#202222',
+                    length=8,
+                    background='#202222',
                 ),
 
 
@@ -241,10 +248,10 @@ screens = [
 
 
                 widget.CurrentLayout(
-                background='#202222',
-                foreground='#607767',
-                fmt='{}',
-                font="JetBrains Mono Bold",
+                    background='#202222',
+                    foreground='#607767',
+                    fmt='{}',
+                    font="JetBrains Mono Bold",
                 ),
 
 
@@ -275,11 +282,11 @@ screens = [
 
 
                 widget.WindowName(
-                    background = '#202222',
-                    format = "{name}",
+                    background='#202222',
+                    format="{name}",
                     font='JetBrains Mono Bold',
                     foreground='#607767',
-                    empty_group_string = 'Desktop',
+                    empty_group_string='Desktop',
 
                 ),
 
@@ -320,12 +327,12 @@ screens = [
                 # ),
 
                 # widget.Image(
-                    # filename='~/.config/qtile/Assets/2.png',
+                # filename='~/.config/qtile/Assets/2.png',
                 # ),
 
                 # widget.Spacer(
-                    # length=8,
-                    # background='#202222',
+                # length=8,
+                # background='#202222',
                 # ),
 
 
@@ -336,17 +343,17 @@ screens = [
 
 
                 widget.Spacer(
-                length=-7,
-                background='#202222',
+                    length=-7,
+                    background='#202222',
                 ),
 
 
                 widget.Memory(
-                background='#202222',
-                format='{MemUsed: .0f}{mm}',
-                foreground='#607767',
-                font="JetBrains Mono Bold",
-                update_interval=5,
+                    background='#202222',
+                    format='{MemUsed: .0f}{mm}',
+                    foreground='#607767',
+                    font="JetBrains Mono Bold",
+                    update_interval=5,
                 ),
 
 
@@ -375,10 +382,10 @@ screens = [
 
 
                 widget.Battery(
-                font='JetBrains Mono Bold',
-                background='#202222',
-                foreground='#607767',
-                format='{percent:2.0%}',
+                    font='JetBrains Mono Bold',
+                    background='#202222',
+                    foreground='#607767',
+                    format='{percent:2.0%}',
                 ),
 
 
@@ -394,17 +401,17 @@ screens = [
 
 
                 # widget.Battery(format=' {percent:2.0%}',
-                    # font="JetBrains Mono ExtraBold",
-                    # fontsize=12,
-                    # padding=10,
-                    # background='#202222',
+                # font="JetBrains Mono ExtraBold",
+                # fontsize=12,
+                # padding=10,
+                # background='#202222',
                 # ),
 
                 # widget.Memory(format='﬙{MemUsed: .0f}{mm}',
-                    # font="JetBrains Mono Bold",
-                    # fontsize=12,
-                    # padding=10,
-                    # background='#4B4D66',
+                # font="JetBrains Mono Bold",
+                # fontsize=12,
+                # padding=10,
+                # background='#4B4D66',
                 # ),
 
                 widget.Volume(
@@ -419,13 +426,13 @@ screens = [
                 widget.Spacer(
                     length=-5,
                     background='#202222',
-                    ),
+                ),
 
 
                 widget.Volume(
-                font='JetBrains Mono Bold',
-                background='#202222',
-                foreground='#607767',
+                    font='JetBrains Mono Bold',
+                    background='#202222',
+                    foreground='#607767',
                 ),
 
 
@@ -460,20 +467,21 @@ screens = [
 
             ],
             30,
-            border_color = '#0F1212',
-            border_width = [0,0,0,0],
-            margin = [15,60,6,60],
+            border_color='#0F1212',
+            border_width=[0, 0, 0, 0],
+            margin=[15, 60, 6, 60],
 
         ),
     ),
 ]
 
 
-
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
@@ -483,9 +491,9 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-	border_focus='#1F1D2E',
-	border_normal='#1F1D2E',
-	border_width=0,
+    border_focus='#1F1D2E',
+    border_normal='#1F1D2E',
+    border_width=0,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -499,17 +507,15 @@ floating_layout = layout.Floating(
 )
 
 
-
-
-from libqtile import hook
 # some other imports
-import os
-import subprocess
 # stuff
+
+
 @hook.subscribe.startup_once
-def autostart_once():
-    subprocess.run('~/.config/qtile/autostart_once.sh')
-    subprocess.call([home])
+def autostart():
+    xauto = os.path.expanduser('~/.config/qtile/autostart_once.sh')
+    subprocess.Popen([xauto])
+
 
 auto_fullscreen = True
 focus_on_window_activation = "smart"
@@ -531,7 +537,6 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-
 
 
 # E O F
