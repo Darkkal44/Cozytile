@@ -201,7 +201,7 @@ screens = [
 
 
                 widget.GroupBox(
-                    fontsize=16,
+                    fontsize=24,
                     borderwidth=3,
                     highlight_method='block',
                     active='#CAA9E0',
