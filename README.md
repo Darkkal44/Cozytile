@@ -62,7 +62,7 @@ chmod +x install.sh
 - Installation using paru
 
 ```sh 
-paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim git
+paru -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-fix dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio alsa-utils pavucontrol neovim vim git
 ```
 - Fonts required for the bar and other utils
 
