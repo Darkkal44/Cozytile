@@ -408,7 +408,7 @@ screens = [
                 # ),
 
                 widget.Volume(
-                    font='Font Awesome 6 Free Solid',
+                    font='JetBrainsMono Nerd Font',
                     theme_path='~/.config/qtile/Assets/Volume/',
                     emoji=True,
                     fontsize=12,
