@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Apply wallpaper using wal
