@@ -221,8 +221,8 @@ screens = [
 
 
                 widget.Spacer(
-                length=8,
-                background='#353446',
+                    length=8,
+                    background='#353446',
                 ),
 
 
@@ -238,10 +238,11 @@ screens = [
 
 
                 widget.CurrentLayout(
-                background='#353446',
-                foreground='#CAA9E0',
-                fmt='{}',
-                font="JetBrains Mono Bold",
+                    background='#353446',
+                    foreground='#CAA9E0',
+                    fmt='{}',
+                    font="JetBrains Mono Bold",
+                    fontsize=13,
                 ),
 
 
@@ -261,6 +262,7 @@ screens = [
                     fmt='Search',
                     background='#282738',
                     font="JetBrains Mono Bold",
+                    fontsize=13,
                     foreground='#CAA9E0',
                     mouse_callbacks={"Button1": search},
                 ),
@@ -333,17 +335,18 @@ screens = [
 
 
                 widget.Spacer(
-                length=-7,
-                background='#353446',
+                    length=-7,
+                    background='#353446',
                 ),
 
 
                 widget.Memory(
-                background='#353446',
-                format='{MemUsed: .0f}{mm}',
-                foreground='#CAA9E0',
-                font="JetBrains Mono Bold",
-                update_interval=5,
+                    background='#353446',
+                    format='{MemUsed: .0f}{mm}',
+                    foreground='#CAA9E0',
+                    font="JetBrains Mono Bold",
+                    fontsize=13,
+                    update_interval=5,
                 ),
 
 
@@ -372,10 +375,10 @@ screens = [
 
 
                 widget.Battery(
-                font='JetBrains Mono Bold',
-                background='#353446',
-                foreground='#CAA9E0',
-                format='{percent:2.0%}',
+                    font='JetBrains Mono Bold',
+                    background='#353446',
+                    foreground='#CAA9E0',
+                    format='{percent:2.0%}',
                 ),
 
 
@@ -408,7 +411,7 @@ screens = [
                     font='JetBrainsMono Nerd Font',
                     theme_path='~/.config/qtile/Assets/Volume/',
                     emoji=True,
-                    fontsize=12,
+                    fontsize=13,
                     background='#353446',
                 ),
 
@@ -420,9 +423,9 @@ screens = [
 
 
                 widget.Volume(
-                font='JetBrains Mono Bold',
-                background='#353446',
-                foreground='#CAA9E0',
+                    font='JetBrains Mono Bold',
+                    background='#353446',
+                    foreground='#CAA9E0',
                 ),
 
 
@@ -445,6 +448,7 @@ screens = [
                     background='#282738',
                     foreground='#CAA9E0',
                     font="JetBrains Mono Bold",
+                    fontsize=13,
                 ),
 
 
