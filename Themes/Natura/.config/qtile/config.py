@@ -417,7 +417,6 @@ screens = [
                     fontsize=13,
                     theme_path='~/.config/qtile/Assets/Volume/',
                     emoji=True,
-                    fontsize=12,
                     background='#202222',
                 ),
 

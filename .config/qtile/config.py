@@ -279,6 +279,7 @@ screens = [
                     font='JetBrains Mono Bold',
                     foreground='#CAA9E0',
                     empty_group_string = 'Desktop',
+                    fontsize=13,
 
                 ),
 
@@ -379,6 +380,7 @@ screens = [
                     background='#353446',
                     foreground='#CAA9E0',
                     format='{percent:2.0%}',
+                    fontsize=13,
                 ),
 
 
@@ -426,6 +428,7 @@ screens = [
                     font='JetBrains Mono Bold',
                     background='#353446',
                     foreground='#CAA9E0',
+                    fontsize=13,
                 ),
 
 
