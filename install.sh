@@ -65,8 +65,23 @@ for folder in *; do
 done
 
 
-# Enable and start SDDM
-if is_installed sddm; then
-  sudo systemctl disable --now lightdm 2>/dev/null || true
-  sudo systemctl enable --now sddm
+
+
+# Check if SDDM is installed and install if not
+if pacman -Qs sddm > /dev/null; then
+  echo "SDDM is already installed"
+else
+  echo "SDDM is not installed. Installing..."
+  sudo pacman -S sddm
 fi
+
+# Disable currently enabled display manager
+if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
+  echo "Disabling currently enabled display manager"
+  sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
+fi
+
+# Enable and start SDDM
+echo "Enabling and starting SDDM"
+sudo systemctl enable --now sddm
+
