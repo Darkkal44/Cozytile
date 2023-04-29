@@ -48,8 +48,12 @@ fi
 
 # Make Backup 
 
-for folder in *; do
-  if [[ -d "$folder" && "$folder" != ".git" ]]; then
+
+echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
+mkdir -p ~/.cozy.bak
+
+for folder in .* *; do
+  if [[ -d "$folder" && ! "$folder" =~ ^(\.|\.\.)$ ]]; then
     if [ -d "$HOME/$folder" ]; then
       echo "Backing up ~/$folder"
       cp -r "$HOME/$folder" ~/.cozy.bak
@@ -61,6 +65,7 @@ for folder in *; do
     cp -r "$folder" "$HOME"
   fi
 done
+
 
 
 
