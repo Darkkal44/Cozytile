@@ -30,7 +30,7 @@ else
 fi 
 
 # Install packages
-sudo paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim git sddm zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
+paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim git sddm zsh-autosuggestions zsh-syntax-highlighting --noconfirm --needed
 
 # Check and set Zsh as the default shell
 [[ "$(awk -F: -v user="$USER" '$1 == user {print $NF}' /etc/passwd) " =~ "zsh " ]] || chsh -s $(which zsh)
@@ -53,7 +53,7 @@ echo "Backing up the current configs. All the backup files will be available at 
 mkdir -p ~/.cozy.bak
 
 for folder in .* *; do
-  if [[ -d "$folder" && ! "$folder" =~ ^(\.|\.\.)$ ]]; then
+  if [[ -d "$folder" && ! "$folder" =~ ^(\.|\.\.)$ && "$folder" != ".git" ]]; then
     if [ -d "$HOME/$folder" ]; then
       echo "Backing up ~/$folder"
       cp -r "$HOME/$folder" ~/.cozy.bak
@@ -65,7 +65,6 @@ for folder in .* *; do
     cp -r "$folder" "$HOME"
   fi
 done
-
 
 
 
