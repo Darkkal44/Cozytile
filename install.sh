@@ -46,27 +46,24 @@ fi
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Make Backup
-echo "Backing up the current configs. All the backeup files will be available at ~/.cozy.bak"
-mkdir ~/.cozy.bak
-for folder in .config/*; do
-  rel=$(echo $folder | rev | cut -d/ -f1 | rev)
-  if [ -d ~/.config/$rel ]; then
-    echo "Backing up ~/.config/$rel"
-    cp -r ~/.config/$rel ~/.cozy.bak
-    echo "Backed up ~/.config/$rel successfully."
-    echo "Removing old config for $rel"
-    rm -rf ~/.config/$rel
-    echo "Copying new config for $rel"
-    cp -r .config/$rel ~/.config
-  else
-    echo "Folder ~/.config/$rel doesn't exist"
-    echo "Copying new config for $rel"
-    cp -r .config/$rel ~/.config
+# Make backup
+echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
+mkdir -p ~/.cozy.bak
+
+for folder in *; do
+  if [[ -d "$folder" && ! "$folder" =~ ^\. ]]; then
+    if [ -d "$HOME/$folder" ]; then
+      echo "Backing up ~/$folder"
+      cp -r "$HOME/$folder" ~/.cozy.bak
+      echo "Backed up ~/$folder successfully."
+      echo "Removing old config for $folder"
+      rm -rf "$HOME/$folder"
+    fi
+    echo "Copying new config for $folder"
+    cp -r "$folder" "$HOME"
   fi
 done
 
-cp -R ~/Fonts/Jetbrains/ttf/. ~/.local/share/fonts/
 
 # Enable and start SDDM
 if is_installed sddm; then
