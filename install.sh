@@ -46,12 +46,10 @@ fi
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Make backup
-echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
-mkdir -p ~/.cozy.bak
+# Make Backup 
 
 for folder in *; do
-  if [[ -d "$folder" && ! "$folder" =~ ^\. ]]; then
+  if [[ -d "$folder" && "$folder" != ".git" ]]; then
     if [ -d "$HOME/$folder" ]; then
       echo "Backing up ~/$folder"
       cp -r "$HOME/$folder" ~/.cozy.bak
@@ -63,6 +61,7 @@ for folder in *; do
     cp -r "$folder" "$HOME"
   fi
 done
+
 
 
 
