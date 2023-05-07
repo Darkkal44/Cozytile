@@ -6,3 +6,5 @@ wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg &&
 # Start picom
 picom --config ~/.config/picom/picom.conf &
 
+#Emacs
+/usr/bin/emacs -daemon

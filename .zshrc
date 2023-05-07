@@ -1,10 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Paths
 export ZSH=~/.oh-my-zsh/
-
-
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -137,6 +136,9 @@ alias gi='git init'
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push origin master'
+
+#emacs
+alias emacs="emacsclient -c -a 'emacs'"
 
 #custom stuff
 cat ~/.cache/wal/sequences
