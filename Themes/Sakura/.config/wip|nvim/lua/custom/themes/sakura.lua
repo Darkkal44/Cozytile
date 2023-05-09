@@ -1,3 +1,4 @@
+
 local M = {}
 
 M.base_30 = {
@@ -7,16 +8,16 @@ M.base_30 = {
   black2 = "#353446",
   one_bg = "#282738",
   one_bg2 = "#3a4248",
-  one_bg3 = "#424a50",
+  one_bg3 = "#AF9295",
   grey = "#a7a09f",
   grey_fg = "#efe5e4",
-  grey_fg2 = "#DDD0B4",
-  light_grey = "#DDD0B4",
+  grey_fg2 = "#AA7489",
+  light_grey = "#E7DABE",
   red = "#D5A8AC",
   baby_pink = "#E5B9C6",
   pink = "#FECDCE",
   line = "#3a4248", -- for lines like vertsplit
-  green = "#A7C080",
+  green = "#AF9295",
   vibrant_green = "#AF9295",
   nord_blue = "#E4C7B4",
   blue = "#E5B9C6",
@@ -37,7 +38,7 @@ M.base_16 = {
   base00 = "#282738",
   base01 = "#353446",
   base02 = "#3a4248",
-  base03 = "#424a50",
+  base03 = "#AF9295",
   base04 = "#4a5258",
   base05 = "#efe5e4",
   base06 = "#DDD0B4",
@@ -59,6 +60,5 @@ M.polish_hl = {
   ["@tag.delimiter"] = { fg = M.base_30.green },
 }
 
-M = require("base46").override_theme(M, "everforest")
-
 return M
+
