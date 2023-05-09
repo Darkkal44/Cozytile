@@ -85,12 +85,11 @@
     idle_threshold = 120
 
     ### Text ###
-
-    font = Museo Sans 10
+    font = JetBrains Mono Bold 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 0
+    line_height = 1
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -294,7 +293,7 @@
     background = "#232A2E"
     foreground = "#86918A"
     frame_color = "#232A2E"
-    timeout = 0
+    timeout = 10
     # Icon for notifications with critical urgency, uncomment to enable
     icon = ~/.config/dunst/images/notification.png
 
