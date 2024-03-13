@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cp -r ~/Themes/Everforest/. ~/Themes/Everforest/.zshrc ~/ &&
-wal -b 232A2E -i Wallpaper/fog_forest_2.png &&
+sed -i "\$s/.*/colors = Everforest/" "$HOME/dotfiles/.config/qtile/Settings/pallete.py"
+cp -r $HOME/.local/.Themes/Everforest/. $HOME/dotfiles &&
+feh --bg-scale $HOME/.local/.Wallpaper/Everforest.jpg &&
+sed -i '$s/.*/feh --bg-scale "$HOME\/dotfiles\/.Wallpaper\/Everforest.jpg"/' "$HOME/dotfiles/.config/qtile/autostart_once.sh" 
 qtile cmd-obj -o cmd -f restart 
 

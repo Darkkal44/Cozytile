@@ -29,8 +29,12 @@ else
   fi
 fi 
 
+echo "Uninstalling pipewire-pulse"
+paru -R pipewire-pulse --noconfirm
+
+
 # Install packages
-paru -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm --noconfirm --needed
+paru -Syu base-devel qtile python-psutil pywal-git feh picom dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm sed --noconfirm --needed
 
 # Check and set Zsh as the default shell
 [[ "$(awk -F: -v user="$USER" '$1 == user {print $NF}' /etc/passwd) " =~ "zsh " ]] || chsh -s $(which zsh)
