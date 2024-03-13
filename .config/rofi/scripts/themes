@@ -5,16 +5,16 @@ selected=$(printf '%s\n' "${options[@]}" | rofi -dmenu -l 4 -i -mesg "T H E M E 
 
 case $selected in
     "󱄖 Cozy")
-     sh ~/.config/rofi/scripts/Cozy
+      sh $HOME/.config/rofi/scripts/Cozy
         ;;
     "󰞇 Sakura")
-      sh ~/.config/rofi/scripts/Sakura
+      sh $HOME/.config/rofi/scripts/Sakura
         ;;
     "󰌪 Natura")
-      sh ~/.config/rofi/scripts/Natura
+      sh $HOME/.config/rofi/scripts/Natura
         ;;
     "󱢗 Everforest")
-      sh ~/.config/rofi/scripts/Everforest
+      sh $HOME/.config/rofi/scripts/Everforest
         ;;
     *)
         ;;

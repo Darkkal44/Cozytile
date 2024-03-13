@@ -1,6 +1,9 @@
 #!/bin/bash
 
-cp -r ~/Themes/Sakura/. ~/Themes/Sakura/.zshrc ~/ &&
-wal -b 282738 -i ~/Wallpaper/120_-_KnFPX73.jpg &&
+sed -i "\$s/.*/colors = Sakura/" "$HOME/dotfiles/.config/qtile/Settings/pallete.py"
+cp -r $HOME/.local/.Themes/Sakura/. $HOME/dotfiles &&
+feh --bg-scale $HOME/.local/.Wallpaper/Sakura.jpg &&
+sed -i '$s/.*/feh --bg-scale "$HOME\/dotfiles\/.Wallpaper\/Sakura.jpg"/' "$HOME/dotfiles/.config/qtile/autostart_once.sh" 
 qtile cmd-obj -o cmd -f restart 
+
 
