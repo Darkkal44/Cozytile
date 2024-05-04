@@ -24,13 +24,14 @@ else
     echo "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
   else
     echo "Neither Paru nor Yay is present in your system."
-    echo "Installing Paru..."
-    git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si --noconfirm && cd ..
+    echo "Installing Yay..."
+	git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
   fi
 fi 
 
 # Install packages
-paru -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm --noconfirm --needed
+yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm --noconfirm --needed
+yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 
 # Check and set Zsh as the default shell
 [[ "$(awk -F: -v user="$USER" '$1 == user {print $NF}' /etc/passwd) " =~ "zsh " ]] || chsh -s $(which zsh)
@@ -43,12 +44,11 @@ else
 fi
 
 # Install Zsh plugins
+echo "Installing zsh plugins"
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Make Backup 
-
-
 echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
 mkdir -p ~/.cozy.bak
 
@@ -65,10 +65,6 @@ for folder in .* *; do
     cp -r "$folder" "$HOME"
   fi
 done
-
-
-
-
 
 # Check if SDDM is installed and install if not
 if pacman -Qs sddm > /dev/null; then
@@ -87,4 +83,3 @@ fi
 # Enable and start SDDM
 echo "Enabling and starting SDDM"
 sudo systemctl enable --now sddm
-
