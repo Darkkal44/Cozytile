@@ -25,12 +25,12 @@ else
   else
     echo "Neither Paru nor Yay is present in your system."
     echo "Installing Yay..."
-	git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+	  git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
   fi
 fi 
 
 # Install packages
-yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm --noconfirm --needed
+yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm flameshot --noconfirm --needed
 yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 
 # Check and set Zsh as the default shell
