@@ -1,8 +1,13 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
 # Check if script is run as root
 if [[ "$(id -u)" -eq 0 ]]; then
-  echo "This script must not be run as root"
+  echo -e "${RED}This script must not be run as root!${NC}"
   exit 1
 fi
 
@@ -11,26 +16,27 @@ sudo pacman -Syu
 
 # Install Git
 if command -v git &>/dev/null; then
-  echo "Git v$(git -v | cut -d' ' -f3) is already installed in your system"
+  echo -e "Git v${GREEN}$(git -v | cut -d' ' -f3)${NC} is already installed in your system"
 else
   sudo pacman -S git
 fi
 
-# Clone and install Paru
-if command -v paru &>/dev/null; then
-  echo "Paru $(paru -V | cut -d' ' -f2) is already installed in your system"
+# Clone and install Yay
+if command -v yay &>/dev/null; then
+  echo -e "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
 else
-  if command -v yay &>/dev/null; then
-    echo "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
-  else
-    echo "Neither Paru nor Yay is present in your system."
-    echo "Installing Yay..."
-	  git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-  fi
-fi 
+  echo -e "${RED}Yay is not present in your system.${NC}"
+  echo -e "${YELLOW}Installing Yay...${NC}"
+  git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+fi
 
 # Install packages
-yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm flameshot --needed
+echo -e "${YELLOW}Installing packages...${NC}"
+yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava-git pipewire-pulse alsa-utils git sddm flameshot --needed
+# cava-git dependencies
+yay -S base-devel fftw ncurses alsa-lib iniparser pulseaudio autoconf-archive pkgconf
+
+echo -e "${YELLOW}Installing fonts...${NC}"
 yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 
 # Check and set Zsh as the default shell
@@ -49,7 +55,7 @@ echo "Installing zsh plugins"
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Make Backup 
-echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
+echo -e "${YELLOW}Backing up the current configs. All the backup files will be available at ~/.cozy.bak${NC}"
 mkdir -p ~/.cozy.bak
 
 for folder in .* *; do
@@ -74,7 +80,7 @@ else
   sudo pacman -S sddm
 fi
 
-# BROKEN DISABLE DISPLAY MANAGER YOURSELF
+# BROKEN, DISABLE DISPLAY MANAGER YOURSELF
 
 # Disable currently enabled display manager
 #if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
