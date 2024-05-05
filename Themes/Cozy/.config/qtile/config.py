@@ -143,10 +143,10 @@ for i in groups:
 
 layouts = [
     layout.Columns(
-        margin= [10,10,10,10],
-        border_focus='#1F1D2E',
+        margin= [0,2,5,2],
+        border_focus='#FFFFFF',
         border_normal='#1F1D2E',
-        border_width=0,
+        border_width=2,
     ),
 
     layout.Max(	
@@ -401,9 +401,8 @@ screens = [
                     margin_x=5,
                 ),
 
-                # Need to find space for the date
                 widget.Clock(
-                    format='%I:%M %p',
+                    format='%H:%M - %A %Od/%Om/%Y',
                     background='#282738',
                     foreground='#CAA9E0',
                     font="JetBrains Mono Bold",
