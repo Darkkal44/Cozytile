@@ -13,7 +13,7 @@ sudo pacman -Syu
 if command -v git &>/dev/null; then
   echo "Git v$(git -v | cut -d' ' -f3) is already installed in your system"
 else
-  sudo pacman -S git --noconfirm
+  sudo pacman -S git
 fi
 
 # Clone and install Paru
@@ -30,7 +30,7 @@ else
 fi 
 
 # Install packages
-yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm flameshot --noconfirm --needed
+yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm flameshot --needed
 yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 
 # Check and set Zsh as the default shell
@@ -74,12 +74,14 @@ else
   sudo pacman -S sddm
 fi
 
+# BROKEN DISABLE DISPLAY MANAGER YOURSELF
+
 # Disable currently enabled display manager
-if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
-  echo "Disabling currently enabled display manager"
-  sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
-fi
+#if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
+#  echo "Disabling currently enabled display manager"
+#  sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
+#fi
 
 # Enable and start SDDM
-echo "Enabling and starting SDDM"
-sudo systemctl enable --now sddm
+#echo "Enabling and starting SDDM"
+#sudo systemctl enable --now sddm
