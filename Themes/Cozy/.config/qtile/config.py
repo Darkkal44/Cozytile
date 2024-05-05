@@ -19,6 +19,7 @@ from libqtile.utils import guess_terminal
 from libqtile.dgroups import simple_key_binder
 from libqtile import hook
 from pathlib import Path
+import os
 import subprocess
 
 mod = "mod4"
@@ -80,16 +81,17 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.spawn("sh -c ~/.config/rofi/scripts/power"), desc='Open Powermenu'),
     Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "t", lazy.spawn("sh -c ~/.config/rofi/scripts/themes"), desc='Select Themes'),
+    Key([mod, "control"], "t", lazy.spawn("sh -c ~/.config/rofi/scripts/themes"), desc='Select Themes'),
+    Key([mod, "control"], "m", lazy.spawn("code Themes/Cozy/.config/qtile/config.py"), desc="Open Qtile Config"),
 
     # Apps
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod, "control"], "Enter", lazy.spawn("rofi -show drun"), desc="Launch Rofi"),
+    Key([mod, "control"], "Return", lazy.spawn("rofi -show drun"), desc="Launch Rofi"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Browser"),
     Key([mod],"e", lazy.spawn("thunar"), desc='Launch File Manager'),
     Key([mod], "v", lazy.spawn("roficlip"), desc='Launch Clipboard History'),
-    # Key([mod], "s", lazy.spawn("flameshot gui"), desc='Screenshot'),
-    # ADD SCREENSHOT (FLAMESHOT) IN ROFI SCRIPTS
+    Key([mod], "s", lazy.spawn("flameshot gui"), desc='Screenshot'),
+
 
 # C U S T O M
 
@@ -385,7 +387,6 @@ screens = [
                     background='#353446',
                     foreground='#CAA9E0',
                     fontsize=13,
-                    mouse_callbacks={"Button1" : audio},
                 ),
 
                 widget.Image(
@@ -461,7 +462,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(title="pavucontrol"), # audio
+        Match(wm_class="pavucontrol"), # audio
     ]
 )
 
@@ -526,5 +527,6 @@ wmname = "LG3D"
 
 @hook.subscribe.startup_once
 def autostart_once():
-    subprocess.run('~/.config/qtile/autostart_once.sh')
-    subprocess.call([home])
+    autostartscript = "~/.config/qtile/autostart_once.sh"
+    home = os.path.expanduser(autostartscript)
+    subprocess.Popen([home])
