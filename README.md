@@ -1,3 +1,8 @@
+<div align="center">
+### PROGRESS 0/100
+Back to this project, starting everything again! 
+</div>
+
 
 <a href='#'><img align="center" src="./Assets/preview.png" alt="Cozytile"></a>
 
