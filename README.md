@@ -1,6 +1,7 @@
 <div align="center">
-#### PROGRESS 0/100
-Back to this project, starting everything again! 
+
+## PROGRESS 0/100
+This project was abandoned for a while, Will be coming back to life soon~
 </div>
 
 
