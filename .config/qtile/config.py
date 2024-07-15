@@ -113,9 +113,9 @@ for i in groups:
 
 
 layouts = [
-    layout.Columns( margin= [10,10,10,10], border_focus='#1F1D2E',
+    layout.Columns( margin=10, border_focus='#1F1D2E',
 	    border_normal='#1F1D2E',
-        border_width=0,
+        border_width=0
     ),
 
     layout.Max(	border_focus='#1F1D2E',
@@ -139,7 +139,7 @@ layouts = [
 	),
      layout.MonadTall(	border_focus='#1F1D2E',
 	    border_normal='#1F1D2E',
-        margin=10,
+        margin=4,
 	    border_width=0,
 	),
     layout.MonadWide(	border_focus='#1F1D2E',
@@ -174,6 +174,9 @@ def search():
 def power():
     qtile.cmd_spawn("sh -c ~/.config/rofi/scripts/power")
 
+
+
+
 # █▄▄ ▄▀█ █▀█
 # █▄█ █▀█ █▀▄
 
@@ -206,8 +209,8 @@ screens = [
                     fontsize=24,
                     borderwidth=3,
                     highlight_method='block',
-                    active='#CAA9E0',
-                    block_highlight_text_color="#91B1F0",
+                    active='#E5B9C6',
+                    block_highlight_text_color="#CFB3E5",
                     highlight_color='#4B427E',
                     inactive='#282738',
                     foreground='#4B427E',
@@ -241,7 +244,7 @@ screens = [
 
                 widget.CurrentLayout(
                     background='#353446',
-                    foreground='#CAA9E0',
+                    foreground='#E5B9C6',
                     fmt='{}',
                     font="JetBrains Mono Bold",
                     fontsize=13,
@@ -265,7 +268,7 @@ screens = [
                     background='#282738',
                     font="JetBrains Mono Bold",
                     fontsize=13,
-                    foreground='#CAA9E0',
+                    foreground='#E5B9C6',
                     mouse_callbacks={"Button1": search},
                 ),
 
@@ -278,10 +281,10 @@ screens = [
                 widget.WindowName(
                     background = '#353446',
                     format = "{name}",
-                    font='JetBrains Mono Bold',
-                    foreground='#CAA9E0',
-                    empty_group_string = 'Desktop',
+                    font="JetBrains Mono Bold",
                     fontsize=13,
+                    foreground='#E5B9C6',
+                    empty_group_string = 'Desktop',
 
                 ),
 
@@ -316,7 +319,7 @@ screens = [
                 # widget.Net(
                 # format=' {up}   {down} ',
                 # background='#353446',
-                # foreground='#CAA9E0',
+                # foreground='#E5B9C6',
                 # font="JetBrains Mono Bold",
                 # prefix='k',
                 # ),
@@ -346,13 +349,13 @@ screens = [
                 widget.Memory(
                     background='#353446',
                     format='{MemUsed: .0f}{mm}',
-                    foreground='#CAA9E0',
+                    foreground='#E5B9C6',
                     font="JetBrains Mono Bold",
                     fontsize=13,
                     update_interval=5,
                 ),
 
-
+    
                 # widget.Image(
                 # filename='~/.config/qtile/Assets/Drop2.png',
                 # ),
@@ -378,11 +381,11 @@ screens = [
 
 
                 widget.Battery(
-                    font='JetBrains Mono Bold',
-                    background='#353446',
-                    foreground='#CAA9E0',
-                    format='{percent:2.0%}',
+                    font="JetBrains Mono Bold",
                     fontsize=13,
+                    background='#353446',
+                    foreground='#E5B9C6',
+                    format='{percent:2.0%}',
                 ),
 
 
@@ -412,10 +415,10 @@ screens = [
                 # ),
 
                 widget.Volume(
-                    font='JetBrainsMono Nerd Font',
+                    font="JetBrains Mono Bold",
+                    fontsize=13,
                     theme_path='~/.config/qtile/Assets/Volume/',
                     emoji=True,
-                    fontsize=13,
                     background='#353446',
                 ),
 
@@ -427,10 +430,10 @@ screens = [
 
 
                 widget.Volume(
-                    font='JetBrains Mono Bold',
-                    background='#353446',
-                    foreground='#CAA9E0',
+                    font="JetBrains Mono Bold",
                     fontsize=13,
+                    background='#353446',
+                    foreground='#E5B9C6',
                 ),
 
 
@@ -451,7 +454,7 @@ screens = [
                 widget.Clock(
                     format='%I:%M %p',
                     background='#282738',
-                    foreground='#CAA9E0',
+                    foreground='#E5B9C6',
                     font="JetBrains Mono Bold",
                     fontsize=13,
                 ),
@@ -507,15 +510,12 @@ floating_layout = layout.Floating(
 
 
 
-from libqtile import hook
-# some other imports
 import os
 import subprocess
 # stuff
 @hook.subscribe.startup_once
-def autostart_once():
-    subprocess.run('~/.config/qtile/autostart_once.sh')# path to my script, under my user directory
-    subprocess.call([home])
+def autostart():
+    subprocess.call([os.path.expanduser('.config/qtile/autostart_once.sh')])
 
 auto_fullscreen = True
 focus_on_window_activation = "smart"
