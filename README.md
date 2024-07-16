@@ -1,7 +1,7 @@
 <div align="center">
 
 ## PROGRESS 2/100
-This project was abandoned for a while, Will be coming back to life soon~
+|| Updating the project || Fixing bugs, install errors & script || Adding new themes || Fixing Bar icons || 
 </div>
 
 
