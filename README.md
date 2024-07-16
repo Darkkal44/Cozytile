@@ -1,6 +1,6 @@
 <div align="center">
 
-## PROGRESS 0/100
+## PROGRESS 2/100
 This project was abandoned for a while, Will be coming back to life soon~
 </div>
 
