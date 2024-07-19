@@ -4,9 +4,10 @@
 
 <div align="left">
 
+## ORIGINAL DESCRIPTION
 Hey there!! I've been working on a Qtile rice for a while now, and I'm excited to share it with you. I've always been fascinated by the way the bar works in Qtile, so that's what I focused on for this rice. I'm thrilled with the results, and I hope you'll be impressed too.
 
-  Qtile might not be the most popular window manager out there, but it's definitely worth checking out. It has some amazing features and possibilities, and I hope my rice will inspire you to give it a try. So without further ado, here's my Qtile rice - I'm excited to finally show it off! Thanks for taking the time to check it out.
+Qtile might not be the most popular window manager out there, but it's definitely worth checking out. It has some amazing features and possibilities, and I hope my rice will inspire you to give it a try. So without further ado, here's my Qtile rice - I'm excited to finally show it off! Thanks for taking the time to check it out.
 
 </div>
 

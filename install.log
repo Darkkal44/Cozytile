@@ -1,9 +1,0 @@
-[09:08:08 2023-05-08] FETCHING Version 2.18.0
-[09:08:08 2023-05-08] DOWNLOADING https://github.com/spicetify/spicetify-cli/releases/download/v2.18.0/spicetify-2.18.0-linux-amd64.tar.gz
-[09:08:10 2023-05-08] EXTRACTING /home/unreal/.spicetify/spicetify.tar.gz
-[09:08:10 2023-05-08] SETTING EXECUTABLE PERMISSIONS TO /home/unreal/.spicetify/spicetify
-[09:08:10 2023-05-08] REMOVING /home/unreal/.spicetify/spicetify.tar.gz
-[09:08:10 2023-05-08] APPENDING /home/unreal/.spicetify to PATH in /home/unreal/.zshrc
-[09:08:10 2023-05-08] Restart your shell to have spicetify in your PATH.
-[09:08:10 2023-05-08] spicetify v2.18.0 was installed successfully to /home/unreal/.spicetify
-[09:08:10 2023-05-08] Run 'spicetify --help' to get started

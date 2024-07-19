@@ -32,12 +32,13 @@ fi
 
 # Install packages
 echo -e "${YELLOW}Installing packages...${NC}"
-yay -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava-git pipewire-pulse alsa-utils git sddm flameshot --needed
-# cava-git dependencies
-yay -S base-devel fftw ncurses alsa-lib iniparser pulseaudio autoconf-archive pkgconf
+yay -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-git dunst zsh \
+starship playerctl brightnessctl alacritty thunar rofi pipewire-pulse alsa-utils \
+git sddm picom flameshot feh clipster roficlip pavucontrol firefox --needed --noconfirm
 
 echo -e "${YELLOW}Installing fonts...${NC}"
-yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd
+yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk \
+noto-fonts-emoji noto-fonts-extra
 
 # Check and set Zsh as the default shell
 [[ "$(awk -F: -v user="$USER" '$1 == user {print $NF}' /etc/passwd) " =~ "zsh " ]] || chsh -s $(which zsh)
@@ -74,20 +75,18 @@ done
 
 # Check if SDDM is installed and install if not
 if pacman -Qs sddm > /dev/null; then
-  echo "SDDM is already installed"
+  echo "${GREEN}SDDM is already installed${NC}"
 else
-  echo "SDDM is not installed. Installing..."
+  echo "${RED}SDDM is not installed. \n${YELLOW}Installing...${NC}"
   sudo pacman -S sddm
 fi
 
-# BROKEN, DISABLE DISPLAY MANAGER YOURSELF
-
 # Disable currently enabled display manager
-#if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
-#  echo "Disabling currently enabled display manager"
-#  sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
-#fi
+if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
+  echo -e "${YELLOW}Disabling currently enabled display manager${NC}"
+  sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
+fi
 
 # Enable and start SDDM
-#echo "Enabling and starting SDDM"
-#sudo systemctl enable --now sddm
+echo -e "${GREEN}Enabling and starting SDDM${NC}"
+sudo systemctl enable --now sddm
