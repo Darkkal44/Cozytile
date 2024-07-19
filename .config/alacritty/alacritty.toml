@@ -1,7 +1,6 @@
 import = ["/home/unreal/.config/alacritty/colors.toml", "/home/unreal/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
-
 [cursor]
 unfocused_hollow = false
 
