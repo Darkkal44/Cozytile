@@ -1,5 +1,9 @@
 [font]
+<<<<<<< HEAD
 size = 11
+=======
+size = 9
+>>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"

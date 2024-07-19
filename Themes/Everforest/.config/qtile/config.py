@@ -510,9 +510,11 @@ floating_layout = layout.Floating(
 import os
 import subprocess
 # stuff
+
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.call([os.path.expanduser('~/.config/qtile/autostart_once.sh')])
+    subprocess.call([os.path.expanduser('.config/qtile/autostart_once.sh')])
+
 
 auto_fullscreen = True
 focus_on_window_activation = "smart"

@@ -46,7 +46,12 @@ fi
 <<<<<<< HEAD:install.sh
 echo "Installing zsh plugins"
 =======
+<<<<<<< HEAD:install.sh
 >>>>>>> parent of 59c16d9 (Synced:):install (work in progess).sh
+=======
+echo -e "${YELLOW}Installing zsh plugins${NC}"
+>>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440:install (work in progess).sh
+>>>>>>> e31c2f498b1c4660bf26a5aee0604bf432355330:install (work in progess).sh
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 

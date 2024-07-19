@@ -1,3 +1,9 @@
+<div align="center">
+
+## PROGRESS 2/100
+|| Updating the project || Fixing bugs, install errors & script || Adding new themes || Fixing Bar icons || 
+</div>
+
 
 <a href='#'><img align="center" src="./Assets/preview.png" alt="Cozytile"></a>
 
