@@ -11,6 +11,7 @@
 #
 #                                                                                    - DARKKAL44
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 
 =======
@@ -19,10 +20,15 @@
 
 =======
 >>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440
+=======
+  
+
+>>>>>>> parent of 59c16d9 (Synced:)
 
 from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, Key, Match, hook, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, hook, Screen, KeyChord
 from libqtile.lazy import lazy
+<<<<<<< HEAD
 <<<<<<< HEAD
 from libqtile.utils import guess_terminal
 from libqtile.dgroups import simple_key_binder
@@ -37,11 +43,17 @@ import subprocess
 =======
 from time import sleep
 >>>>>>> parent of 59c16d9 (Synced:)
+=======
+from libqtile.utils import guess_terminal
+from libqtile.dgroups import simple_key_binder
+from time import sleep
+>>>>>>> parent of 59c16d9 (Synced:)
 
 mod = "mod4"
 terminal = "alacritty"
 home = str(Path.home())
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -60,6 +72,12 @@ home = str(Path.home())
 # || ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝ ||
 # ||                                                                ||
 # \==================================================================/
+=======
+# █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █▀
+# █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ ▄█
+
+
+>>>>>>> parent of 59c16d9 (Synced:)
 =======
 # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █▀
 # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ ▄█
@@ -135,6 +153,7 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 10%-"), desc='brightness Down'),
 ]
 
+<<<<<<< HEAD
 # jocim's keybinds
 # keys = [
 
@@ -192,12 +211,16 @@ keys = [
 #     Key([mod],"e", lazy.spawn("thunar"), desc='Launch File Manager'),
 #     Key([mod], "v", lazy.spawn("roficlip"), desc='Launch Clipboard History'),
 #     Key([mod], "s", lazy.spawn("flameshot gui"), desc='Screenshot'),
+=======
+>>>>>>> parent of 59c16d9 (Synced:)
 
 <<<<<<< HEAD
 =======
 
-# # C U S T O M
+# █▀▀ █▀█ █▀█ █░█ █▀█ █▀
+# █▄█ █▀▄ █▄█ █▄█ █▀▀ ▄█
 
+<<<<<<< HEAD
 #     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%"), desc='Volume Up'),
 #     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 0 -5%"), desc='volume down'),
 #     Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute"), desc='Volume Mute'),
@@ -226,6 +249,8 @@ keys = [
 # █▀▀ █▀█ █▀█ █░█ █▀█ █▀
 # █▄█ █▀▄ █▄█ █▄█ █▀▀ ▄█
 
+>>>>>>> parent of 59c16d9 (Synced:)
+=======
 >>>>>>> parent of 59c16d9 (Synced:)
 
 
@@ -263,6 +288,14 @@ for i in groups:
 # L A Y O U T S
 
 
+<<<<<<< HEAD
+=======
+
+
+# L A Y O U T S
+
+
+>>>>>>> parent of 59c16d9 (Synced:)
 
 
 layouts = [
@@ -335,6 +368,7 @@ def power():
     qtile.cmd_spawn("sh -c ~/.config/rofi/scripts/power")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # █▄▄ ▄▀█ █▀█
 # █▄█ █▀█ █▀▄
 
@@ -348,17 +382,14 @@ def audio():
     qtile.cmd_spawn("pavucontrol")
 <<<<<<< HEAD
 =======
+=======
+# █▄▄ ▄▀█ █▀█
+# █▄█ █▀█ █▀▄
+>>>>>>> parent of 59c16d9 (Synced:)
 
-# ORIGINAL
-# screens = [
 
-#     Screen(
-#         top=bar.Bar(
-#             [
-# 				widget.Spacer(length=15,
-#                     background='#282738',
-#                 ),
 
+<<<<<<< HEAD
 
 #                 widget.Image(
 #                     filename='~/.config/qtile/Assets/launch_Icon.png',
@@ -648,6 +679,8 @@ def audio():
 
 # jocim's config
 >>>>>>> e31c2f498b1c4660bf26a5aee0604bf432355330
+=======
+>>>>>>> parent of 59c16d9 (Synced:)
 screens = [
 
     Screen(
@@ -1011,6 +1044,7 @@ wmname = "LG3D"
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @hook.subscribe.startup_once
 def autostart_once():
     autostartscript = "~/.config/qtile/autostart_once.sh"
@@ -1029,3 +1063,6 @@ def autostart():
 # E O F
 >>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440
 >>>>>>> e31c2f498b1c4660bf26a5aee0604bf432355330
+=======
+# E O F
+>>>>>>> parent of 59c16d9 (Synced:)

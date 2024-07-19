@@ -12,7 +12,11 @@ live_config_reload = true
 import = ["/home/unreal/.config/alacritty/colors.toml", "/home/unreal/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
+<<<<<<< HEAD
 >>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440
+=======
+
+>>>>>>> parent of 59c16d9 (Synced:)
 [cursor]
 unfocused_hollow = false
 
