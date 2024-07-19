@@ -51,7 +51,11 @@ else
 fi
 
 # Install Zsh plugins
+<<<<<<< HEAD:install.sh
 echo "Installing zsh plugins"
+=======
+echo -e "${YELLOW}Installing zsh plugins${NC}"
+>>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440:install (work in progess).sh
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 

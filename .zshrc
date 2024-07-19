@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
 # On-demand rehash
 zshcache_time="$(date +%s%N)"
 
@@ -142,6 +143,6 @@ alias emacs="emacsclient -c -a 'emacs'"
 
 #custom stuff
 cat ~/.cache/wal/sequences
-
+export STARSHIP_LOG="error"
 eval "$(starship init zsh)"
 
