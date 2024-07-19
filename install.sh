@@ -1,13 +1,8 @@
 #!/bin/bash
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m'
-
 # Check if script is run as root
 if [[ "$(id -u)" -eq 0 ]]; then
-  echo -e "${RED}This script must not be run as root!${NC}"
+  echo "This script must not be run as root"
   exit 1
 fi
 
@@ -16,29 +11,26 @@ sudo pacman -Syu
 
 # Install Git
 if command -v git &>/dev/null; then
-  echo -e "Git v${GREEN}$(git -v | cut -d' ' -f3)${NC} is already installed in your system"
+  echo "Git v$(git -v | cut -d' ' -f3) is already installed in your system"
 else
-  sudo pacman -S git
+  sudo pacman -S git --noconfirm
 fi
 
-# Clone and install Yay
-if command -v yay &>/dev/null; then
-  echo -e "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
+# Clone and install Paru
+if command -v paru &>/dev/null; then
+  echo "Paru $(paru -V | cut -d' ' -f2) is already installed in your system"
 else
-  echo -e "${RED}Yay is not present in your system.${NC}"
-  echo -e "${YELLOW}Installing Yay...${NC}"
-  git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-fi
+  if command -v yay &>/dev/null; then
+    echo "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
+  else
+    echo "Neither Paru nor Yay is present in your system."
+    echo "Installing Paru..."
+    git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si --noconfirm && cd ..
+  fi
+fi 
 
 # Install packages
-echo -e "${YELLOW}Installing packages...${NC}"
-yay -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-git dunst zsh \
-starship playerctl brightnessctl alacritty thunar rofi pipewire-pulse alsa-utils \
-git sddm picom flameshot feh clipster roficlip pavucontrol firefox --needed --noconfirm
-
-echo -e "${YELLOW}Installing fonts...${NC}"
-yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk \
-noto-fonts-emoji noto-fonts-extra
+paru -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm --noconfirm --needed
 
 # Check and set Zsh as the default shell
 [[ "$(awk -F: -v user="$USER" '$1 == user {print $NF}' /etc/passwd) " =~ "zsh " ]] || chsh -s $(which zsh)
@@ -51,12 +43,17 @@ else
 fi
 
 # Install Zsh plugins
+<<<<<<< HEAD:install.sh
 echo "Installing zsh plugins"
+=======
+>>>>>>> parent of 59c16d9 (Synced:):install (work in progess).sh
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Make Backup 
-echo -e "${YELLOW}Backing up the current configs. All the backup files will be available at ~/.cozy.bak${NC}"
+
+
+echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
 mkdir -p ~/.cozy.bak
 
 for folder in .* *; do
@@ -73,20 +70,25 @@ for folder in .* *; do
   fi
 done
 
+
+
+
+
 # Check if SDDM is installed and install if not
 if pacman -Qs sddm > /dev/null; then
-  echo "${GREEN}SDDM is already installed${NC}"
+  echo "SDDM is already installed"
 else
-  echo "${RED}SDDM is not installed. \n${YELLOW}Installing...${NC}"
+  echo "SDDM is not installed. Installing..."
   sudo pacman -S sddm
 fi
 
 # Disable currently enabled display manager
 if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
-  echo -e "${YELLOW}Disabling currently enabled display manager${NC}"
+  echo "Disabling currently enabled display manager"
   sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
 fi
 
 # Enable and start SDDM
-echo -e "${GREEN}Enabling and starting SDDM${NC}"
+echo "Enabling and starting SDDM"
 sudo systemctl enable --now sddm
+

@@ -10,6 +10,8 @@
 #      ░░░░░░░░░     ░░░░░░░    ░░░░░░░░░░░    ░░░░░       ░░░░░    ░░░░░ ░░░░░░░░░░░ ░░░░░░░░░░
 #
 #                                                                                    - DARKKAL44
+  
+
 
 
 from libqtile import bar, layout, widget, hook, qtile
@@ -17,15 +19,20 @@ from libqtile.config import Click, Drag, Group, Key, Match, hook, Screen, KeyCho
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.dgroups import simple_key_binder
+<<<<<<< HEAD
 from libqtile import hook
 from pathlib import Path
 import os
 import subprocess
+=======
+from time import sleep
+>>>>>>> parent of 59c16d9 (Synced:)
 
 mod = "mod4"
 terminal = "alacritty"
 home = str(Path.home())
 
+<<<<<<< HEAD
 # /==================================================================\
 # ||                                                                ||
 # || ██╗  ██╗███████╗██╗   ██╗██████╗ ██╗███╗   ██╗██████╗ ███████╗ ||
@@ -36,6 +43,12 @@ home = str(Path.home())
 # || ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝ ||
 # ||                                                                ||
 # \==================================================================/
+=======
+# █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █▀
+# █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ ▄█
+
+
+>>>>>>> parent of 59c16d9 (Synced:)
 
 
 keys = [
@@ -106,6 +119,7 @@ keys = [
 ]
 
 
+<<<<<<< HEAD
 # /========================================================\
 # ||                                                      ||
 # ||  ██████╗ ██████╗  ██████╗ ██╗   ██╗██████╗ ███████╗  ||
@@ -116,6 +130,12 @@ keys = [
 # ||  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝     ╚══════╝  ||
 # ||                                                      ||
 # \========================================================/
+=======
+
+# █▀▀ █▀█ █▀█ █░█ █▀█ █▀
+# █▄█ █▀▄ █▄█ █▄█ █▀▀ ▄█
+
+>>>>>>> parent of 59c16d9 (Synced:)
 
 
 groups = [Group(f"{i+1}", label="󰏃") for i in range(8)]
@@ -129,16 +149,11 @@ for i in groups:
     )
 
 
-# /================================================================\
-# ||                                                              ||
-# || ██╗      █████╗ ██╗   ██╗ ██████╗ ██╗   ██╗████████╗███████╗ ||
-# || ██║     ██╔══██╗╚██╗ ██╔╝██╔═══██╗██║   ██║╚══██╔══╝██╔════╝ ||
-# || ██║     ███████║ ╚████╔╝ ██║   ██║██║   ██║   ██║   ███████╗ ||
-# || ██║     ██╔══██║  ╚██╔╝  ██║   ██║██║   ██║   ██║   ╚════██║ ||
-# || ███████╗██║  ██║   ██║   ╚██████╔╝╚██████╔╝   ██║   ███████║ ||
-# || ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝ ||
-# ||                                                              ||
-# \================================================================/
+
+
+# L A Y O U T S
+
+
 
 
 layouts = [
@@ -199,19 +214,9 @@ widget_defaults = dict(
     fontsize=12,
     padding=3,
 )
-extension_defaults = [ widget_defaults.copy() ]
+extension_defaults = [ widget_defaults.copy()
+        ]
 
-
-# /============================\
-# ||                          ||
-# || ██████╗  █████╗ ██████╗  ||
-# || ██╔══██╗██╔══██╗██╔══██╗ ||
-# || ██████╔╝███████║██████╔╝ ||
-# || ██╔══██╗██╔══██║██╔══██╗ ||
-# || ██████╔╝██║  ██║██║  ██║ ||
-# || ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ||
-# ||                          ||
-# \============================/
 
 
 def search():
@@ -220,17 +225,23 @@ def search():
 def power():
     qtile.cmd_spawn("sh -c ~/.config/rofi/scripts/power")
 
-def audio():
-    qtile.cmd_spawn("pavucontrol")
+# █▄▄ ▄▀█ █▀█
+# █▄█ █▀█ █▀▄
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> parent of 59c16d9 (Synced:)
 screens = [
+
     Screen(
         top=bar.Bar(
             [
-                widget.Spacer(
-                    length=15,
+				widget.Spacer(length=15,
                     background='#282738',
                 ),
+
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/launch_Icon.png',
@@ -239,9 +250,11 @@ screens = [
                     mouse_callbacks={"Button1":power},
                 ),
 
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/6.png',
                 ),
+
 
                 widget.GroupBox(
                     fontsize=24,
@@ -260,21 +273,25 @@ screens = [
                     urgent_border='#353446',
                     rounded=True,
                     disable_drag=True,
-                ),
+                 ),
+
 
                 widget.Spacer(
                     length=8,
                     background='#353446',
                 ),
 
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/1.png',
                 ),
+
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/layout.png',
                     background="#353446"
                 ),
+
 
                 widget.CurrentLayout(
                     background='#353446',
@@ -284,9 +301,11 @@ screens = [
                     fontsize=13,
                 ),
 
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/5.png',
                 ),
+
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/search.png',
@@ -304,9 +323,11 @@ screens = [
                     mouse_callbacks={"Button1": search},
                 ),
 
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/4.png',
                 ),
+
 
                 widget.WindowName(
                     background = '#353446',
@@ -315,36 +336,66 @@ screens = [
                     foreground='#CAA9E0',
                     empty_group_string = 'Desktop',
                     fontsize=13,
+
                 ),
+
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/3.png',
                 ),
+
 
                 widget.Systray(
                     background='#282738',
                     fontsize=2,
                 ),
 
+
                 widget.TextBox(
                     text=' ',
                     background='#282738',
                 ),
+
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/6.png',
                     background='#353446',
                 ),
 
+
+                # widget.Image(
+                # filename='~/.config/qtile/Assets/Drop1.png',
+                # ),
+
+                # widget.Net(
+                # format=' {up}   {down} ',
+                # background='#353446',
+                # foreground='#CAA9E0',
+                # font="JetBrains Mono Bold",
+                # prefix='k',
+                # ),
+
+                # widget.Image(
+                    # filename='~/.config/qtile/Assets/2.png',
+                # ),
+
+                # widget.Spacer(
+                    # length=8,
+                    # background='#353446',
+                # ),
+
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/Misc/ram.png',
                     background='#353446',
                 ),
 
+
                 widget.Spacer(
                     length=-7,
                     background='#353446',
                 ),
+
 
                 widget.Memory(
                     background='#353446',
@@ -355,19 +406,64 @@ screens = [
                     update_interval=5,
                 ),
 
+
+                # widget.Image(
+                # filename='~/.config/qtile/Assets/Drop2.png',
+                # ),
+
+
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/2.png',
                 ),
 
-                widget.Spacer(
-                    length=8,
-                    background='#353446',
-                ),
 
                 widget.Spacer(
                     length=8,
                     background='#353446',
                 ),
+
+
+                widget.BatteryIcon(
+                    theme_path='~/.config/qtile/Assets/Battery/',
+                    background='#353446',
+                    scale=1,
+                ),
+
+
+                widget.Battery(
+                    font='JetBrains Mono Bold',
+                    background='#353446',
+                    foreground='#CAA9E0',
+                    format='{percent:2.0%}',
+                    fontsize=13,
+                ),
+
+
+                widget.Image(
+                    filename='~/.config/qtile/Assets/2.png',
+                ),
+
+
+                widget.Spacer(
+                    length=8,
+                    background='#353446',
+                ),
+
+
+                # widget.Battery(format=' {percent:2.0%}',
+                    # font="JetBrains Mono ExtraBold",
+                    # fontsize=12,
+                    # padding=10,
+                    # background='#353446',
+                # ),
+
+                # widget.Memory(format='﬙{MemUsed: .0f}{mm}',
+                    # font="JetBrains Mono Bold",
+                    # fontsize=12,
+                    # padding=10,
+                    # background='#4B4D66',
+                # ),
 
                 widget.Volume(
                     font='JetBrainsMono Nerd Font',
@@ -375,13 +471,14 @@ screens = [
                     emoji=True,
                     fontsize=13,
                     background='#353446',
-                    mouse_callbacks={"Button1" : audio},
                 ),
+
 
                 widget.Spacer(
                     length=-5,
                     background='#353446',
                     ),
+
 
                 widget.Volume(
                     font='JetBrains Mono Bold',
@@ -390,10 +487,12 @@ screens = [
                     fontsize=13,
                 ),
 
+
                 widget.Image(
                     filename='~/.config/qtile/Assets/5.png',
                     background='#353446',
                 ),
+
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/Misc/clock.png',
@@ -402,58 +501,51 @@ screens = [
                     margin_x=5,
                 ),
 
+
                 widget.Clock(
-                    format='%H:%M - %A %Od/%Om/%Y',
+                    format='%I:%M %p',
                     background='#282738',
                     foreground='#CAA9E0',
                     font="JetBrains Mono Bold",
                     fontsize=13,
                 ),
 
+
                 widget.Spacer(
                     length=18,
                     background='#282738',
                 ),
+
+
+
             ],
             30,
             border_color = '#282738',
             border_width = [0,0,0,0],
             margin = [15,60,6,60],
+
         ),
-        wallpaper='~/Wallpaper/Aesthetic2.png'
     ),
 ]
 
 
-# /====================================================================\
-# ||                                                                  ||
-# || ███████╗██╗      ██████╗  █████╗ ████████╗██╗███╗   ██╗ ██████╗  ||
-# || ██╔════╝██║     ██╔═══██╗██╔══██╗╚══██╔══╝██║████╗  ██║██╔════╝  ||
-# || █████╗  ██║     ██║   ██║███████║   ██║   ██║██╔██╗ ██║██║  ███╗ ||
-# || ██╔══╝  ██║     ██║   ██║██╔══██║   ██║   ██║██║╚██╗██║██║   ██║ ||
-# || ██║     ███████╗╚██████╔╝██║  ██║   ██║   ██║██║ ╚████║╚██████╔╝ ||
-# || ╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝  ||
-# ||                                                                  ||
-# || ██╗      █████╗ ██╗   ██╗ ██████╗ ██╗   ██╗████████╗███████╗     ||
-# || ██║     ██╔══██╗╚██╗ ██╔╝██╔═══██╗██║   ██║╚══██╔══╝██╔════╝     ||
-# || ██║     ███████║ ╚████╔╝ ██║   ██║██║   ██║   ██║   ███████╗     ||
-# || ██║     ██╔══██║  ╚██╔╝  ██║   ██║██║   ██║   ██║   ╚════██║     ||
-# || ███████╗██║  ██║   ██║   ╚██████╔╝╚██████╔╝   ██║   ███████║     ||
-# || ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝     ||
-# ||                                                                  ||
-# \====================================================================/
 
-
+# Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus='#1F1D2E',
-    border_normal='#1F1D2E',
-    border_width=0,
+	border_focus='#1F1D2E',
+	border_normal='#1F1D2E',
+	border_width=0,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -463,35 +555,22 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(wm_class="pavucontrol"), # audio
     ]
 )
 
 
-# /================================================================\
-# ||                                                              ||
-# ||  ██████╗ ███████╗███╗   ██╗███████╗██████╗  █████╗ ██╗       ||
-# || ██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔══██╗██╔══██╗██║       ||
-# || ██║  ███╗█████╗  ██╔██╗ ██║█████╗  ██████╔╝███████║██║       ||
-# || ██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ██╔══██╗██╔══██║██║       ||
-# || ╚██████╔╝███████╗██║ ╚████║███████╗██║  ██║██║  ██║███████╗  ||
-# ||  ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝  ||
-# ||                                                              ||
-# || ███████╗███████╗████████╗██╗   ██╗██████╗                    ||
-# || ██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗                   ||
-# || ███████╗█████╗     ██║   ██║   ██║██████╔╝                   ||
-# || ╚════██║██╔══╝     ██║   ██║   ██║██╔═══╝                    ||
-# || ███████║███████╗   ██║   ╚██████╔╝██║                        ||
-# || ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝                        ||
-# ||                                                              ||
-# \================================================================/
 
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
+from libqtile import hook
+# some other imports
+import os
+import subprocess
+# stuff
+
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.call([os.path.expanduser('.config/qtile/autostart_once.sh')])
+
 
 auto_fullscreen = True
 focus_on_window_activation = "smart"
@@ -515,19 +594,13 @@ wl_input_rules = None
 wmname = "LG3D"
 
 
-# /==============================================\
-# ||                                            ||
-# || ██╗  ██╗ ██████╗  ██████╗ ██╗  ██╗███████╗ ||
-# || ██║  ██║██╔═══██╗██╔═══██╗██║ ██╔╝██╔════╝ ||
-# || ███████║██║   ██║██║   ██║█████╔╝ ███████╗ ||
-# || ██╔══██║██║   ██║██║   ██║██╔═██╗ ╚════██║ ||
-# || ██║  ██║╚██████╔╝╚██████╔╝██║  ██╗███████║ ||
-# || ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝ ||
-# ||                                            ||
-# \==============================================/
 
+<<<<<<< HEAD
 @hook.subscribe.startup_once
 def autostart_once():
     autostartscript = "~/.config/qtile/autostart_once.sh"
     home = os.path.expanduser(autostartscript)
     subprocess.Popen([home])
+=======
+# E O F
+>>>>>>> parent of 59c16d9 (Synced:)

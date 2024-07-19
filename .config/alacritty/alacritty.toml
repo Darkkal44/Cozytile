@@ -1,8 +1,11 @@
 import = ["/home/jocim-arch/.config/alacritty/colors.toml", "/home/jocim-arch/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
+<<<<<<< HEAD
 [colors]
 #background = "#282738"
+=======
+>>>>>>> parent of 59c16d9 (Synced:)
 
 [cursor]
 unfocused_hollow = false
