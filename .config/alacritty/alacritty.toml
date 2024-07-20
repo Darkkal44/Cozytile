@@ -1,22 +1,9 @@
-<<<<<<< HEAD
 import = ["/home/jocim-arch/.config/alacritty/colors.toml", "/home/jocim-arch/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
-<<<<<<< HEAD
-[colors]
-#background = "#282738"
-=======
->>>>>>> parent of 59c16d9 (Synced:)
-
-=======
 import = ["/home/unreal/.config/alacritty/colors.toml", "/home/unreal/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
-<<<<<<< HEAD
->>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440
-=======
-
->>>>>>> parent of 59c16d9 (Synced:)
 [cursor]
 unfocused_hollow = false
 
@@ -31,11 +18,6 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 [window]
 decorations = "full"
 dynamic_title = true
-<<<<<<< HEAD
-#history = 10000
-#multiplier = 3
-=======
->>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440
 opacity = 1
 startup_mode = "Windowed"
 

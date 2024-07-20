@@ -1,8 +1,13 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
 # Check if script is run as root
 if [[ "$(id -u)" -eq 0 ]]; then
-  echo "This script must not be run as root"
+  echo -e "${RED}This script must not be run as root!${NC}"
   exit 1
 fi
 
@@ -11,26 +16,29 @@ sudo pacman -Syu
 
 # Install Git
 if command -v git &>/dev/null; then
-  echo "Git v$(git -v | cut -d' ' -f3) is already installed in your system"
+  echo -e "Git v${GREEN}$(git -v | cut -d' ' -f3)${NC} is already installed in your system"
 else
-  sudo pacman -S git --noconfirm
+  sudo pacman -S git
 fi
 
-# Clone and install Paru
-if command -v paru &>/dev/null; then
-  echo "Paru $(paru -V | cut -d' ' -f2) is already installed in your system"
+# Clone and install Yay
+if command -v yay &>/dev/null; then
+  echo -e "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
 else
-  if command -v yay &>/dev/null; then
-    echo "Yay $(yay -V | cut -d' ' -f2) is installed in your system"
-  else
-    echo "Neither Paru nor Yay is present in your system."
-    echo "Installing Paru..."
-    git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si --noconfirm && cd ..
-  fi
-fi 
+  echo -e "${RED}Yay is not present in your system.${NC}"
+  echo -e "${YELLOW}Installing Yay...${NC}"
+  git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+fi
 
 # Install packages
-paru -Syu base-devel qtile python-psutil pywal-git feh picom-jonaburg-git dunst zsh starship playerctl brightnessctl alacritty pfetch thunar rofi ranger cava pulseaudio alsa-utils neovim vim git sddm --noconfirm --needed
+echo -e "${YELLOW}Installing packages...${NC}"
+yay -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-git dunst zsh \
+starship playerctl brightnessctl alacritty thunar rofi pipewire-pulse alsa-utils \
+git sddm picom flameshot feh clipster roficlip pavucontrol firefox --needed --noconfirm
+
+echo -e "${YELLOW}Installing fonts...${NC}"
+yay -S ttf-jetbrains-mono ttf-jetbrains-mono-nerd noto-fonts noto-fonts-cjk \
+noto-fonts-emoji noto-fonts-extra
 
 # Check and set Zsh as the default shell
 [[ "$(awk -F: -v user="$USER" '$1 == user {print $NF}' /etc/passwd) " =~ "zsh " ]] || chsh -s $(which zsh)
@@ -43,25 +51,12 @@ else
 fi
 
 # Install Zsh plugins
-<<<<<<< HEAD
-<<<<<<< HEAD:install.sh
-echo "Installing zsh plugins"
-=======
-<<<<<<< HEAD:install.sh
->>>>>>> parent of 59c16d9 (Synced:):install (work in progess).sh
-=======
 echo -e "${YELLOW}Installing zsh plugins${NC}"
->>>>>>> 59c16d9292c711cd50974fcaede9d2e007f24440:install (work in progess).sh
->>>>>>> e31c2f498b1c4660bf26a5aee0604bf432355330:install (work in progess).sh
-=======
->>>>>>> parent of 59c16d9 (Synced:)
 [[ "${plugins[*]} " =~ "zsh-autosuggestions " ]] || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 [[ "${plugins[*]} " =~ "zsh-syntax-highlighting " ]] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Make Backup 
-
-
-echo "Backing up the current configs. All the backup files will be available at ~/.cozy.bak"
+echo -e "${YELLOW}Backing up the current configs. All the backup files will be available at ~/.cozy.bak${NC}"
 mkdir -p ~/.cozy.bak
 
 for folder in .* *; do
@@ -78,25 +73,20 @@ for folder in .* *; do
   fi
 done
 
-
-
-
-
 # Check if SDDM is installed and install if not
 if pacman -Qs sddm > /dev/null; then
-  echo "SDDM is already installed"
+  echo "${GREEN}SDDM is already installed${NC}"
 else
-  echo "SDDM is not installed. Installing..."
+  echo "${RED}SDDM is not installed. \n${YELLOW}Installing...${NC}"
   sudo pacman -S sddm
 fi
 
 # Disable currently enabled display manager
 if systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm'; then
-  echo "Disabling currently enabled display manager"
+  echo -e "${YELLOW}Disabling currently enabled display manager${NC}"
   sudo systemctl disable --now $(systemctl list-unit-files | grep enabled | grep -E 'gdm|lightdm|lxdm|lxdm-gtk3|sddm|slim|xdm' | awk -F ' ' '{print $1}')
 fi
 
 # Enable and start SDDM
-echo "Enabling and starting SDDM"
+echo -e "${GREEN}Enabling and starting SDDM${NC}"
 sudo systemctl enable --now sddm
-
