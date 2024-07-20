@@ -1,9 +1,6 @@
 import = ["/home/jocim-arch/.config/alacritty/colors.toml", "/home/jocim-arch/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
-import = ["/home/unreal/.config/alacritty/colors.toml", "/home/unreal/.config/alacritty/fonts.toml"]
-live_config_reload = true
-
 [cursor]
 unfocused_hollow = false
 
