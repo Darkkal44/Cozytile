@@ -7,7 +7,7 @@ sudo pacman -Syu git --noconfirm
 git clone https://aur.archlinux.org/paru-bin.git && cd paru-bin && makepkg -si --noconfirm && cd ..
 
 # Install necessary packages using Paru
-paru -Syu base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim git sddm --noconfirm 
+paru -Syu base-devel qtile python-psutil pywal-git picom-git dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim git sddm --noconfirm 
 
 # Set Zsh as the default shell
 chsh -s $(which zsh)
