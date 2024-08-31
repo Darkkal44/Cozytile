@@ -84,7 +84,7 @@ keys = [
 
 
 
-groups = [Group(f"{i+1}", label="󰏃") for i in range(8)]
+groups = [Group(f"{i+1}", label="") for i in range(8)]
 
 for i in groups:
     keys.extend(
@@ -111,49 +111,35 @@ for i in groups:
 
 
 
+lay_config = {
+    "border_width": 0,
+    "margin": 9,
+    "border_focus": "3b4252",
+    "border_normal": "3b4252",
+    "font": "FiraCode Nerd Font",
+    "grow_amount": 2,
+}
 
 layouts = [
-    layout.Columns( margin=10, border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-        border_width=0
+    # layout.MonadWide(**lay_config),
+    layout.Bsp(**lay_config, fair=False, border_on_single=True),
+    layout.Columns(
+        **lay_config,
+        border_on_single=True,
+        num_columns=2,
+        split=False,
     ),
-
-    layout.Max(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=10,
-	    border_width=0,
-    ),
-
-    layout.Floating(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=10,
-	    border_width=0,
-	),
-    # Try more layouts by unleashing below layouts
-   #  layout.Stack(num_stacks=2),
-   #  layout.Bsp(),
-     layout.Matrix(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=10,
-	    border_width=0,
-	),
-     layout.MonadTall(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-        margin=4,
-	    border_width=0,
-	),
-    layout.MonadWide(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-	    margin=10,
-	    border_width=0,
-	),
-   #  layout.RatioTile(),
-     layout.Tile(	border_focus='#1F1D2E',
-	    border_normal='#1F1D2E',
-    ),
-   #  layout.TreeTab(),
-   #  layout.VerticalTile(),
-   #  layout.Zoomy(),
+    # Plasma(lay_config, border_normal_fixed='#3b4252', border_focus_fixed='#3b4252', border_width_single=3),
+    # layout.RatioTile(**lay_config),
+    # layout.VerticalTile(**lay_config),
+    # layout.Matrix(**lay_config, columns=3),
+    # layout.Zoomy(**lay_config),
+    # layout.Slice(**lay_config, width=1920, fallback=layout.TreeTab(), match=Match(wm_class="joplin"), side="right"),
+    # layout.MonadTall(**lay_config),
+    # layout.Tile(shift_windows=True, **lay_config),
+    # layout.Stack(num_stacks=2, **lay_config),
+    layout.Floating(**lay_config),
+    layout.Max(**lay_config),
 ]
 
 
@@ -187,10 +173,9 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-				widget.Spacer(length=15,
+                widget.Spacer(length=15,
                     background='#282738',
                 ),
-
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/launch_Icon.png',
@@ -199,14 +184,13 @@ screens = [
                     mouse_callbacks={"Button1":power},
                 ),
 
-
                 widget.Image(
                     filename='~/.config/qtile/Assets/6.png',
                 ),
 
-
                 widget.GroupBox(
-                    fontsize=24,
+                    font="JetBrainsMono Nerd Font",
+                    fontsize=23,
                     borderwidth=3,
                     highlight_method='block',
                     active='#E5B9C6',
@@ -222,150 +206,100 @@ screens = [
                     urgent_border='#353446',
                     rounded=True,
                     disable_drag=True,
-                 ),
-
+                ),
 
                 widget.Spacer(
                     length=8,
                     background='#353446',
                 ),
-
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/1.png',
                 ),
 
 
-                widget.Image(
-                    filename='~/.config/qtile/Assets/layout.png',
-                    background="#353446"
-                ),
-
-
-                widget.CurrentLayout(
+                widget.CurrentLayoutIcon(
+                    custom_icon_paths=["~/.config/qtile/Assets/layout"],
                     background='#353446',
-                    foreground='#E5B9C6',
-                    fmt='{}',
-                    font="JetBrains Mono Bold",
-                    fontsize=13,
+                    # ~ padding=-10,
+                    scale=0.50,
                 ),
-
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/5.png',
                 ),
 
-
-                widget.Image(
-                    filename='~/.config/qtile/Assets/search.png',
-                    margin=2,
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
                     background='#282738',
+                    foreground='#E5B9C6',
                     mouse_callbacks={"Button1": search},
                 ),
 
                 widget.TextBox(
                     fmt='Search',
                     background='#282738',
-                    font="JetBrains Mono Bold",
+                    font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     foreground='#E5B9C6',
                     mouse_callbacks={"Button1": search},
                 ),
 
-
                 widget.Image(
                     filename='~/.config/qtile/Assets/4.png',
                 ),
 
-
                 widget.WindowName(
                     background = '#353446',
-                    format = "{name}",
-                    font="JetBrains Mono Bold",
-                    fontsize=13,
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=12,
+                    empty_group_string="Desktop",
+                    max_chars=130,
                     foreground='#E5B9C6',
-                    empty_group_string = 'Desktop',
-
                 ),
-
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/3.png',
                 ),
-
 
                 widget.Systray(
                     background='#282738',
                     fontsize=2,
                 ),
 
-
                 widget.TextBox(
                     text=' ',
                     background='#282738',
                 ),
-
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/6.png',
                     background='#353446',
                 ),
 
-
-                # widget.Image(
-                # filename='~/.config/qtile/Assets/Drop1.png',
-                # ),
-
-                # widget.Net(
-                # format=' {up}   {down} ',
-                # background='#353446',
-                # foreground='#E5B9C6',
-                # font="JetBrains Mono Bold",
-                # prefix='k',
-                # ),
-
-                # widget.Image(
-                    # filename='~/.config/qtile/Assets/2.png',
-                # ),
-
-                # widget.Spacer(
-                    # length=8,
-                    # background='#353446',
-                # ),
-
-
-                widget.Image(
-                    filename='~/.config/qtile/Assets/Misc/ram.png',
+                
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
                     background='#353446',
+                    foreground='#E5B9C6',
                 ),
-
-
-                widget.Spacer(
-                    length=-7,
-                    background='#353446',
-                ),
-
-
+                
                 widget.Memory(
                     background='#353446',
                     format='{MemUsed: .0f}{mm}',
                     foreground='#E5B9C6',
-                    font="JetBrains Mono Bold",
+                    font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     update_interval=5,
                 ),
 
-    
-                # widget.Image(
-                # filename='~/.config/qtile/Assets/Drop2.png',
-                # ),
-
-
-
                 widget.Image(
                     filename='~/.config/qtile/Assets/2.png',
                 ),
-
 
                 widget.Spacer(
                     length=8,
@@ -373,26 +307,25 @@ screens = [
                 ),
 
 
-                widget.BatteryIcon(
-                    theme_path='~/.config/qtile/Assets/Battery/',
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
                     background='#353446',
-                    scale=1,
+                    foreground='#E5B9C6',
                 ),
-
-
+                
                 widget.Battery(
-                    font="JetBrains Mono Bold",
+                    font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     background='#353446',
                     foreground='#E5B9C6',
                     format='{percent:2.0%}',
                 ),
 
-
                 widget.Image(
                     filename='~/.config/qtile/Assets/2.png',
                 ),
-
 
                 widget.Spacer(
                     length=8,
@@ -400,42 +333,20 @@ screens = [
                 ),
 
 
-                # widget.Battery(format=' {percent:2.0%}',
-                    # font="JetBrains Mono ExtraBold",
-                    # fontsize=12,
-                    # padding=10,
-                    # background='#353446',
-                # ),
-
-                # widget.Memory(format='﬙{MemUsed: .0f}{mm}',
-                    # font="JetBrains Mono Bold",
-                    # fontsize=12,
-                    # padding=10,
-                    # background='#4B4D66',
-                # ),
-
-                widget.Volume(
-                    font="JetBrains Mono Bold",
-                    fontsize=13,
-                    theme_path='~/.config/qtile/Assets/Volume/',
-                    emoji=True,
-                    background='#353446',
-                ),
-
-
-                widget.Spacer(
-                    length=-5,
-                    background='#353446',
-                    ),
-
-
-                widget.Volume(
-                    font="JetBrains Mono Bold",
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background='#353446',
                     foreground='#E5B9C6',
                 ),
-
+                
+                widget.Volume(
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=13,
+                    background='#353446',
+                    foreground='#E5B9C6',
+                ),
 
                 widget.Image(
                     filename='~/.config/qtile/Assets/5.png',
@@ -443,29 +354,26 @@ screens = [
                 ),
 
 
-                widget.Image(
-                    filename='~/.config/qtile/Assets/Misc/clock.png',
+                widget.TextBox(
+                    text=" ",
+                    font="Font Awesome 6 Free Solid",
+                    fontsize=13,
                     background='#282738',
-                    margin_y=6,
-                    margin_x=5,
+                    foreground='#E5B9C6',
                 ),
-
-
+                
                 widget.Clock(
                     format='%I:%M %p',
                     background='#282738',
                     foreground='#E5B9C6',
-                    font="JetBrains Mono Bold",
+                    font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                 ),
-
 
                 widget.Spacer(
                     length=18,
                     background='#282738',
                 ),
-
-
 
             ],
             30,
@@ -476,6 +384,7 @@ screens = [
         ),
     ),
 ]
+
 
 
 
