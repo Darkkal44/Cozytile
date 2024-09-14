@@ -31,7 +31,7 @@ rofi_cmd() {
     rofi -dmenu \
         -p "$username" \
         -mesg "$sendoff" \
-        -theme ${dir}/natura.rasi
+        -theme ${dir}/cozy.rasi
 }
 
 # ───────────────────────────────────────────────────────────────

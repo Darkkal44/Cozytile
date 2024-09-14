@@ -1,25 +1,23 @@
-
 #!/usr/bin/env bash
 
 # ───────────────────────────────────────────────────────────────
 #                      Theme Settings
 # ───────────────────────────────────────────────────────────────
-dir="$HOME/.config/rofi/settings/powermenu/"
+dir="$HOME/.config/rofi/settings/theme_switcher/"
 
 # ───────────────────────────────────────────────────────────────
 #                         Menu Options
 # ───────────────────────────────────────────────────────────────
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
+theme1='Cozy'
+theme2='Sakura'
+theme3='Natura'
+theme4='Everforest'
 
 # ───────────────────────────────────────────────────────────────
 #                           User Info
 # ───────────────────────────────────────────────────────────────
 username=" $(whoami)"
-messages=("See ya!" "Adiós, amigo!" "Catch you on the flip side!" "Powering down... but not for long!" "Peace out!")
+messages=("Which theme do you want?" "Select a theme to apply!" "Choose your preferred theme!")
 
 # Pick a random message
 sendoff="${messages[$((RANDOM % ${#messages[@]}))]}"
@@ -31,56 +29,38 @@ rofi_cmd() {
     rofi -dmenu \
         -p "$username" \
         -mesg "$sendoff" \
-        -theme ${dir}/natura.rasi
+        -theme ${dir}/sakura.rasi
 }
 
 # ───────────────────────────────────────────────────────────────
 #                       Run Rofi Menu
 # ───────────────────────────────────────────────────────────────
 run_rofi() {
-    echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
+    echo -e "$theme1\n$theme2\n$theme3\n$theme4" | rofi_cmd
 }
 
 # ───────────────────────────────────────────────────────────────
 #                        Command Exec
 # ───────────────────────────────────────────────────────────────
 run_cmd() {
-    if [[ $1 == '--shutdown' ]]; then
-        systemctl poweroff
-    elif [[ $1 == '--reboot' ]]; then
-        systemctl reboot
-    elif [[ $1 == '--suspend' ]]; then
-        mpc -q pause
-        amixer set Master mute
-        systemctl suspend
-    elif [[ $1 == '--logout' ]]; then
-        pkill -KILL -u "$USER"
-    fi
+    case $1 in
+        "$theme1")
+            ~/.config/rofi/theme_scripts/Cozy
+            ;;
+        "$theme2")
+            ~/.config/rofi/theme_scripts/Sakura
+            ;;
+        "$theme3")
+            ~/.config/rofi/theme_scripts/Natura
+            ;;
+        "$theme4")
+            ~/.config/rofi/theme_scripts/Everforest
+            ;;
+    esac
 }
 
 # ───────────────────────────────────────────────────────────────
 #                           Execute Cmd
 # ───────────────────────────────────────────────────────────────
 chosen="$(run_rofi)"
-case ${chosen} in
-    $shutdown)
-        run_cmd --shutdown
-        ;;
-    $reboot)
-        run_cmd --reboot
-        ;;
-    $lock)
-        if [[ -x '/usr/bin/betterlockscreen' ]]; then
-            betterlockscreen -l
-        elif [[ -x '/usr/bin/i3lock' ]]; then
-            i3lock
-        fi
-        ;;
-    $suspend)
-        run_cmd --suspend
-        ;;
-    $logout)
-        run_cmd --logout
-        ;;
-esac
-
+run_cmd "$chosen"
