@@ -1,6 +1,6 @@
 <div align="center">
 
-## PROGRESS 2/100
+## PROGRESS 20/100
 || Updating the project || Fixing bugs, install errors & script || Adding new themes || Fixing Bar icons || 
 </div>
 
