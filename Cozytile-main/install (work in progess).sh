@@ -5,25 +5,13 @@ set -e
 echo "This script requires sudo privileges."
 sudo -v
 
-# Function to keep sudo alive while the script is running
-keep_sudo_alive() {
-    while true; do
-        sudo -v
-        sleep 60
-    done
-}
-keep_sudo_alive &  # Run in the background
+echo "Welcome to the Cozytile Setup!" && sleep 2
 
-# Cleanup background sudo process on script exit
-trap 'kill $(jobs -p)' EXIT
-
-echo "Welcome to the Qtile Rice Setup!" && sleep 2
-
-# System update (requires sudo)
+# System update 
 echo "Performing a full system update..."
 sudo pacman --noconfirm -Syu
 
-# Install Git if not present (requires sudo)
+# Install Git if not present 
 sudo pacman -S --noconfirm --needed git
 
 # Clone and install Paru if not installed
@@ -35,10 +23,10 @@ if ! command -v paru &> /dev/null; then
 fi
 
 
-# Install base-devel and required packages (does not require sudo for Paru installs)
-paru -S --noconfirm --needed base-devel qtile python-psutil pywal-git picom-jonaburg-fix dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim sddm
+# Install base-devel and required packages
+paru -S --noconfirm --needed base-devel qtile python-psutil pywal-git picom dunst zsh starship mpd ncmpcpp playerctl brightnessctl alacritty pfetch htop flameshot thunar roficlip rofi ranger cava pulseaudio pavucontrol neovim vim sddm
 
-# Backup and install configuration files (no sudo needed)
+# Backup and install configuration files 
 echo "Backing up and installing configuration files..."
 
 # Backup and install fonts
@@ -63,19 +51,17 @@ backup_and_install() {
 }
 
 # Add all the necessary directories as seen in the folder structure
-backup_and_install ".config/rofi" "./config/rofi"
-backup_and_install ".config/dunst" "./config/dunst"
-backup_and_install ".config/alacritty" "./config/alacritty"
-backup_and_install ".config/nvim" "./config/nvim"
-backup_and_install ".config/cava" "./config/cava"
-backup_and_install ".config/picom" "./config/picom"
-backup_and_install ".config/qtile" "./config/qtile"
-backup_and_install ".config/spicetify" "./config/spicetify"
+backup_and_install ".config/rofi" "./.config/rofi"
+backup_and_install ".config/dunst" "./.config/dunst"
+backup_and_install ".config/alacritty" "./.config/alacritty"
+backup_and_install ".config/nvim" "./.config/nvim"
+backup_and_install ".config/cava" "./.config/cava"
+backup_and_install ".config/picom" "./.config/picom"
+backup_and_install ".config/qtile" "./.config/qtile"
+backup_and_install ".config/spicetify" "./.config/spicetify"
 backup_and_install ".themes" "./themes"
 backup_and_install ".zshrc" "./zshrc"
-backup_and_install "wallpapers" "./wallpapers"
-backup_and_install "Assets" "./Assets"
-backup_and_install "Screenshots" "./Screenshots"
+backup_and_install "Wallpapers" "./Wallpapers"
 backup_and_install "Themes" "./Themes"
 
 # Choose video driver (requires sudo for installing drivers)
@@ -90,17 +76,17 @@ case $vid in
 esac
 sudo pacman -S --noconfirm --needed xorg xorg-xinit $DRI
 
-# Set Zsh as the default shell (does not require sudo)
+# Set Zsh as the default shell 
 echo "Setting Zsh as the default shell..."
 chsh -s $(which zsh)
 
-# Install Oh My Zsh and plugins (no sudo needed)
+# Install Oh My Zsh and plugins
 echo "Installing Oh My Zsh and plugins..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Enable SDDM (does not require starting it immediately)
+# Enable SDDM 
 echo "Enabling SDDM to start on boot..."
 sudo systemctl enable sddm
 
