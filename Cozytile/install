@@ -1,0 +1,85 @@
+#!/bin/bash
+
+echo "Welcome to the Qtile rice setup script!"
+echo "This script will copy the dotfiles to your home directory to replicate my setup."
+echo "Please note that this script will also create a backup of your current dotfiles."
+
+
+
+# Get the user's choice of colorscheme
+echo "Which colorscheme do you want to use? Enter the corresponding number:"
+echo "1. Cozy"
+echo "2. Sakura"
+echo "3. Natura"
+
+read -p "Enter your choice: " choice
+
+# Create a backup directory with timestamp if it doesn't already exist
+backup_dir="$HOME/backup/$(date +%Y-%m-%d_%H-%M-%S)"
+if [ ! -d "$backup_dir" ]; then
+  mkdir -p "$backup_dir"
+  echo "Backup directory created: $backup_dir"
+else
+  echo "Backup directory already exists: $backup_dir"
+fi
+
+# Backup the dotfiles
+echo "Backing up dotfiles..."
+mv ~/.config/alacritty "$backup_dir/"
+mv ~/.config/cava "$backup_dir/"
+mv ~/.config/dunst "$backup_dir/"
+mv ~/.config/qtile  "$backup_dir/"
+mv ~/.config/rofi "$backup_dir/"
+mv ~/.config/starship.toml "$backup_dir/"
+mv ~/.zshrc "$backup_dir/"
+
+# Copy the new dotfiles
+echo "Copying new dotfiles..."
+case $choice in
+  1)
+    cp -r ./Cozy/. ./Cozy/.zshrc ~/
+    ;;
+  2)
+    cp -r ./Sakura/. ./Sakura/.zshrc ~/
+    ;;
+  3)
+    cp -r ./Natura/. ./Natura/.zshrc ~/
+    ;;
+  *)
+    echo "Invalid choice. Please try again."
+    exit 1
+    ;;
+esac
+
+#oh-my-zsh-gitpapap Install zsh, oh-my-zsh, and plugins
+echo "Installing zsh, oh-my-zsh, starship, and plugins..."
+if command -v paru >/dev/null; then
+  paru -S zsh starship
+elif command -v yay >/dev/null; then
+  yay -Sy zsh starship
+elif command -v trizen >/dev/null; then
+  trizen -S zsh starship
+elif command -v aurman >/dev/null; then
+  aurman -S zsh starship
+elif command -v pacaur >/dev/null; then
+  pacaur -S zsh starship
+elif command -v pikaur >/dev/null; then
+  pikaur -S zsh starship
+elif command -v aura >/dev/null; then
+  aura -A zsh starship
+elif command -v packer >/dev/null; then
+  packer -S zsh starship
+elif command -v bauerbill >/dev/null; then
+  bauerbill -S zsh starship
+else
+  echo "No supported AUR helper found. Please install one of the following: paru, yay, trizen, aurman, pacaur, pikaur, aura, packer, bauerbill."
+  exit 1
+fi
+
+chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+rm -R ~/.zshrc && cp -r ./Sakura/.zshrc ~/
+
+echo "Done! Please install a Display manager like "sddm" if you don't have one installed."
