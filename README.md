@@ -1,7 +1,7 @@
 <div align="center">
 
-## PROGRESS 20/100
-|| Updating the project || Fixing bugs, install errors & script || Adding new themes || Fixing Bar icons || 
+## NOTE
+Manual installation only works as of right now. Installation script is underwork 
 </div>
 
 
