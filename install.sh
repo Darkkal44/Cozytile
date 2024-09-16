@@ -115,7 +115,9 @@ chsh -s $(which zsh)
 clear
 
 # Install Oh My Zsh and plugins
-rm -R ~/.oh-my-zsh
+if [ -d "~/.oh-my-zsh" ]; then
+	rm -rf ~/.oh-my-zsh
+fi
 echo "Installing Oh My Zsh and plugins..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -141,6 +143,7 @@ echo "Theme 2 ../done"
 wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg > /dev/null 2>&1
 echo "Theme 3 ../done"
 wal -b 232A2E -i ~/Wallpaper/fog_forest_2.png > /dev/null 2>&1 
+echo "Theme 4 ../done"
 
 echo "Installation is complete!"
 echo "The system will restart in 5 seconds to apply the changes and start using SDDM."
