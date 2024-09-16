@@ -24,6 +24,7 @@ if ! command -v paru &> /dev/null; then
     mkdir -p ~/.srcs
     git clone https://aur.archlinux.org/paru-bin.git ~/.srcs/paru-bin
     (cd ~/.srcs/paru-bin && makepkg -si --noconfirm)
+    sudo ln -s /usr/lib/libalpm.so.15.0.0 /usr/lib/libalpm.so.14
 fi
 clear
 
@@ -90,7 +91,7 @@ backup_and_install ".config/spicetify" "./.config/spicetify"
 backup_and_install "Wallpaper" "./Wallpaper"
 backup_and_install "Themes" "./Themes"
 backup_install_file ".config/starship.toml" "./.config/starship.toml"
-
+sleep 2
 clear
 
 # Choose video driver
