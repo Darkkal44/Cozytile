@@ -23,7 +23,7 @@ mod = "mod4"
 terminal = "alacritty"
 
 # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █▀
-# █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ ▄█
+# █░█ ██▄ ░█░ █▄█ █ █░▀█y █▄▀ ▄█
 
 
 
@@ -234,7 +234,7 @@ screens = [
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background='#282738',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                     mouse_callbacks={"Button1": search},
                 ),
 
@@ -243,7 +243,7 @@ screens = [
                     background='#282738',
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                     mouse_callbacks={"Button1": search},
                 ),
 
@@ -257,7 +257,7 @@ screens = [
                     fontsize=13,
                     empty_group_string="Desktop",
                     max_chars=130,
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                 ),
 
                 widget.Image(
@@ -284,13 +284,13 @@ screens = [
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background='#353446',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                 ),
 
                 widget.Memory(
                     background='#353446',
                     format='{MemUsed: .0f}{mm}',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     update_interval=5,
@@ -310,14 +310,14 @@ screens = [
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background='#353446',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                 ),
 
                 widget.Battery(
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     background='#353446',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                     format='{percent:2.0%}',
                 ),
 
@@ -335,14 +335,14 @@ screens = [
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background='#353446',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                 ),
 
                 widget.Volume(
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     background='#353446',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                 ),
 
                 widget.Image(
@@ -355,13 +355,13 @@ screens = [
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background='#282738',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                 ),
 
                 widget.Clock(
                     format='%I:%M %p',
                     background='#282738',
-                    foreground='#607767',
+                    foreground='#CAA9E0',
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                 ),
