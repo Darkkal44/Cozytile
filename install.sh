@@ -73,6 +73,7 @@ backup_and_install ".config/qtile" "./.config/qtile"
 backup_and_install ".config/spicetify" "./.config/spicetify"
 backup_and_install "Wallpaper" "./Wallpaper"
 backup_and_install "Themes" "./Themes"
+backup_and_install ".config/starship.toml" "./.config/starship.toml"
 
 clear
 
