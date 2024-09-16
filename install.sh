@@ -3,7 +3,7 @@ set -e
 
 # Introduction & Warning
 echo "Welcome to the Cozytile Setup!" && sleep 2
-echo "Some parts of the script require sudo, so if you're planning on leaving the desktop while the installation script does its thing, better drop it already!." && sleep 7
+echo "Some parts of the script require sudo, so if you're planning on leaving the desktop while the installation script does its thing, better drop it already!." && sleep 4
 
 # System update 
 echo "Performing a full system update..."
@@ -40,8 +40,17 @@ mkdir -p ~/.local/share/fonts
 cp -r ./fonts/* ~/.local/share/fonts/
 fc-cache -f
 
-# Create a .backup directory in the home directory if it doesn't exist
-mkdir -p ~/.backup
+# Create or rename .backup directory
+backup_dir="$HOME/.backup"
+if [ -d "$backup_dir" ]; then
+    echo "$backup_dir already exists. Renaming existing backup directory..."
+    i=1
+    while [ -d "$backup_dir.old.$i" ]; do
+        i=$((i + 1))
+    done
+    mv "$backup_dir" "$backup_dir.old.$i"
+fi
+mkdir -p "$backup_dir"
 
 backup_and_install() {
     local folder="$1"
@@ -53,13 +62,20 @@ backup_and_install() {
         mkdir -p ~/.backup/$folder
         mv ~/$folder/* ~/.backup/$folder/
     fi
-    if [ -f ~/$target_path ]; then
-        echo "$target_path file detected, backing up..."
-        mkdir -p ~/.backup/$(dirname "$target_path")
-        mv ~/$target_path ~/.backup/$target_path
-    fi
     mkdir -p ~/$folder
     cp -r $src_path/* ~/$folder/
+}
+backup_install_file() {
+    local file="$1"
+    local src_path="$2"
+
+    if [ -f ~/$file ]; then
+        echo "$file detected, backing up..."
+        # Move existing file to .backup
+        mkdir -p ~/.backup/$(dirname "$file")
+        mv ~/$file ~/.backup/$(dirname "$file")/
+    fi
+    cp $src_path ~/$file
 }
 
 
@@ -73,7 +89,7 @@ backup_and_install ".config/qtile" "./.config/qtile"
 backup_and_install ".config/spicetify" "./.config/spicetify"
 backup_and_install "Wallpaper" "./Wallpaper"
 backup_and_install "Themes" "./Themes"
-backup_and_install ".config/starship.toml" "./.config/starship.toml"
+backup_install_file ".config/starship.toml" "./.config/starship.toml"
 
 clear
 
@@ -98,6 +114,7 @@ chsh -s $(which zsh)
 clear
 
 # Install Oh My Zsh and plugins
+rm -R ~/.oh-my-zsh
 echo "Installing Oh My Zsh and plugins..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -123,7 +140,7 @@ echo "Theme 2 ../done"
 wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg > /dev/null 2>&1
 echo "Theme 3 ../done"
 wal -b 232A2E -i ~/Wallpaper/fog_forest_2.png > /dev/null 2>&1 
-echo "Theme 4 ../done"
+
 echo "Installation is complete!"
 echo "The system will restart in 5 seconds to apply the changes and start using SDDM."
 sleep 5
