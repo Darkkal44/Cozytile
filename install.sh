@@ -107,6 +107,17 @@ sudo systemctl enable sddm
 clear
 
 # Inform the user and prompt for automatic restart
+
+echo "Pre-generating pywal colors..."
+echo "Might take some time, hang on tight!"
+wal -b 282738 -i ~/Wallpaper/Aesthetic2.png > /dev/null 2>&1
+echo "Theme 1 ../done"
+wal -b 282738 -i ~/Wallpaper/120_-_KnFPX73.jpg > /dev/null 2>&1
+echo "Theme 2 ../done"
+wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg > /dev/null 2>&1
+echo "Theme 3 ../done"
+wal -b 232A2E -i ~/Wallpaper/fog_forest_2.png > /dev/null 2>&1 
+
 echo "Installation is complete!"
 echo "The system will restart in 5 seconds to apply the changes and start using SDDM."
 sleep 5
