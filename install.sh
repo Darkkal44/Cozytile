@@ -53,6 +53,11 @@ backup_and_install() {
         mkdir -p ~/.backup/$folder
         mv ~/$folder/* ~/.backup/$folder/
     fi
+    if [ -f ~/$target_path ]; then
+        echo "$target_path file detected, backing up..."
+        mkdir -p ~/.backup/$(dirname "$target_path")
+        mv ~/$target_path ~/.backup/$target_path
+    fi
     mkdir -p ~/$folder
     cp -r $src_path/* ~/$folder/
 }
