@@ -1,4 +1,4 @@
-import = ["/home/unreal/.config/alacritty/colors.toml", "/home/unreal/.config/alacritty/fonts.toml"]
+import = ["~/.config/alacritty/colors.toml", "~/.config/alacritty/fonts.toml"]
 live_config_reload = true
 
 
