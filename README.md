@@ -1,7 +1,9 @@
 > [!Important]
->
 > New themes and features incoming!!
-> Installation script is up and running now.
+
+> [!Note]
+> Installation script is now up and running.
+
 
 <a href='#'><img align="center" src="./Assets/preview.png" alt="Cozytile"></a>
 
