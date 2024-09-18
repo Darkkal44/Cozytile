@@ -1,18 +1,14 @@
-<div align="center">
-
-## NOTE
-Manual installation only works as of right now. Installation script is underwork 
-</div>
-
+> [!Important]
+>
+> New themes and features incoming!!
+> Installation script is up and running now.
 
 <a href='#'><img align="center" src="./Assets/preview.png" alt="Cozytile"></a>
 
 
 <div align="left">
 
-Hey there!! I've been working on a Qtile rice for a while now, and I'm excited to share it with you. I've always been fascinated by the way the bar works in Qtile, so that's what I focused on for this rice. I'm thrilled with the results, and I hope you'll be impressed too.
-
-  Qtile might not be the most popular window manager out there, but it's definitely worth checking out. It has some amazing features and possibilities, and I hope my rice will inspire you to give it a try. So without further ado, here's my Qtile rice - I'm excited to finally show it off! Thanks for taking the time to check it out.
+Hey there! Dive in and enjoy the setup. Thanks for stopping by!
 
 </div>
 
@@ -21,7 +17,7 @@ Hey there!! I've been working on a Qtile rice for a while now, and I'm excited t
 ## INSTALLATION  (Arch Linux)
 </div>
 
-###### Note: This installation script is specifically designed for Arch Linux users, and I can only guarantee that it will work for a freshly installed system. If you've been using a different window manager, no worries - just be sure to take a complete backup of your current dots before running the script. And if you're already using Oh My Zsh, don't forget to remove that folder from your home directory
+###### Note: This script is for Arch Linux and works best on a fresh install. If you're switching from another window manager, back up your dotfiles first. The script includes a backup, but it’s always good to keep an extra copy for safety.
 
 <details>
 <summary><h3>Automated Installation </h3></summary>
@@ -45,8 +41,13 @@ chmod +x install.sh
 ```
 
 ###### Once the script finishes its work and launches SDDM, it's time to choose Qtile from the WM selector and dive right into the Amazing world of Qtile!
+
+
 </details>
 
+> [!note]
+>
+> Stuck on a pitch-black screen after logging in with SDDM? Just switch to ‘Qtile Wayland’ from the top-left corner instead of the default ‘Qtile (Xorg)’ in the login screen and restart!
 <div align="left">
 
 ## MANUAL INSTALLATION (Universal)
@@ -67,13 +68,12 @@ paru -Syu base-devel qtile python-psutil pywal-git feh picom-git dunst zsh stars
 
 ```
 - Fonts required for the bar and other utils
+###### Copy the contents of the ``fonts/`` folder from this repo to ``.local/share/fonts/`` or ``/usr/share/fonts/``
 
- ➺ Any nerd font
+```sh 
+sudo cp -R ./fonts/ /usr/share/fonts/
 
- ➺ [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
-
-###### Download the zip files for these fonts, extract them and put them into ``.local/share/fonts/`` or ``/usr/share/fonts/``
-
+```
 </details>
 
 
@@ -131,7 +131,7 @@ paru -Sy sddm
 ```sh
 sudo systemctl enable sddm && sudo systemctl start sddm
 ```
-###### Now that you're in the login screen of sddm, just select Qtile from wm selector, then login with your root password! viola ✨ 
+###### Now that you're in the login screen of sddm, just select `Qtile` from wm selector (very important, since it comes with `Qtile wayland` as default), then login with your root password! viola ✨ 
 
 - Enjoy!
 
