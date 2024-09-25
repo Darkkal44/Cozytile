@@ -1,8 +1,8 @@
 > [!Important]
-> New themes and features incoming!!
+> New themes and features incoming || Installation script is now up and running.
 
 > [!Note]
-> Installation script is now up and running.
+> Working with virtual machines? Make sure to enable "3d Acceleration" in the vm settings.
 
 
 <a href='#'><img align="center" src="./Assets/preview.png" alt="Cozytile"></a>
