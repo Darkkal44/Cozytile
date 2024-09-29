@@ -49,7 +49,7 @@ chmod +x install.sh
 
 > [!note]
 >
-> Stuck on a pitch-black screen after logging in with SDDM? Just switch to ‘Qtile Wayland’ from the top-left corner instead of the default ‘Qtile (Xorg)’ in the login screen and restart!
+> Stuck on a pitch-black screen after logging in with SDDM? Just switch to ‘Qtile (Xorg)’ from the top-left corner instead of the default ‘Qtile Wayland’ in the login screen!
 <div align="left">
 
 ## MANUAL INSTALLATION (Universal)
