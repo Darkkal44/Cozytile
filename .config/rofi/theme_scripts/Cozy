@@ -2,5 +2,6 @@
 
 cp -r ~/Themes/Cozy/. ~/ &&
 wal -b 282738 -i ~/Wallpaper/Aesthetic2.png &&
-qtile cmd-obj -o cmd -f restart 
-
+qtile cmd-obj -o cmd -f restart &&
+~/.spicetify/spicetify apply &&
+pkill dunst && dunst & 

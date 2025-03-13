@@ -2,5 +2,6 @@
 
 cp -r ~/Themes/Natura/. ~/ &&
 wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg &&
-qtile cmd-obj -o cmd -f restart 
-
+qtile cmd-obj -o cmd -f restart &&
+~/.spicetify/spicetify apply &&
+pkill dunst && dunst &
