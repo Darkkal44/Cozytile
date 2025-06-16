@@ -341,8 +341,8 @@ screens = [
 				widget.Volume(
 					font="JetBrainsMono Nerd Font Bold",
 					fontsize=13,
-					background='#CCCCCC',
-					foreground='#474747',
+                    background='#353446',
+                    foreground='#CAA9E0',
 					mute_command="pamixer --toggle-mute",
 					volume_up_command="pamixer -i 5",
 					volume_down_command="pamixer -d 5",

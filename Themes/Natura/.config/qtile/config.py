@@ -338,18 +338,19 @@ screens = [
                     foreground='#607767',
                 ),
 
-                widget.Volume(
-                    font="JetBrainsMono Nerd Font Bold",
-                    fontsize=13,
-                    background='#CCCCCC',
-                    foreground='#474747',
-                    get_volume_command="pamixer --get-volume-human",
-                    mute_command="pamixer --toggle-mute",
-                    step=5,
-                    volume_up_command="pactl set-sink-volume @DEFAULT_SINK@ +5%",
-                    volume_down_command="pactl set-sink-volume @DEFAULT_SINK@ -5%",
-                ),
-
+				widget.Volume(
+					font="JetBrainsMono Nerd Font Bold",
+					fontsize=13,
+                    background='#202222',
+                    foreground='#607767',
+					mute_command="pamixer --toggle-mute",
+					volume_up_command="pamixer -i 5",
+					volume_down_command="pamixer -d 5",
+					get_volume_command="pamixer --get-volume-human",
+					update_interval=0.2,
+					unmute_format="{volume}%",
+					mute_format="M",
+				),
                 widget.Image(
                     filename='~/.config/qtile/Assets/5.png',
                     background='#202222',
