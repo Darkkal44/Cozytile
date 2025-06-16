@@ -30,7 +30,7 @@ rofi_cmd() {
     rofi -dmenu \
         -p "$username" \
         -mesg "$sendoff" \
-        -theme ${dir}/sakura.rasi
+        -theme ${dir}/carbon.rasi
 }
 
 # ───────────────────────────────────────────────────────────────

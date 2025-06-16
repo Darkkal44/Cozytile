@@ -12,6 +12,7 @@ theme1='Cozy'
 theme2='Sakura'
 theme3='Natura'
 theme4='Everforest'
+theme5='Carbon'  
 
 # ───────────────────────────────────────────────────────────────
 #                           User Info
@@ -29,14 +30,14 @@ rofi_cmd() {
     rofi -dmenu \
         -p "$username" \
         -mesg "$sendoff" \
-        -theme ${dir}/cozy.rasi
+        -theme ${dir}/cozi.rasi
 }
 
 # ───────────────────────────────────────────────────────────────
 #                       Run Rofi Menu
 # ───────────────────────────────────────────────────────────────
 run_rofi() {
-    echo -e "$theme1\n$theme2\n$theme3\n$theme4" | rofi_cmd
+    echo -e "$theme1\n$theme2\n$theme3\n$theme4\n$theme5" | rofi_cmd
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -51,6 +52,22 @@ run_cmd() {
             ~/.config/rofi/theme_scripts/Sakura
             ;;
         "$theme3")
+            ~/.config/rofi/theme_scripts/Natura
+            ;;
+        "$theme4")
+            ~/.config/rofi/theme_scripts/Everforest
+            ;;
+        "$theme5")
+            ~/.config/rofi/theme_scripts/Carbon
+            ;;
+    esac
+}
+
+# ───────────────────────────────────────────────────────────────
+#                           Execute Cmd
+# ───────────────────────────────────────────────────────────────
+chosen="$(run_rofi)"
+run_cmd "$chosen"
             ~/.config/rofi/theme_scripts/Natura
             ;;
         "$theme4")

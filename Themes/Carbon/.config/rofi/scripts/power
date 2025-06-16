@@ -1,24 +1,25 @@
+
 #!/usr/bin/env bash
 
 # ───────────────────────────────────────────────────────────────
 #                      Theme Settings
 # ───────────────────────────────────────────────────────────────
-dir="$HOME/.config/rofi/settings/theme_switcher/"
+dir="$HOME/.config/rofi/settings/powermenu/"
 
 # ───────────────────────────────────────────────────────────────
 #                         Menu Options
 # ───────────────────────────────────────────────────────────────
-theme1='Cozy'
-theme2='Sakura'
-theme3='Natura'
-theme4='Everforest'
-theme5='Carbon'  
+shutdown=''
+reboot=''
+lock=''
+suspend=''
+logout=''
 
 # ───────────────────────────────────────────────────────────────
 #                           User Info
 # ───────────────────────────────────────────────────────────────
 username=" $(whoami)"
-messages=("Which theme do you want?" "Select a theme to apply!" "Choose your preferred theme!")
+messages=("See ya!" "Adiós, amigo!" "Catch you on the flip side!" "Powering down... but not for long!" "Peace out!")
 
 # Pick a random message
 sendoff="${messages[$((RANDOM % ${#messages[@]}))]}"
@@ -30,41 +31,56 @@ rofi_cmd() {
     rofi -dmenu \
         -p "$username" \
         -mesg "$sendoff" \
-        -theme ${dir}/sakura.rasi
+        -theme ${dir}/carbon.rasi
 }
 
 # ───────────────────────────────────────────────────────────────
 #                       Run Rofi Menu
 # ───────────────────────────────────────────────────────────────
 run_rofi() {
-    echo -e "$theme1\n$theme2\n$theme3\n$theme4\n$theme5" | rofi_cmd
+    echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
 }
 
 # ───────────────────────────────────────────────────────────────
 #                        Command Exec
 # ───────────────────────────────────────────────────────────────
 run_cmd() {
-    case $1 in
-        "$theme1")
-            ~/.config/rofi/theme_scripts/Cozy
-            ;;
-        "$theme2")
-            ~/.config/rofi/theme_scripts/Sakura
-            ;;
-        "$theme3")
-            ~/.config/rofi/theme_scripts/Natura
-            ;;
-        "$theme4")
-            ~/.config/rofi/theme_scripts/Everforest
-            ;;
-        "$theme5")
-            ~/.config/rofi/theme_scripts/Carbon
-            ;;
-    esac
+    if [[ $1 == '--shutdown' ]]; then
+        systemctl poweroff
+    elif [[ $1 == '--reboot' ]]; then
+        systemctl reboot
+    elif [[ $1 == '--suspend' ]]; then
+        mpc -q pause
+        amixer set Master mute
+        systemctl suspend
+    elif [[ $1 == '--logout' ]]; then
+        pkill -KILL -u "$USER"
+    fi
 }
 
 # ───────────────────────────────────────────────────────────────
 #                           Execute Cmd
 # ───────────────────────────────────────────────────────────────
 chosen="$(run_rofi)"
-run_cmd "$chosen"
+case ${chosen} in
+    $shutdown)
+        run_cmd --shutdown
+        ;;
+    $reboot)
+        run_cmd --reboot
+        ;;
+    $lock)
+        if [[ -x '/usr/bin/betterlockscreen' ]]; then
+            betterlockscreen -l
+        elif [[ -x '/usr/bin/i3lock' ]]; then
+            i3lock
+        fi
+        ;;
+    $suspend)
+        run_cmd --suspend
+        ;;
+    $logout)
+        run_cmd --logout
+        ;;
+esac
+

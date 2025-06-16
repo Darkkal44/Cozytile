@@ -1,0 +1,206 @@
+format = """\
+[](fg:#333333)\
+$username\
+[](fg:#333333 bg:#474747)\
+$directory\
+[](fg:#474747 bg:#474747)\
+$git_branch\
+$git_status\
+[](fg:#474747 bg:#474747)\
+$all\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$character"""
+
+add_newline = true
+
+[line_break]
+disabled = true
+
+[username]
+show_always = true
+style_user = "fg:#CCCCCC bg:#333333"
+style_root = "fg:#CCCCCC bg:#333333"
+format = '[ ]($style)'
+
+[directory]
+style = "fg:#CCCCCC bg:#474747"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"~" = " ~"
+"Documents" = " "
+"Downloads" = " "
+"Music" = "🎜 "
+"Pictures" = " "
+"Videos" = " "
+
+[git_branch]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol $branch(:$remote_branch) ]($style)'
+
+[git_status]
+style = "fg:#CCCCCC bg:#474747"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+deleted = "x"
+format = '[$all_status$ahead_behind ]($style)'
+
+[aws]
+symbol = " "
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[conda]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[dart]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[c]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[docker_context]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol $context]($style) $path '
+
+[elixir]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[elm]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[golang]
+symbol = "ﳑ"
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[haskell]
+symbol = "λ"
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[java]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[julia]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[lua]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[nim]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[nix_shell]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[nodejs]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[perl]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[php]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[python]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[ruby]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[rust]
+symbol = "🦀"
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[swift]
+symbol = "ﯣ"
+style = "fg:#CCCCCC bg:#474747"
+format = '[ $symbol ($version )]($style)'
+
+[package]
+symbol = ""
+style = "fg:#CCCCCC bg:#474747"
+format = "[ $symbol $version]($style)"
+disabled = true
+
+[cmd_duration]
+min_time = 1
+style = "fg:#CCCCCC bg:#474747"
+format = "[ $duration]($style)"
+disabled = true
+
+[jobs]
+symbol = "華"
+style = "fg:#CCCCCC bg:#474747"
+format = "[ $symbol]($style)"
+
+[battery]
+full_symbol = " "
+charging_symbol = " "
+discharging_symbol = " "
+unknown_symbol = " "
+empty_symbol = " "
+format = "[ $symbol$percentage ](fg:#CCCCCC bg:#474747)"
+disabled = true
+
+[[battery.display]]
+threshold = 15
+style = "bold fg:#CCCCCC"
+
+[[battery.display]]
+threshold = 50
+style = "fg:#CCCCCC"
+
+[[battery.display]]
+threshold = 101
+style = "bold fg:#CCCCCC"
+
+[time]
+disabled = true
+time_format = "%R"
+style = "bg:#474747"
+format = '[](fg:#474747 bg:#474747)[  $time ](fg:#CCCCCC bg:#474747)'
+
+[character]
+success_symbol = "[ ](fg:#474747)"
+error_symbol = "[ ](fg:#474747)"
