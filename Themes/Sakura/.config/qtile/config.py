@@ -340,8 +340,13 @@ screens = [
                 widget.Volume(
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
-                    background='#353446',
-                    foreground='#E5B9C6',
+                    background='#CCCCCC',
+                    foreground='#474747',
+                    get_volume_command="pamixer --get-volume-human",
+                    mute_command="pamixer --toggle-mute",
+                    step=5,
+                    volume_up_command="pactl set-sink-volume @DEFAULT_SINK@ +5%",
+                    volume_down_command="pactl set-sink-volume @DEFAULT_SINK@ -5%",
                 ),
 
                 widget.Image(
