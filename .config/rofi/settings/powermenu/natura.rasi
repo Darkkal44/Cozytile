@@ -1,0 +1,156 @@
+/*---------------------------------*\
+         Configuration Section          
+\*---------------------------------*/
+configuration {
+    show-icons:                 false;
+}
+
+/*---------------------------------*\
+         Global Properties Section          
+\*---------------------------------*/
+* {
+    font:                        "JetBrains Mono Nerd Font 11";
+    background:                  #0f1212;
+    background-alt:              #0f1212;
+    foreground:                  #b2bebc;
+    selected:                    #788E7D;
+    active:                      #718871;
+    urgent:                      #546E6C;
+}
+
+/*
+USE_BUTTONS=YES
+*/
+
+/*---------------------------------*\
+         Main Window Section          
+\*---------------------------------*/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       800px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @selected;
+    cursor:                      "default";
+    background-color:            @background;
+}
+
+/*---------------------------------*\
+         Main Box Section          
+\*---------------------------------*/
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @selected;
+    background-color:            transparent;
+    background-image:            url("~/.config/rofi/images/power.png", width);
+    children:                    [ "inputbar", "listview", "message"];
+}
+
+/*---------------------------------*\
+         Inputbar Section          
+\*---------------------------------*/
+inputbar {
+    enabled:                     true;
+    spacing:                     20px;
+    padding:                     1px 4px;
+    background-color:            transparent;
+    children:                    [ "textbox-prompt-colon", "dummy","prompt"];
+}
+
+dummy {
+    background-color:            transparent;
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         " Power";
+    padding:                     10px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+prompt {
+    enabled:                     true;
+    padding:                     10px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+/*---------------------------------*\
+         Listview Section          
+\*---------------------------------*/
+listview {
+    enabled:                     true;
+    columns:                     5;
+    lines:                       1;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    
+    spacing:                     15px;
+    margin:                      15px;
+    padding:                     60px 30px 20px;
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/*---------------------------------*\
+         Elements Section          
+\*---------------------------------*/
+element {
+    enabled:                     true;
+    padding:                     28px 10px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
+element-text {
+    font:                        "feather bold 32";
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+element selected.normal {
+    background-color:            @foreground;
+    text-color:                  var(background);
+}
+
+/*---------------------------------*\
+         Message Section          
+\*---------------------------------*/
+message {
+    enabled:                     true;
+    margin:                      0px 15px 15px 15px;
+    padding:                     15px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+
+}
+textbox {
+    background-color:            inherit;
+    text-color:                  inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
