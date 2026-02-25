@@ -24,13 +24,13 @@ header() {
     clear
     echo -e "${C_MAIN}${C_BOLD}"
     echo " ╭──────────────────────────────────────────╮"
-    echo " │          ✨ COZYTILE INSTALLER ✨        │"
+    echo " │          󱓞 COZYTILE INSTALLER 󱓞          │"
     echo " ╰──────────────────────────────────────────╯"
     echo -e "${C_RESET}"
 }
 
 info() {
-    echo -e "${C_MAIN}${C_BOLD} ╭─ 🚀 $1${C_RESET}"
+    echo -e "${C_MAIN}${C_BOLD} ╭─ 󰓅 $1${C_RESET}"
 }
 
 substep() {
@@ -67,7 +67,7 @@ fi
 header
 warn "This installer requires sudo privileges."
 
-echo -e "${C_MAIN}${C_BOLD} ╭─ 💻 Select your Device Type${C_RESET}"
+echo -e "${C_MAIN}${C_BOLD} ╭─ 󰪟 Select your Device Type${C_RESET}"
 echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}1 ${C_DIM}❯ ${C_RESET}Laptop"
 echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}2 ${C_DIM}❯ ${C_RESET}PC"
 echo -ne "${C_MAIN}${C_BOLD} ╰─ ${C_YELLOW}Choice: ${C_RESET}"
@@ -95,7 +95,7 @@ if choice == '2': # Laptop -> PC
                     fontsize=13,
                     background=\"{bg}\",
                     foreground=\"{fg}\",
-                    format=\"{} {{up}}{{up_suffix}} {} {{down}}{{down_suffix}}\",
+                    format=\"{{}} {{up}}{{up_suffix}} {{}} {{down}}{{down_suffix}}\",
                 )'''
     new_content = re.sub(battery_pattern, sub_to_pc, content, flags=re.DOTALL)
 elif choice == '1': # PC -> Laptop
@@ -278,7 +278,7 @@ success "Fonts loaded into system."
 ########################################
 
 header
-echo -e "${C_MAIN}${C_BOLD} ╭─ 🖥️ Select your GPU Driver${C_RESET}"
+echo -e "${C_MAIN}${C_BOLD} ╭─ 󰪡 Select your GPU Driver${C_RESET}"
 echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}1 ${C_DIM}❯ ${C_RESET}Intel"
 echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}2 ${C_DIM}❯ ${C_RESET}AMD"
 echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}3 ${C_DIM}❯ ${C_RESET}NVIDIA"
@@ -368,10 +368,10 @@ success "Wallpaper cache preloaded."
 ########################################
 
 header
-echo -e "${C_GREEN}${C_BOLD} ╭─ 🎉 INSTALLATION COMPLETE!${C_RESET}"
+echo -e "${C_GREEN}${C_BOLD} ╭─ 󰗤 INSTALLATION COMPLETE!${C_RESET}"
 echo -e "${C_GREEN}${C_BOLD} ╰─ Cozytile has been successfully configured.${C_RESET}\n"
 
-echo -e "${C_MAIN}${C_BOLD} ╭─ 🔄 REBOOTING${C_RESET}"
+echo -e "${C_MAIN}${C_BOLD} ╭─ 󰑓 REBOOTING${C_RESET}"
 echo -e "${C_MAIN}${C_BOLD} │  ${C_DIM}System will restart in 5 seconds...${C_RESET}"
 echo -e "${C_MAIN}${C_BOLD} ╰─ ${C_DIM}Press Ctrl+C to cancel reboot.${C_RESET}\n"
 
