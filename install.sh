@@ -84,7 +84,7 @@ choice = sys.argv[2]
 with open(path, 'r') as f: content = f.read()
 
 battery_pattern = r'widget\.TextBox\(\s*text=\"\s*\",\s*font=\"Font Awesome 6 Free Solid\",\s*fontsize=13,\s*background=\"(?P<bg>[^\"]+)\",\s*foreground=\"(?P<fg>[^\"]+)\",\s*\),\s*widget\.Battery\(\s*font=\"JetBrainsMono Nerd Font Bold\",\s*fontsize=13,\s*background=\"(?P<bg2>[^\"]+)\",\s*foreground=\"(?P<fg2>[^\"]+)\",\s*format=\"\{percent:2\.0%\}\",\s*\)'
-net_pattern = r'widget\.Net\(\s*font=\"JetBrainsMono Nerd Font Bold\",\s*fontsize=13,\s*background=\"(?P<bg>[^\"]+)\",\s*foreground=\"(?P<fg>[^\"]+)\",\s*format=[\'\"]\s*\{up\}\{up_suffix\}\s*\{down\}\{down_suffix\}[\'\"],\s*\)'
+net_pattern = r'widget\.Net\(\s*font=\"JetBrainsMono Nerd Font Bold\",\s*fontsize=13,\s*background=\"(?P<bg>[^\"]+)\",\s*foreground=\"(?P<fg>[^\"]+)\",\s*format=[\'\"]\s*\s*\{up\}\{up_suffix\}\s*\s*\{down\}\{down_suffix\}[\'\"],\s*\)'
 
 if choice == '2': # Laptop -> PC
     def sub_to_pc(m):
@@ -95,7 +95,7 @@ if choice == '2': # Laptop -> PC
                     fontsize=13,
                     background=\"{bg}\",
                     foreground=\"{fg}\",
-                    format=\"{{}} {{up}}{{up_suffix}} {{}} {{down}}{{down_suffix}}\",
+                    format=\' {{up}}{{up_suffix}}  {{down}}{{down_suffix}}\',
                 )'''
     new_content = re.sub(battery_pattern, sub_to_pc, content, flags=re.DOTALL)
 elif choice == '1': # PC -> Laptop
