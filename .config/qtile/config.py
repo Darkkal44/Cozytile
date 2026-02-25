@@ -288,7 +288,7 @@ screens = [
                     background="#353446",
                 ),
                 widget.TextBox(
-                    text="",
+                    text="",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background="#353446",

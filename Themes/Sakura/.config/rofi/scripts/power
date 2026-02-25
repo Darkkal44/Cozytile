@@ -9,11 +9,11 @@ dir="$HOME/.config/rofi/settings/powermenu/"
 # ───────────────────────────────────────────────────────────────
 #                         Menu Options
 # ───────────────────────────────────────────────────────────────
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
+shutdown=''
+reboot=''
+lock=''
+suspend=''
+logout=''
 
 # ───────────────────────────────────────────────────────────────
 #                           User Info
@@ -83,4 +83,3 @@ case ${chosen} in
         run_cmd --logout
         ;;
 esac
-

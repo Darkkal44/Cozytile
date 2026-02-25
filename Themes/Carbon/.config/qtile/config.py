@@ -272,7 +272,7 @@ screens = [
                     filename="~/.config/qtile/Assets/6.png", background="#CCCCCC"
                 ),
                 widget.TextBox(
-                    text="",
+                    text="",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                     background="#CCCCCC",
