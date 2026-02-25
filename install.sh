@@ -289,7 +289,7 @@ echo ""
 
 case "$vid" in
     2) DRI="xf86-video-amdgpu" ;;
-    3) DRI="nvidia nvidia-settings nvidia-utils" ;;
+    3) DRI="nvidia-settings nvidia-utils" ;;
     4) DRI="" ;;
     *) DRI="xf86-video-intel" ;;
 esac
