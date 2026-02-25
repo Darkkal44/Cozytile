@@ -68,37 +68,62 @@ header
 warn "This installer requires sudo privileges."
 
 echo -e "${C_MAIN}${C_BOLD} ╭─ 💻 Select your Device Type${C_RESET}"
-echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}1 ${C_DIM}❯ ${C_RESET}Laptop (Default)"
-echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}2 ${C_DIM}❯ ${C_RESET}PC (Desktop)"
+echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}1 ${C_DIM}❯ ${C_RESET}Laptop"
+echo -e "${C_MAIN}${C_BOLD} │  ${C_ACCENT}2 ${C_DIM}❯ ${C_RESET}PC"
 echo -ne "${C_MAIN}${C_BOLD} ╰─ ${C_YELLOW}Choice: ${C_RESET}"
-read -rp "" device_type
+read -rp "" device_choice
 echo ""
 
-if [[ "$device_type" == "2" ]]; then
-    info "Applying PC-specific configuration fixes..."
-    find "$REPO_DIR" -name "config.py" | while read -r config_file; do
-        substep "Patching $(basename "$config_file")"
-        python3 -c "
+info "Applying device-specific configuration fixes..."
+find "$REPO_DIR" -name "config.py" | while read -r config_file; do
+    substep "Patching $(basename "$config_file")"
+    python3 -c "
 import re, sys
 path = sys.argv[1]
+choice = sys.argv[2]
 with open(path, 'r') as f: content = f.read()
-pattern = r'widget\.TextBox\(\s*text=\"[^\"]*\",\s*font=\"Font Awesome 6 Free Solid\",\s*fontsize=13,\s*background=\"(?P<bg>[^\"]+)\",\s*foreground=\"(?P<fg>[^\"]+)\",\s*\),\s*widget\.Battery\(\s*font=\"JetBrainsMono Nerd Font Bold\",\s*fontsize=13,\s*background=\"(?P<bg2>[^\"]+)\",\s*foreground=\"(?P<fg2>[^\"]+)\",\s*format=\"\{percent:2\.0%\}\",\s*\)'
-def sub_net(m):
-    bg = m.group('bg2')
-    fg = m.group('fg2')
-    return f'''widget.Net(
+
+battery_pattern = r'widget\.TextBox\(\s*text=\"\s*\",\s*font=\"Font Awesome 6 Free Solid\",\s*fontsize=13,\s*background=\"(?P<bg>[^\"]+)\",\s*foreground=\"(?P<fg>[^\"]+)\",\s*\),\s*widget\.Battery\(\s*font=\"JetBrainsMono Nerd Font Bold\",\s*fontsize=13,\s*background=\"(?P<bg2>[^\"]+)\",\s*foreground=\"(?P<fg2>[^\"]+)\",\s*format=\"\{percent:2\.0%\}\",\s*\)'
+net_pattern = r'widget\.Net\(\s*font=\"JetBrainsMono Nerd Font Bold\",\s*fontsize=13,\s*background=\"(?P<bg>[^\"]+)\",\s*foreground=\"(?P<fg>[^\"]+)\",\s*format=[\'\"]\s*\{up\}\{up_suffix\}\s*\{down\}\{down_suffix\}[\'\"],\s*\)'
+
+if choice == '2': # Laptop -> PC
+    def sub_to_pc(m):
+        bg = m.group('bg2')
+        fg = m.group('fg2')
+        return f'''widget.Net(
                     font=\"JetBrainsMono Nerd Font Bold\",
                     fontsize=13,
                     background=\"{bg}\",
                     foreground=\"{fg}\",
-                    format=\" {{up}}{{up_suffix}}  {{down}}{{down_suffix}}\",
+                    format=\"{} {{up}}{{up_suffix}} {} {{down}}{{down_suffix}}\",
                 )'''
-new_content = re.sub(pattern, sub_net, content, flags=re.DOTALL)
+    new_content = re.sub(battery_pattern, sub_to_pc, content, flags=re.DOTALL)
+elif choice == '1': # PC -> Laptop
+    def sub_to_laptop(m):
+        bg = m.group('bg')
+        fg = m.group('fg')
+        return f'''widget.TextBox(
+                    text=\" \",
+                    font=\"Font Awesome 6 Free Solid\",
+                    fontsize=13,
+                    background=\"{bg}\",
+                    foreground=\"{fg}\",
+                ),
+                widget.Battery(
+                    font=\"JetBrainsMono Nerd Font Bold\",
+                    fontsize=13,
+                    background=\"{bg}\",
+                    foreground=\"{fg}\",
+                    format=\"{{percent:2.0%}}\",
+                )'''
+    new_content = re.sub(net_pattern, sub_to_laptop, content, flags=re.DOTALL)
+else:
+    new_content = content
+
 with open(path, 'w') as f: f.write(new_content)
-" "$config_file"
-    done
-    success "PC fixes applied."
-fi
+" "$config_file" "$device_choice"
+done
+success "Device type configurations applied."
 
 ########################################
 # Full System Sync
