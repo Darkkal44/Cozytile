@@ -324,17 +324,17 @@ success "SDDM service enabled."
 info "Preloading wallpaper color cache..."
 dim_on
 substep "Aesthetic2.png"
-wal -b 282738 -i ~/Wallpaper/Aesthetic2.png > /dev/null 2>&1
+wal -b 282738 -i ~/Wallpaper/Aesthetic2.png > /dev/null 2>&1 || true
 substep "fog_forest_2.png"
-wal -b 232A2E -i Wallpaper/fog_forest_2.png > /dev/null 2>&1
+wal -b 232A2E -i ~/Wallpaper/fog_forest_2.png > /dev/null 2>&1 || true
 substep "claudio-testa"
-wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg > /dev/null 2>&1
+wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg > /dev/null 2>&1 || true
 substep "120"
-wal -b 282738 -i ~/Wallpaper/120_-_KnFPX73.jpg > /dev/null 2>&1
+wal -b 282738 -i ~/Wallpaper/120_-_KnFPX73.jpg > /dev/null 2>&1 || true
 substep "a_road_going_through_a_desert"
-wal -i ~/Wallpaper/a_road_going_through_a_desert.jpeg > /dev/null 2>&1
+wal -i ~/Wallpaper/a_road_going_through_a_desert.jpeg > /dev/null 2>&1 || true
 substep "e-ink theme"
-wal --theme ~/.cache/wal/e-ink.json > /dev/null 2>&1
+wal --theme ~/.cache/wal/e-ink.json > /dev/null 2>&1 || true
 dim_off
 success "Wallpaper cache preloaded."
 
