@@ -206,7 +206,7 @@ cd ~
 info "Installing Cozytile dependencies & Fonts..."
 dim_on
 $AUR_HELPER -S --noconfirm --needed \
-qtile python-psutil pywal-git picom dunst zsh starship mpd ncmpcpp \
+qtile python-psutil python-pywal picom dunst zsh starship mpd ncmpcpp \
 playerctl brightnessctl alacritty pfetch htop flameshot thunar \
 roficlip rofi ranger cava neovim vim feh sddm pipewire pipewire-pulse \
 pamixer ttf-jetbrains-mono-nerd ttf-hack-nerd ttf-font-awesome ttf-firacode-nerd ttf-icomoon-feather
@@ -341,6 +341,30 @@ dim_on
 sudo systemctl enable sddm
 dim_off
 success "SDDM service enabled."
+
+########################################
+# Install SDDM Themes
+########################################
+
+info "Installing refined SDDM themes..."
+dim_on
+sudo mkdir -p /usr/share/sddm/themes
+sudo cp -r "$REPO_DIR"/sddm-themes/* /usr/share/sddm/themes/
+sudo mkdir -p /etc/sddm.conf.d
+echo -e "[Theme]\nCurrent=Cozy" | sudo tee /etc/sddm.conf.d/theme.conf
+dim_off
+success "SDDM themes installed and configured."
+
+########################################
+# Sudoers Automation (SDDM Sync)
+########################################
+
+info "Automating SDDM theme switching..."
+dim_on
+echo "$USER ALL=(ALL) NOPASSWD: /usr/bin/tee /etc/sddm.conf.d/theme.conf" | sudo tee /etc/sudoers.d/cozytile-sddm > /dev/null
+sudo chmod 440 /etc/sudoers.d/cozytile-sddm
+dim_off
+success "Sudoers rule added for SDDM sync."
 
 ########################################
 # Wallpaper Cache

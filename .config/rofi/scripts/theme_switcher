@@ -68,16 +68,3 @@ run_cmd() {
 # ───────────────────────────────────────────────────────────────
 chosen="$(run_rofi)"
 run_cmd "$chosen"
-            ~/.config/rofi/theme_scripts/Natura
-            ;;
-        "$theme4")
-            ~/.config/rofi/theme_scripts/Everforest
-            ;;
-    esac
-}
-
-# ───────────────────────────────────────────────────────────────
-#                           Execute Cmd
-# ───────────────────────────────────────────────────────────────
-chosen="$(run_rofi)"
-run_cmd "$chosen"

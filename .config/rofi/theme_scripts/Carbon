@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cp -r ~/Themes/Carbon/. ~/ &&
-wal -i ~/Wallpaper/a_road_going_through_a_desert.jpeg && wal --theme ~/.cache/wal/e-ink.json
-qtile cmd-obj -o cmd -f restart &&
-~/.spicetify/spicetify apply &&
+wal -i ~/Wallpaper/a_road_going_through_a_desert.jpeg && wal --theme ~/.cache/wal/e-ink.json &&
+(echo -e "[Theme]\nCurrent=Carbon" | sudo -n tee /etc/sddm.conf.d/theme.conf || true) &&
+qtile cmd-obj -o cmd -f restart
+spicetify apply || true
 pkill dunst && dunst &

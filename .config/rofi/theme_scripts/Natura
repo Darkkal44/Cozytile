@@ -2,6 +2,7 @@
 
 cp -r ~/Themes/Natura/. ~/ &&
 wal -i ~/Wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg &&
-qtile cmd-obj -o cmd -f restart &&
-~/.spicetify/spicetify apply &&
+(echo -e "[Theme]\nCurrent=Natura" | sudo -n tee /etc/sddm.conf.d/theme.conf || true) &&
+qtile cmd-obj -o cmd -f restart
+spicetify apply || true
 pkill dunst && dunst &

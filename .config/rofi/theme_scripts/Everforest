@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cp -r ~/Themes/Everforest/. ~/ &&
-wal -b 232A2E -i Wallpaper/fog_forest_2.png &&
-qtile cmd-obj -o cmd -f restart &&
-~/.spicetify/spicetify apply &&
+wal -b 232A2E -i ~/Wallpaper/fog_forest_2.png &&
+(echo -e "[Theme]\nCurrent=Everforest" | sudo -n tee /etc/sddm.conf.d/theme.conf || true) &&
+qtile cmd-obj -o cmd -f restart
+spicetify apply || true
 pkill dunst && dunst &

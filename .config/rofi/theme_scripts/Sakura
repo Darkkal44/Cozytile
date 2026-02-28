@@ -2,6 +2,7 @@
 
 cp -r ~/Themes/Sakura/. ~/ &&
 wal -b 282738 -i ~/Wallpaper/120_-_KnFPX73.jpg &&
-qtile cmd-obj -o cmd -f restart && 
-~/.spicetify/spicetify apply &&
+(echo -e "[Theme]\nCurrent=Sakura" | sudo -n tee /etc/sddm.conf.d/theme.conf || true) &&
+qtile cmd-obj -o cmd -f restart
+spicetify apply || true
 pkill dunst && dunst &
