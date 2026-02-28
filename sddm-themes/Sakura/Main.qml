@@ -1,5 +1,5 @@
 import QtQuick 2.15
-import Qt5Compat.GraphicalEffects
+import Qt5Compat.GraphicalEffects 1.0
 import SddmComponents 2.0
 
 Rectangle {
