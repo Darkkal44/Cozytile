@@ -1,6 +1,6 @@
 <p align="center">
 <pre align="center">
-<a href="#setup">​🇸​​🇪​​🇹​​🇺​​🇵​</a>  •  <a href="#keybinds">​🇰​​🇪​​🇾​​🇧​​🇮​​🇳​​🇩​​🇸​</a>  •  <a href="#gallery">​🇬​​🇦​​🇱​​🇱​​🇪​​🇷​​🇾​</a>  •  <a href="#credits">​🇨​​🇷​​🇪​​🇩​​🇮​​​🇹​🇸​</a>
+<a href="#setup">setup​​</a>  •  <a href="#keybinds">​keybinds​</a>  •  <a href="#gallery">​galley</a>  •  <a href="#credits">​credits</a>
 </pre>
 </p>
 
@@ -22,10 +22,11 @@
 <tr>
 <td width="55%" valign="top">
 
-### ☕ ​🇹​​🇭​​🇪​ ​🇻​​🇮​​🇸​​🇮​​🇴​​🇳​
+### ☕ ᴛʜᴇ ᴠɪꜱɪᴏɴ​
 A cozy rice to keep things comfy. I honestly think Qtile is way too underrated—being able to script your whole environment in Python is a superpower, and there's so much you can do with it. This is my take on showing off those possibilities with some clean, modern aesthetics.
 
-### 🍁 ​🇨​​🇴​​🇷​​🇪​ ​🇭​​🇮​​🇬​​🇭​​🇱​​🇮​​🇬​​🇭​​🇹​​🇸​
+### 🍁 ᴄᴏʀᴇ ʜɪɢʜʟɪɢʜᴛꜱ
+​
 **Dynamic Themes:** `pywal` handles the heavy lifting—it pulls colors from your wallpaper and themes the whole system automatically.
 
 **System Aware:** The bar is smart enough to know if you're on a Laptop or PC, so it swaps the battery and network widgets for you.
@@ -35,7 +36,7 @@ A cozy rice to keep things comfy. I honestly think Qtile is way too underrated�
 </td>
 <td width="45%" valign="top">
 
-### 📚 ​🇹​​🇭​​🇪​ ​🇸​​🇹​​🇦​​🇨​​🇰​
+### 📚 ᴛʜᴇ ꜱᴛᴀᴄᴋ​
 
 | Component | Choice |
 | :--- | :--- |
@@ -58,10 +59,10 @@ A cozy rice to keep things comfy. I honestly think Qtile is way too underrated�
 ---
 
 <div align="center">
-  <h2 id="setup"> ☁️ ​🇩​​🇪​​🇵​​🇱​​🇴​​🇾​​🇲​​🇪​​🇳​​🇹​ ☁️ </h2>
+  <h2 id="setup"> ☁️ ᴅᴇᴘʟᴏʏᴍᴇɴᴛ ☁️ </h2>
 </div>
 
-### 🌿 ​🇹​​🇭​​🇪​ ​🇦​​🇺​​🇹​​🇴​​🇲​​🇦​​🇹​​🇪​​🇩​ ​🇵​​🇦​​🇹​​🇭​ (​🇦​​🇷​​🇨​​🇭​ ​🇱​​🇮​​🇳​​🇺​​🇽​)
+### 🌿 ᴛʜᴇ ᴀᴜᴛᴏᴍᴀᴛᴇᴅ ᴘᴀᴛʜ (ᴀʀᴄʜ ʟɪɴᴜx)
 
 > [!TIP]
 > **Recommended:** For the purest experience, an automated installation script is provided. It handles AUR helpers, dependencies, custom SDDM themes, font caching, and Zsh configuration automatically.
@@ -82,7 +83,7 @@ chmod +x install.sh
 <br>
 
 <details>
-<summary><b>🌿 ​🇹​​🇭​​🇪​ ​🇲​​🇦​​🇳​​🇺​​🇦​​🇱​ ​🇵​​🇦​​🇹​​🇭​ (​🇸​​🇹​​🇪​​🇵​-​🇧​​🇾​-​🇸​​🇹​​🇪​​🇵​)</b></summary>
+<summary><b>🌿 ᴛʜᴇ ᴍᴀɴᴜᴀʟ ᴘᴀᴛʜ </b></summary>
 <br>
 
 If you prefer knowing exactly what goes into your system or are adapting this setup for another OS, here is the exact manual breakdown of what the installer does.
@@ -203,7 +204,7 @@ sudo reboot
 ---
 
 <div align="center">
-  <h2 id="keybinds"> ⌨️ ​🇳​​🇦​​🇻​​🇮​​🇬​​🇦​​🇹​​🇮​​🇴​​🇳​ ​🇲​​🇦​​🇹​​🇷​​🇮​​🇽​ ⌨️ </h2>
+  <h2 id="keybinds"> ⌨️ ɴᴀᴠɪɢᴀᴛɪᴏɴ ᴍᴀᴛʀɪx ⌨️ </h2>
   <p>Master your environment from the keyboard.</p>
 </div>
 
@@ -250,7 +251,7 @@ sudo reboot
 ---
 
 <div align="center">
-  <h2 id="credits"> 🌙 ​🇨​​🇷​​🇪​​🇩​​🇮​​🇹​​🇸​ & ​🇬​​🇷​​🇦​​🇹​​🇮​​🇹​​🇺​​🇩​​🇪​ 🌙 </h2>
+  <h2 id="credits"> 🌙 ᴄʀᴇᴅɪᴛꜱ ᴀɴᴅ ɢʀᴀᴛɪᴛᴜᴅᴇ 🌙 </h2>
 </div>
 
 A massive thank you to the **Unixporn Discord** community for the endless support and inspiration! This project wouldn't be the same without the kindness and knowledge shared there.
@@ -265,7 +266,7 @@ A massive thank you to the **Unixporn Discord** community for the endless suppor
 For their help with various some silly things:
 * **[Namish](https://namishh.com/)**
 * **[Stardust](https://star.is-a.dev/)**
-
+* Kaizky
 ---
 
 <div align="center">
