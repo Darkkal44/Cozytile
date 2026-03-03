@@ -182,7 +182,7 @@ extension_defaults = [widget_defaults.copy()]
 
 
 def search():
-    qtile.cmd_spawn("rofi -show drun")
+    qtile.cmd_spawn("sh -c ~/.config/rofi/scripts/launcher")
 
 
 def power():
