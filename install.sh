@@ -205,7 +205,9 @@ cd ~
 
 info "Installing Cozytile dependencies & Fonts..."
 dim_on
-$AUR_HELPER -R pywal-git 
+if pacman -Qi pywal-git &> /dev/null; then
+    $AUR_HELPER -R pywal-git 
+fi
 $AUR_HELPER -S --noconfirm --needed \
 qtile python-psutil python-pywal qt5-graphicaleffects picom dunst zsh starship mpd ncmpcpp \
 playerctl brightnessctl alacritty pfetch htop flameshot thunar \
