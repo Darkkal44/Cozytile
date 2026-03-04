@@ -1,440 +1,219 @@
 import QtQuick 2.15
+import QtQuick.Window 2.15
 import QtGraphicalEffects 1.15
 import SddmComponents 2.0
 
 Rectangle {
-    id: container
-    width: 640
-    height: 480
+    readonly property real s: Screen.height / 768
+    id: root
+    width: Screen.width
+    height: Screen.height
+    color: "#0f1212"
 
-    LayoutMirroring.enabled: Qt.locale().textDirection == Qt.RightToLeft
-    LayoutMirroring.childrenInherit: true
+    // ── Properties ───────────────────────────────────────────────────
+    property int sessionIndex: (sessionModel && sessionModel.lastIndex >= 0) ? sessionModel.lastIndex : 0
+    property real ui: 0
 
-    property int sessionIndex: sessionModel.lastIndex
+    // Colors - Natura Theme
+    readonly property color accent:     "#607767" // Deep Green
+    readonly property color light:      "#f8f8f2"
+    readonly property color panelBg:    "#dd0f1212"
 
-    TextConstants { id: textConstants }
+    FontLoader { id: orbitron; source: "fonts/Orbitron.ttf" }
 
-    Connections {
-        target: sddm
+    // ── Helpers ──────────────────────────────────────────────────────
+    ListView { id: sessionHelper; model: sessionModel; currentIndex: root.sessionIndex; visible: false; delegate: Item { property string sName: model.name || "" } }
+    ListView { id: userHelper; model: userModel; currentIndex: userModel.lastIndex >= 0 ? userModel.lastIndex : 0; visible: false; delegate: Item { property string uName: model.realName || model.name || "" } }
 
-        function onLoginSucceeded() {
-            errorMessage.color = "#a6e3a1" // Green
-            errorMessage.text = textConstants.loginSucceeded
-        }
+    Component.onCompleted: fadeAnim.start()
+    NumberAnimation { id: fadeAnim; target: root; property: "ui"; from: 0; to: 1; duration: 1800; easing.type: Easing.OutCubic }
 
-        function onLoginFailed() {
-            password.text = ""
-            errorMessage.color = "#f38ba8" // Red
-            errorMessage.text = textConstants.loginFailed
-        }
-        
-        function onInformationMessage(message) {
-            errorMessage.color = "#f38ba8" // Red
-            errorMessage.text = message
-        }
-    }
-
-    Background {
+    // ── Background ────────────────────────────────────────────────────
+    Image {
+        id: bg
         anchors.fill: parent
-        source: config.background
+        source: "Background.jpg"
         fillMode: Image.PreserveAspectCrop
-        onStatusChanged: {
-            if (status == Image.Error && source != config.defaultBackground) {
-                source = config.defaultBackground
+        
+        Rectangle {
+            anchors.fill: parent
+            color: "black"
+            opacity: 0.8
+        }
+    }
+
+    // ── Falling Leaves Animation (Natura) ─────────────────────────────
+    Repeater {
+        model: 18
+        delegate: Item {
+            id: leaf
+            property real startX: Math.random() * root.width
+            property real dur:    10000 + Math.random() * 8000
+            property real drift:  (Math.random() - 0.5) * 200
+            property real sz:     10 + Math.random() * 10
+            property real delay:  Math.random() * 10000
+            property real rot:    Math.random() * 360
+            
+            x: startX; y: -40; width: sz; height: sz * 0.6; opacity: 0
+            
+            Rectangle {
+                anchors.fill: parent
+                radius: sz * 0.3
+                color: Qt.rgba(0.4, 0.5, 0.4, 0.5) // Greenish leaf color
+                rotation: leaf.rot
+            }
+
+            SequentialAnimation {
+                running: true; loops: Animation.Infinite
+                PauseAnimation { duration: leaf.delay }
+                ParallelAnimation {
+                    NumberAnimation { target: leaf; property: "y"; from: -40; to: root.height + 40; duration: leaf.dur; easing.type: Easing.InOutQuad }
+                    NumberAnimation { target: leaf; property: "x"; from: leaf.startX; to: leaf.startX + leaf.drift; duration: leaf.dur; easing.type: Easing.InOutQuad }
+                    NumberAnimation { target: leaf; property: "rotation"; from: leaf.rot; to: leaf.rot + 360; duration: leaf.dur }
+                    SequentialAnimation {
+                        NumberAnimation { target: leaf; property: "opacity"; to: 0.6; duration: 1500 }
+                        PauseAnimation { duration: leaf.dur - 3000 }
+                        NumberAnimation { target: leaf; property: "opacity"; to: 0; duration: 1500 }
+                    }
+                }
             }
         }
     }
 
-    // Transparent login panel
-    Rectangle {
-        id: loginPanel
-        width: 320
-        height: 520
+    // Centered Content (Everforest Layout)
+    Column {
+        id: mainPanel
         anchors.left: parent.left
-        anchors.leftMargin: 100
+        anchors.leftMargin: 120 * s
         anchors.verticalCenter: parent.verticalCenter
-        color: "transparent"
-        radius: 20
+        width: 360 * s
+        spacing: 40 * s
+        opacity: root.ui
 
+        // Clock Column
         Column {
-            anchors.centerIn: parent
-            spacing: 25
-            width: parent.width * 0.8
+            spacing: 5 * s
+            Text {
+                id: clockLabel
+                text: Qt.formatTime(new Date(), "HH:mm")
+                font.family: orbitron.name; font.pixelSize: 84 * s; font.weight: Font.DemiBold; color: "white"
+                style: Text.Outline; styleColor: "#40000000"
+                Timer { interval: 1000; running: true; repeat: true; onTriggered: clockLabel.text = Qt.formatTime(new Date(), "HH:mm") }
+            }
+            Text {
+                text: Qt.formatDate(new Date(), "dddd, MMMM d").toUpperCase()
+                font.family: orbitron.name; font.pixelSize: 13 * s; font.letterSpacing: 4 * s; color: root.accent
+                font.weight: Font.Bold
+            }
+        }
 
-            // Time and Date
-            Column {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 5
+        // Login Card
+        Column {
+            width: parent.width
+            spacing: 25 * s
 
-                Text {
-                    id: timeText
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#607767" // Primary Accent
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 72
-                    font.weight: Font.Light
-                    font.letterSpacing: -2
-
-                    Timer {
-                        interval: 1000
-                        running: true
-                        repeat: true
-                        onTriggered: {
-                            timeText.text = Qt.formatTime(new Date(), "hh:mm")
-                        }
-                    }
-                    Component.onCompleted: timeText.text = Qt.formatTime(new Date(), "hh:mm")
-                }
-
-                Text {
-                    id: dateText
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#7a9181" // Secondary Accent
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 14
-                    font.letterSpacing: 1
-                    leftPadding: 1
-                    font.capitalization: Font.AllUppercase
-                    
-                    Timer {
-                        interval: 1000 * 60 * 60
-                        running: true
-                        repeat: true
-                        onTriggered: {
-                            dateText.text = Qt.formatDate(new Date(), "dddd, MMMM d")
-                        }
-                    }
-                    Component.onCompleted: dateText.text = Qt.formatDate(new Date(), "dddd, MMMM d")
-                }
+            Text {
+                text: (userHelper.currentItem && userHelper.currentItem.uName) ? userHelper.currentItem.uName.toUpperCase() : "NATURA USER"
+                font.family: orbitron.name; font.pixelSize: 18 * s; font.letterSpacing: 4 * s; color: "white"; opacity: 1.0; font.weight: Font.DemiBold
             }
 
-            // User Input
-            Column {
-                width: parent.width
-                spacing: 8
-
-                Rectangle {
-                    width: parent.width
-                    height: 44
-                    color: Qt.rgba(255, 255, 255, 0.05)
-                    radius: 8
-                    border.color: name.activeFocus ? "#607767" : "transparent"
-                    border.width: 1
-
-                    TextInput {
-                        id: name
-                        anchors.fill: parent
-                        anchors.margins: 12
-                        verticalAlignment: TextInput.AlignVCenter
-                        text: userModel.lastUser
-                        font.family: "JetBrains Mono Nerd Font"
-                        font.pixelSize: 14
-                        color: "#607767"
-                        clip: true
-
-                        KeyNavigation.backtab: rebootButton
-                        KeyNavigation.tab: password
-
-                        Keys.onPressed: {
-                            if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                password.forceActiveFocus()
-                                event.accepted = true
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Password Input
-            Column {
-                width: parent.width
-                spacing: 8
-
-                Rectangle {
-                    width: parent.width
-                    height: 44
-                    color: Qt.rgba(255, 255, 255, 0.05)
-                    radius: 8
-                    border.color: password.activeFocus ? "#607767" : "transparent"
-                    border.width: 1
-
-                    TextInput {
-                        id: password
-                        anchors.fill: parent
-                        anchors.margins: 12
-                        verticalAlignment: TextInput.AlignVCenter
-                        font.family: "JetBrains Mono Nerd Font"
-                        font.pixelSize: 15
-                        font.letterSpacing: 4
-                        color: "#607767"
-                        echoMode: TextInput.Password
-                        clip: true
-
-                        Text {
-                            anchors.fill: parent
-                            verticalAlignment: Text.AlignVCenter
-                            color: "#7a9181"
-                            text: "Password..."
-                            font.family: "JetBrains Mono Nerd Font"
-                            font.pixelSize: 14
-                            visible: !password.text && !password.activeFocus
-                        }
-
-                        KeyNavigation.backtab: name
-                        KeyNavigation.tab: loginBtnRect
-
-                        Keys.onPressed: {
-                            if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
-                                sddm.login(name.text, password.text, sessionIndex)
-                                event.accepted = true
-                            }
-                        }
-                    }
-                }
-
-                Text {
-                    id: errorMessage
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: ""
-                    color: "#f38ba8"
-                    font.pixelSize: 12
-                    height: text === "" ? 0 : implicitHeight
-                    Behavior on height { NumberAnimation { duration: 200 } }
-                }
-            }
-
-            // Login Button (Full Width)
-            Rectangle {
-                id: loginBtnRect
-                width: parent.width
-                height: 44
-                color: loginMouseArea.pressed ? "#4b5d51" : (loginMouseArea.containsMouse ? "#7a9181" : "#607767")
-                radius: 8
-
-                Text {
-                    anchors.centerIn: parent
-                    text: "LOGIN"
-                    color: "#1e1e2e"
-                    font.family: "JetBrains Mono Nerd Font"
-                    font.pixelSize: 14
-                    font.weight: Font.Medium
-                    font.letterSpacing: 2
-                    leftPadding: 2
-                }
-
-                MouseArea {
-                    id: loginMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: sddm.login(name.text, password.text, sessionIndex)
+            // Simple Rounded Input
+            Item {
+                width: parent.width; height: 50 * s
+                Rectangle { 
+                    anchors.fill: parent; radius: 4 * s; color: "#44000000"
+                    border.color: passwordField.activeFocus ? root.accent : "#44ffffff"; border.width: 1 * s
                 }
                 
-                Keys.onPressed: {
-                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter || event.key === Qt.Key_Space) {
-                        sddm.login(name.text, password.text, sessionIndex)
-                    }
+                TextInput {
+                    id: passwordField; anchors.fill: parent; anchors.leftMargin: 20 * s; anchors.rightMargin: 20 * s
+                    color: "white"; verticalAlignment: Text.AlignVCenter; font.pixelSize: 14 * s; font.letterSpacing: 12 * s
+                    echoMode: TextInput.Password; passwordCharacter: "·"; focus: true
+                    font.weight: Font.Bold
+                    Keys.onReturnPressed: doLogin()
                 }
-
-                KeyNavigation.backtab: password
-                KeyNavigation.tab: sessionSelector
-            }
-
-            // Hidden helper to extract session names using model.name (only works in delegate context)
-            ListView {
-                id: sessionNameHelper
-                model: sessionModel
-                currentIndex: sessionIndex
-                visible: false
-                width: 0
-                height: 0
-                delegate: Item {
-                    property string sessionName: model.name || ""
+                
+                Text {
+                    anchors.left: passwordField.left; anchors.right: passwordField.right; anchors.top: passwordField.top; anchors.bottom: passwordField.bottom
+                    verticalAlignment: Text.AlignVCenter
+                    text: "Password..."; color: "white"; opacity: 0.4; font.pixelSize: 13 * s; visible: !passwordField.text && !passwordField.activeFocus
                 }
             }
 
-            // Custom Themed Session Selector
-            Item {
-                id: sessionSelector
-                width: parent.width
-                height: 40
-                z: 10
-
-                // The closed "button" appearance
+            // Action
+            MouseArea {
+                id: loginBtn
+                width: parent.width; height: 50 * s; hoverEnabled: true; onClicked: doLogin()
                 Rectangle {
-                    id: sessionBtn
-                    width: parent.width
-                    height: 40
-                    radius: 8
-                    color: sessionSelectorMouse.containsMouse ? Qt.rgba(255,255,255,0.1) : Qt.rgba(255,255,255,0.05)
-                    border.color: sessionSelectorMouse.containsMouse || sessionList.visible ? "#607767" : Qt.rgba(255,255,255,0.15)
-                    border.width: 1
-
-                    // Session name label — reads from hidden ListView delegate
-                    Text {
-                        anchors.left: parent.left
-                        anchors.leftMargin: 12
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: sessionNameHelper.currentItem ? sessionNameHelper.currentItem.sessionName : "Select Session"
-                        color: "#607767"
-                        font.family: "JetBrains Mono Nerd Font"
-                        font.pixelSize: 13
-                    }
-
-                    // Dropdown arrow
-                    Text {
-                        anchors.right: parent.right
-                        anchors.rightMargin: 12
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: sessionList.visible ? "▲" : "▼"
-                        color: "#7a9181"
-                        font.pixelSize: 11
-                    }
-
-                    MouseArea {
-                        id: sessionSelectorMouse
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onClicked: sessionList.visible = !sessionList.visible
-                    }
+                    anchors.fill: parent; radius: 4 * s; color: parent.containsMouse ? root.accent : "transparent"
+                    border.color: root.accent; border.width: 1 * s
+                    Behavior on color { ColorAnimation { duration: 200 } }
                 }
-
-                // The popup dropdown list — opens DOWNWARD
-                Rectangle {
-                    id: sessionList
-                    visible: false
-                    width: parent.width
-                    height: Math.min(sessionModel.rowCount() * 36, 150)
-                    anchors.top: sessionBtn.bottom
-                    anchors.topMargin: 4
-                    radius: 8
-                    color: Qt.rgba(240/255, 240/255, 245/255, 0.98)  // Light background
-                    border.color: "#607767"
-                    border.width: 1
-                    clip: true
-
-                    ListView {
-                        id: sessionListView
-                        anchors.fill: parent
-                        anchors.margins: 4
-                        model: sessionModel
-                        currentIndex: sessionIndex
-
-                        delegate: Rectangle {
-                            width: sessionListView.width
-                            height: 36
-                            radius: 6
-                            color: sessionItemMouse.containsMouse ? Qt.rgba(0,0,0,0.08) : (index === sessionIndex ? Qt.rgba(0,0,0,0.05) : "transparent")
-
-                            Text {
-                                anchors.left: parent.left
-                                anchors.leftMargin: 10
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: model.name || model.display || ""
-                                color: "#1e1e2e"
-                                font.family: "JetBrains Mono Nerd Font"
-                                font.pixelSize: 13
-                                font.weight: index === sessionIndex ? Font.Medium : Font.Normal
-                            }
-
-                            // Checkmark for selected
-                            Text {
-                                visible: index === sessionIndex
-                                anchors.right: parent.right
-                                anchors.rightMargin: 10
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: "✓"
-                                color: "#607767"
-                                font.pixelSize: 12
-                            }
-
-                            MouseArea {
-                                id: sessionItemMouse
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: {
-                                    sessionIndex = index
-                                    sessionList.visible = false
-                                }
-                            }
-                        }
-                    }
+                Text {
+                    anchors.centerIn: parent; text: "CONFIRM"; color: loginBtn.containsMouse ? "#0f1212" : "white"
+                    font.family: orbitron.name; font.pixelSize: 12 * s; font.letterSpacing: 4 * s; font.weight: Font.Bold
                 }
+            }
+        }
 
-                // (clicking anywhere outside closes the popup via z-ordering)
+        Text { id: errorMessage; text: ""; color: "#ff8080"; font.family: orbitron.name; font.pixelSize: 11 * s; font.weight: Font.Bold }
+    }
 
-                KeyNavigation.backtab: loginBtnRect
-                KeyNavigation.tab: shutdownButton
+    // Power
+    Row {
+        anchors.bottom: parent.bottom; anchors.right: parent.right; anchors.margins: 60 * s; spacing: 40 * s; opacity: root.ui * 0.8
+        Repeater {
+            model: [{l: "Shutdown", f: sddm.powerOff}, {l: "Restart", f: sddm.reboot}]
+            delegate: Text {
+                text: modelData.l.toUpperCase(); font.family: orbitron.name; font.pixelSize: 11 * s; font.letterSpacing: 2 * s; color: "white"; opacity: 0.6; font.weight: Font.Bold
+                MouseArea { anchors.fill: parent; onEntered: parent.opacity = 1; onExited: parent.opacity = 0.6; onClicked: modelData.f() }
+            }
+        }
+    }
+
+    // Session Manager
+    Column {
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.margins: 60 * s
+        anchors.leftMargin: 120 * s
+        spacing: 12 * s
+        opacity: root.ui * 0.8
+
+        Text {
+            text: "ENVIRONMENT"
+            font.family: orbitron.name; font.pixelSize: 10 * s; font.letterSpacing: 2 * s; color: "white"; opacity: 0.5; font.weight: Font.Bold
+        }
+
+        MouseArea {
+            id: sessionBtn
+            width: 180 * s; height: 36 * s; hoverEnabled: true
+            onClicked: root.sessionIndex = (root.sessionIndex + 1) % sessionModel.rowCount()
+
+            Rectangle {
+                anchors.fill: parent; radius: 4 * s; color: sessionBtn.containsMouse ? Qt.rgba(1,1,1,0.08) : "transparent"
+                border.color: sessionBtn.containsMouse ? root.accent : Qt.rgba(1,1,1,0.2); border.width: 1 * s
+                Behavior on border.color { ColorAnimation { duration: 200 } }
+                Behavior on color { ColorAnimation { duration: 200 } }
             }
 
-            // Power Controls
             Row {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 20
-                Item {
-                    width: 36
-                    height: 36
-                    Rectangle {
-                        id: shutdownButton
-                        anchors.fill: parent
-                        radius: 8
-                        color: shutdownMouse.pressed ? "#4b5d51" : (shutdownMouse.containsMouse ? "#7a9181" : "#607767")
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: ""
-                            color: "#1e1e2e"
-                            font.family: "JetBrains Mono Nerd Font"
-                            font.pixelSize: 18
-                        }
-
-                        MouseArea {
-                            id: shutdownMouse
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: sddm.powerOff()
-                        }
-                        
-                        KeyNavigation.backtab: loginBtnRect
-                        KeyNavigation.tab: rebootButton
-                    }
-                }
-
-                Item {
-                    width: 36
-                    height: 36
-                    Rectangle {
-                        id: rebootButton
-                        anchors.fill: parent
-                        radius: 8
-                        color: rebootMouse.pressed ? "#4b5d51" : (rebootMouse.containsMouse ? "#7a9181" : "#607767")
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: ""
-                            color: "#1e1e2e"
-                            font.family: "JetBrains Mono Nerd Font"
-                            font.pixelSize: 18
-                        }
-
-                        MouseArea {
-                            id: rebootMouse
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: sddm.reboot()
-                        }
-                        
-                        KeyNavigation.backtab: shutdownButton
-                        KeyNavigation.tab: name
-                    }
+                anchors.centerIn: parent; spacing: 10 * s
+                Rectangle { width: 4 * s; height: 4 * s; color: root.accent; radius: 2 * s; anchors.verticalCenter: parent.verticalCenter; opacity: sessionBtn.containsMouse ? 1 : 0.5 }
+                Text {
+                    text: (sessionHelper.currentItem && sessionHelper.currentItem.sName) ? sessionHelper.currentItem.sName.toUpperCase() : "SELECT SESSION"
+                    font.family: orbitron.name; font.pixelSize: 11 * s; font.letterSpacing: 1 * s; color: "white"; font.weight: Font.Bold
                 }
             }
         }
     }
 
-    Component.onCompleted: {
-        if (name.text == "")
-            name.forceActiveFocus()
-        else
-            password.forceActiveFocus()
+    Connections { target: sddm; function onLoginFailed() { errorMessage.text = "INVALID_KEY"; passwordField.text = ""; shakeAnim.start() } }
+    SequentialAnimation {
+        id: shakeAnim
+        NumberAnimation { target: mainPanel; property: "anchors.leftMargin"; to: 130 * s; duration: 50 }
+        NumberAnimation { target: mainPanel; property: "anchors.leftMargin"; to: 110 * s; duration: 50 }
+        NumberAnimation { target: mainPanel; property: "anchors.leftMargin"; to: 120 * s; duration: 50 }
     }
+    function doLogin() { sddm.login(userModel.lastUser, passwordField.text, root.sessionIndex) }
 }

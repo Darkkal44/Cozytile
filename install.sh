@@ -205,8 +205,9 @@ cd ~
 
 info "Installing Cozytile dependencies & Fonts..."
 dim_on
+$AUR_HELPER -R pywal-git 
 $AUR_HELPER -S --noconfirm --needed \
-qtile python-psutil pywal-git qt5-graphicaleffects picom dunst zsh starship mpd ncmpcpp \
+qtile python-psutil python-pywal qt5-graphicaleffects picom dunst zsh starship mpd ncmpcpp \
 playerctl brightnessctl alacritty pfetch htop flameshot thunar \
 roficlip rofi ranger cava neovim vim feh sddm qt6-5compat qt6-declarative qt6-svg pipewire pipewire-pulse \
 pamixer ttf-jetbrains-mono-nerd ttf-hack-nerd ttf-font-awesome ttf-firacode-nerd ttf-icomoon-feather
