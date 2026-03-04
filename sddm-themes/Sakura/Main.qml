@@ -34,7 +34,7 @@ Rectangle {
         anchors.fill: parent
         source: "Background.jpg"
         fillMode: Image.PreserveAspectCrop
-        
+
         Rectangle {
             anchors.fill: parent
             color: "black"
@@ -112,19 +112,19 @@ Rectangle {
             // Simple Rounded Input
             Item {
                 width: parent.width; height: 50 * s
-                Rectangle { 
+                Rectangle {
                     anchors.fill: parent; radius: 4 * s; color: "#44000000"
                     border.color: passwordField.activeFocus ? root.accent : "#44ffffff"; border.width: 1 * s
                 }
-                
+
                 TextInput {
                     id: passwordField; anchors.fill: parent; anchors.leftMargin: 20 * s; anchors.rightMargin: 20 * s
                     color: "white"; verticalAlignment: Text.AlignVCenter; font.pixelSize: 14 * s; font.letterSpacing: 12 * s
-                    echoMode: TextInput.Password; passwordCharacter: "🌸"; focus: true
+                    echoMode: TextInput.Password; passwordCharacter: "◈"; focus: true
                     font.weight: Font.Bold
                     Keys.onReturnPressed: doLogin()
                 }
-                
+
                 Text {
                     anchors.left: passwordField.left; anchors.right: passwordField.right; anchors.top: passwordField.top; anchors.bottom: passwordField.bottom
                     verticalAlignment: Text.AlignVCenter
