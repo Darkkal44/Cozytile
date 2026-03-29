@@ -4,7 +4,9 @@
     <p align="right">
       <br>
       <img src="https://img.shields.io/badge/UPI-abhaydevka169%40okicici-00BFFF?style=for-the-badge&logo=google-pay&logoColor=white"/>
-      <br><br>
+      <br>
+      <i> or Ko-Fi: https://ko-fi.com/darkkal</i>
+      <br>
       <i>Means a lot, tysm <3</i>
     </p>
   </details>
