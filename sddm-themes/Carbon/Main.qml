@@ -1,6 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Window
+import Qt5Compat.GraphicalEffects
+import Qt.labs.folderlistmodel
 import SddmComponents 2.0
 
 Rectangle {
@@ -19,11 +20,20 @@ Rectangle {
     readonly property color light:      "#f8f8f2"
     readonly property color panelBg:    "#dd0a0a0a"
 
-    FontLoader { id: orbitron; source: "fonts/Orbitron.ttf" }
+    FolderListModel {
+        id: fontFolder
+        folder: Qt.resolvedUrl("font")
+        nameFilters: ["*.ttf", "*.otf"]
+    }
+
+    FontLoader { id: orbitron; source: fontFolder.count > 0 ? "font/" + fontFolder.get(0, "fileName") : "" }
 
     // ── Helpers ──────────────────────────────────────────────────────
-    ListView { id: sessionHelper; model: sessionModel; currentIndex: root.sessionIndex; visible: false; delegate: Item { property string sName: model.name || "" } }
-    ListView { id: userHelper; model: userModel; currentIndex: userModel.lastIndex >= 0 ? userModel.lastIndex : 0; visible: false; delegate: Item { property string uName: model.realName || model.name || "" } }
+    ListView { id: sessionHelper; model: sessionModel; currentIndex: root.sessionIndex; opacity: 0; width: 100; height: 100; z: -100; delegate: Item { property string sName: model.name || "" } }
+    ListView { id: userHelper; model: userModel; currentIndex: userModel.lastIndex >= 0 ? userModel.lastIndex : 0; opacity: 0; width: 100; height: 100; z: -100; delegate: Item { property string uName: model.realName || model.name || "" } }
+
+    // Auto-focus fix for Quickshell (Loader does not propagate focus: true)
+    Timer { interval: 300; running: true; onTriggered: passwordField.forceActiveFocus() }
 
     Component.onCompleted: fadeAnim.start()
     NumberAnimation { id: fadeAnim; target: root; property: "ui"; from: 0; to: 1; duration: 1800; easing.type: Easing.OutCubic }
@@ -124,13 +134,39 @@ Rectangle {
                     color: "white"; verticalAlignment: Text.AlignVCenter; font.pixelSize: 14 * s; font.letterSpacing: 12 * s
                     echoMode: TextInput.Password; passwordCharacter: "■"; focus: true
                     font.weight: Font.Bold
+                    cursorVisible: false; cursorDelegate: Item { width: 0; height: 0 }
+                    selectionColor: root.accent
+                    property bool wasClicked: false
                     Keys.onReturnPressed: doLogin()
+
+                    Rectangle {
+                        id: customCursor
+                        width: 2 * s; height: 20 * s
+                        color: root.accent
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: passwordField.cursorRectangle.x
+                        visible: passwordField.focus && (passwordField.text.length > 0 || passwordField.wasClicked)
+                        SequentialAnimation {
+                            loops: Animation.Infinite; running: customCursor.visible
+                            NumberAnimation { target: customCursor; property: "opacity"; from: 1; to: 0.05; duration: 450 }
+                            NumberAnimation { target: customCursor; property: "opacity"; from: 0.05; to: 1; duration: 450 }
+                        }
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            passwordField.forceActiveFocus()
+                            passwordField.wasClicked = true
+                        }
+                    }
                 }
                 
                 Text {
                     anchors.left: passwordField.left; anchors.right: passwordField.right; anchors.top: passwordField.top; anchors.bottom: passwordField.bottom
                     verticalAlignment: Text.AlignVCenter
-                    text: "Access Key..."; color: "white"; opacity: 0.4; font.pixelSize: 13 * s; visible: !passwordField.text && !passwordField.activeFocus
+                    text: "Access Key..."; color: "white"; font.pixelSize: 13 * s
+                    opacity: passwordField.text.length === 0 ? 0.4 : 0
+                    Behavior on opacity { NumberAnimation { duration: 400; easing.type: Easing.InOutSine } }
                 }
             }
 
@@ -194,7 +230,7 @@ Rectangle {
                 anchors.centerIn: parent; spacing: 10 * s
                 Rectangle { width: 4 * s; height: 4 * s; color: root.accent; radius: 2 * s; anchors.verticalCenter: parent.verticalCenter; opacity: sessionBtn.containsMouse ? 1 : 0.5 }
                 Text {
-                    text: (sessionHelper.currentItem && sessionHelper.currentItem.sName) ? sessionHelper.currentItem.sName.toUpperCase() : "SELECT SESSION"
+                    text: (sessionHelper.currentItem && sessionHelper.currentItem.sName ? sessionHelper.currentItem.sName : "Session").toUpperCase()
                     font.family: orbitron.name; font.pixelSize: 11 * s; font.letterSpacing: 1 * s; color: "white"; font.weight: Font.Bold
                 }
             }
