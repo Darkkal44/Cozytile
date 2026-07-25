@@ -24,15 +24,16 @@
 <td width="55%" valign="top">
 
 ### ☕ ᴛʜᴇ ᴠɪꜱɪᴏɴ​
-A cozy rice to keep things comfy. I honestly think Qtile is way too underrated—being able to script your whole environment in Python is a superpower, and there's so much you can do with it. This is my take on showing off those possibilities with some clean, modern aesthetics.
+A cozy rice to keep things comfy. Qtile is just wayy too underrated and this is my attempt on tryna make something good out of it~
+
 
 ### 🍁 ᴄᴏʀᴇ ʜɪɢʜʟɪɢʜᴛꜱ
 ​
-**Dynamic Themes:** `pywal` handles the heavy lifting—it pulls colors from your wallpaper and themes the whole system automatically.
+**Dynamic Themes:** `pywal` does most of the coloring work, whatever wallpaper you choose it'll just get the colors applied everywhere ~
 
-**System Aware:** The bar is smart enough to know if you're on a Laptop or PC, so it swaps the battery and network widgets for you.
+**System Aware:** Have made it so that the bar detects weather you are on a laptop or pc and switch up things accordingly 
 
-**Easy Deployment:** The installer script sets up everything—from GPU drivers to fonts and dotfiles—so you can get comfy faster.
+**Easy Deployment:** The installation script does most of the job for ya~
 
 </td>
 <td width="45%" valign="top">
